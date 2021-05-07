@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duel Station | Game</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script/general.js"></script>
+    <script src="script/game.js"></script>
+</head>
+
+<body onload="load_currency()">
+
+    <div class="header_background">
+
+        <div class="container">
+
+            <div class="header">
+
+                <div class="navbar">
+
+                    <ul>
+                        <a>
+                            <img src="img/logo.png">
+                            <li><b>Jogar</b></li>
+                        </a>
+                        <a href="store.html">
+                            <li>Loja</li>
+                        </a>
+                        <a href="profile.html">
+                            <li>Perfil</li>
+                        </a>
+
+                        <div class="currency">
+
+                            <img src="img/coin.png" alt="Ícone de moeda">
+                            <p id="p_currency"></p>
+    
+                        </div>
+
+                        <div class="music">
+
+                            <img id="muted_music" src="img/muted.png" 
+                            onclick="play_music()">
+        
+                            <img id="playing_music" src="img/playing.png" 
+                            onclick="stop_music()" style="display: none;">
+        
+                        </div>
+
+                        <a href="index.html">
+                            <li>Sair</li>
+                        </a>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="game_banner">
+
+        <div class="options" id="div_options">
+
+            <div class="selection">
+
+                <b>Selecione seu Deck</b>
+
+                <div class="deck_list">
+                    <button id="button0" value="0" onclick="change_deck(Number(this.value))">
+                        <img src="img/types/deck0.png">
+                        <p>Voador</p>
+                    </button>
+
+                    <button id="button20" value="20" onclick="change_deck(Number(this.value))">
+                        <img src="img/types/deck20.png">
+                        <p>Aquático</p>
+                    </button>
+
+                    <button id="button40" value="40" onclick="change_deck(Number(this.value))">
+                        <img src="img/types/deck40.png">
+                        <p>Mago</p>
+                    </button>
+
+                    <button id="button60" value="60" onclick="change_deck(Number(this.value))">
+                        <img src="img/types/deck60.png">
+                        <p>Zumbi</p>
+                    </button>
+
+                    <button id="button80" value="80" onclick="change_deck(Number(this.value))">
+                        <img src="img/types/deck80.png">
+                        <p>Máquina</p>
+                    </button>
+
+                </div>
+
+                <div class="button1" onclick="start()">É Hora do Duelo!</div>
+
+            </div>
+
+        </div>
+
+        <div class="board" id="div_board">
+
+            <div class="stats">
+
+                <div class="stats_box">
+                    <img src="img/profile.png" alt="Foto de perfil">
+                    <p><span id="span_player_lifepoints">5000</span> PV</p>
+                </div>
+
+                <div class="stats_box">
+                    <b>Round <span id="span_round"></span></b>
+                </div>
+
+                <div class="stats_box">
+                    <img src="img/enemy.png" alt="Ícone do adversário">
+                    <p><span id="span_enemy_lifepoints">5000</span> PV</p>
+                </div>
+
+            </div>
+
+            <div class="versus_cards">
+
+                <div class="card_template" id="div_card">
+                    <img id="img_card">
+
+                    <div class="card_desc">
+                        <p id="p_card_name"></p>
+
+                        <div class="card_attack">
+                            <b id="p_attack"></b>
+                            <img id="img_type">
+                        </div>
+                    </div>
+                </div>
+
+                <b>VS</b>
+
+                <div class="card_template" id="div_enemy_card">
+                    <img id="img_enemy_card">
+
+                    <div class="card_desc">
+                        <p id="p_enemy_card_name"></p>
+
+                        <div class="card_attack">
+                            <b id="p_enemy_attack"></b>
+                            <img id="img_enemy_type">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="result" id="div_result">
+            <p id="p_result"></p>
+            <div id="div_new_currency"></div>
+            <div class="button1" onclick="reset()">Jogar Novamente</div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

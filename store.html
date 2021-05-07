@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duel Station | Game</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script/general.js"></script>
+    <script src="script/game.js"></script>
+</head>
+
+<body onload="load_currency()">
+
+    <div class="header_background">
+
+        <div class="container">
+
+            <div class="header">
+
+                <div class="navbar">
+
+                    <ul>
+                        <a href="game.html">
+                            <li>Jogar</li>
+                        </a>
+                        <a href="store.html">
+                            <img src="img/logo.png">
+                            <li><b>Loja</b></li>
+                        </a>
+                        <a href="profile.html">
+                            <li>Perfil</li>
+                        </a>
+
+                        <div class="currency">
+
+                            <img src="img/coin.png" alt="Ícone de moeda">
+                            <p id="p_currency"></p>
+    
+                        </div>
+
+                        <div class="music">
+
+                            <img id="muted_music" src="img/muted.png" 
+                            onclick="play_music()">
+        
+                            <img id="playing_music" src="img/playing.png" 
+                            onclick="stop_music()" style="display: none;">
+        
+                        </div>
+
+                        <a href="index.html">
+                            <li>Sair</li>
+                        </a>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="store_banner">
+
+        <div class="store">
+
+            <div class="section">
+
+                <div class="product_list">
+
+                    <b>Decks</b>
+
+                    <div class="product">
+
+                    </div>
+
+                    <div class="product">
+
+                    </div>
+
+                    <div class="product">
+
+                    </div>
+
+                    <div class="product">
+
+                    </div>
+
+                    <div class="product">
+
+                    </div>
+
+                </div>
+
+                <div class="product_list">
+
+                    <div class="product">
+                        
+                    </div>
+
+                    <div class="product">
+
+                    </div>
+
+                    <div class="product">
+
+                    </div>
+
+                    <div class="product">
+
+                    </div>
+
+                    <div class="product">
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </div>
+
+    </div>
+
+</body>
+
+</html>

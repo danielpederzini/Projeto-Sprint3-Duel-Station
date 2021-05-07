@@ -1,0 +1,6 @@
+Pink: #F50E5E
+Beige: #DBCD7C
+Purple: #4A37A3
+
+White (card): #DFDFDF
+Black (card): #221828
