@@ -1,7 +1,5 @@
 var deck_number = 'nodeck';
 
-var stop_interval = false;
-
 var card;
 var enemy_card;
 
@@ -41,21 +39,7 @@ function start() {
         div_options.style.display = `none`;
         div_board.style.display = `flex`;
 
-        play();
-
-        setInterval(function () {
-
-            if (player_lifepoints > 0 && enemy_lifepoints > 0 && stop_interval == false) {
-                play();
-            }
-
-            else if (stop_interval == false) {
-                result()
-                stop_interval = true;
-            } 
-
-        }, 2000)
-
+        show_cards();
     }
 
     else {
@@ -64,7 +48,7 @@ function start() {
 
 }
 
-function play() {
+function show_cards() {
     card = parseInt(Math.random() * 20 + 1) + deck_number;
 
     enemy_card = parseInt(Math.random() * 100 + 1);
@@ -107,36 +91,6 @@ function play() {
 
     var card_draw_audio = new Audio('audio/card_draw.mp3');
     card_draw_audio.play();
-
-    setTimeout(function () {
-
-        rotate();
-
-        if (card_attack > enemy_card_attack) {
-            enemy_lifepoints -= card_attack - enemy_card_attack;
-        }
-    
-        else {
-            player_lifepoints -= enemy_card_attack - card_attack;
-        }
-
-        span_player_lifepoints.innerHTML = player_lifepoints <= 0 ?
-        '0' :
-        player_lifepoints;
-
-        span_enemy_lifepoints.innerHTML = enemy_lifepoints <= 0 ?
-        '0' :
-        enemy_lifepoints;
-
-        setTimeout(function () {
-            var attack_audio = new Audio('audio/attack.mp3');
-            attack_audio.play();
-
-            rotate_back();
-        }, 200)
-
-    }, 1000)
-
 }
 
 function set_attack() {
@@ -195,6 +149,66 @@ function set_name() {
     card_name = names[card - 1];
 
     enemy_card_name = names[enemy_card - 1];
+}
+
+function magic() {
+
+    bt_magic.style.display = `none`;
+
+    var magic_multiplier = Math.random() * 1.50 + 0.25;
+
+    if (magic_multiplier > 1.74) {
+        magic_multiplier = 1.75;
+    }
+
+    card_attack = Math.round(card_attack * magic_multiplier);
+
+    p_attack.innerHTML = card_attack;
+
+}
+
+function attack() {
+
+    rotate();
+
+    if (card_attack > enemy_card_attack) {
+        enemy_lifepoints -= card_attack - enemy_card_attack;
+    }
+
+    else {
+        player_lifepoints -= enemy_card_attack - card_attack;
+    }
+
+    span_player_lifepoints.innerHTML = player_lifepoints <= 0 ?
+    '0' :
+    player_lifepoints;
+
+    span_enemy_lifepoints.innerHTML = enemy_lifepoints <= 0 ?
+    '0' :
+    enemy_lifepoints;
+
+    setTimeout(function () {
+        
+        var attack_audio = new Audio('audio/attack.mp3');
+        attack_audio.play();
+
+        rotate_back();
+
+    }, 200)
+
+    setTimeout(function () {
+
+        if (player_lifepoints <= 0 || enemy_lifepoints <= 0) {
+            result();
+        }
+    
+        else {
+            show_cards();
+            bt_magic.style.display = `block`;
+        }
+
+    }, 1000)
+
 }
 
 function rotate() {

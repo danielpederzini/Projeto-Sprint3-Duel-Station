@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duel Station | Home</title>
+    <title>Duel Station | Login</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -25,19 +25,15 @@
                     <ul>
                         <a>
                             <img src="img/logo.png">
-                            <li><b>Home</b></li>
+                            <li><b>Login</b></li>
                         </a>
 
-                        <a href="story.html">
-                            <li>História</li>
+                        <a href="signup.html">
+                            <li>Cadastro</li>
                         </a>
 
-                        <a href="cards.html">
-                            <li>Cartas</li>
-                        </a>
-
-                        <a href="login.html">
-                            <li>Entrar</li>
+                        <a href="index.html">
+                            <li>Voltar</li>
                         </a>
 
                         <div class="music">
@@ -59,25 +55,34 @@
 
     </div>
 
-    <div class="home_banner">
+    <div class="login_banner">
 
-        <div class="background_shadow">
+        <div class="login">
 
-            <div class="welcome">
+            <b>Acesse Sua Conta</b>
 
-                <div class="message">
-                    <p>Bem-Vindo(a) à</p>
-                    <b>Duel Station</b>
-                </div>
-    
-                <a href="login.html"><button class="button1">É Hora do Duelo!</button></a>
-                <a href="signup.html"><button class="button2">Sou Novo Aqui</button></a>
-    
-            </div>
+            <form id="form_login" method="post" 
+            autocomplete="off" onsubmit="return entrar()">
+
+                <p>Usuário / E-mail</p>
+                <input type="text" name="login"> <br>
+
+                <p>Senha</p>
+                <input type="password" name="password"> <br>
+
+                <button class="button1" id="bt_login">Entrar</button> 
+                
+                <br><br>
+
+                <a href="pwd_recovery.html">Esqueci Minha Senha</a> <br>
+                <a href="signup.html">Não Tenho Uma Conta</a>
+
+            </form>
             
         </div>
 
     </div>
+
 </body>
 
 </html>

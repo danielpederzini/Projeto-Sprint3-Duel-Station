@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duel Station | Home</title>
+    <title>Duel Station | Signup</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -23,21 +23,17 @@
                 <div class="navbar">
 
                     <ul>
+                        <a href="login.html">
+                            <li>Login</li>
+                        </a>
+
                         <a>
                             <img src="img/logo.png">
-                            <li><b>Home</b></li>
+                            <li><b>Cadastro</b></li>
                         </a>
 
-                        <a href="story.html">
-                            <li>História</li>
-                        </a>
-
-                        <a href="cards.html">
-                            <li>Cartas</li>
-                        </a>
-
-                        <a href="login.html">
-                            <li>Entrar</li>
+                        <a href="index.html">
+                            <li>Voltar</li>
                         </a>
 
                         <div class="music">
@@ -59,25 +55,39 @@
 
     </div>
 
-    <div class="home_banner">
+    <div class="signup_banner">
 
-        <div class="background_shadow">
+        <div class="signup">
 
-            <div class="welcome">
+            <b>Crie Uma Conta</b>
 
-                <div class="message">
-                    <p>Bem-Vindo(a) à</p>
-                    <b>Duel Station</b>
-                </div>
-    
-                <a href="login.html"><button class="button1">É Hora do Duelo!</button></a>
-                <a href="signup.html"><button class="button2">Sou Novo Aqui</button></a>
-    
-            </div>
+            <form id="form_signup" method="post" 
+            autocomplete="off" onsubmit="return signup()">
+
+                <p>Usuário</p>
+                <input type="text" name="login"> <br>
+
+                <p>E-mail</p>
+                <input type="email" name="email"> <br>
+            
+                <p>Senha</p>
+                <input type="password" name="password"> <br> 
+
+                <p>Confirmar Senha</p> 
+                <input type="password"> <br>
+                
+                <button class="button1" id="bt_login">Cadastrar</button> 
+                
+                <br><br>
+
+                <a href="login.html">Já Tenho Uma Conta</a>
+
+            </form>
             
         </div>
 
     </div>
+
 </body>
 
 </html>

@@ -52,7 +52,7 @@
         
                         </div>
 
-                        <a href="index.html">
+                        <a href="login.html">
                             <li>Sair</li>
                         </a>
 
@@ -73,7 +73,7 @@
 
             <div class="selection">
 
-                <b>Selecione seu Deck</b>
+                <b>Selecione Seu Deck</b>
 
                 <div class="deck_list">
                     <button id="button0" value="0" onclick="change_deck(Number(this.value))">
@@ -161,12 +161,19 @@
 
             </div>
 
+            <div class="game_buttons">
+
+                <button id="bt_magic" class="button1" onclick="magic()">Magia</button>
+                <button id="bt_attack" class="button1" onclick="attack()">Atacar</button>
+
+            </div>
+
         </div>
 
         <div class="result" id="div_result">
             <p id="p_result"></p>
             <div id="div_new_currency"></div>
-            <div class="button1" onclick="reset()">Jogar Novamente</div>
+            <button class="button1" onclick="reset()">Jogar Novamente</button>
         </div>
 
     </div>
