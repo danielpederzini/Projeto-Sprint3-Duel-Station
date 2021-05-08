@@ -24,25 +24,39 @@
                 <div class="navbar">
 
                     <ul>
-                        <a>
-                            <img src="img/logo.png">
-                            <li><b>Jogar</b></li>
-                        </a>
-                        <a href="store.html">
-                            <li>Loja</li>
-                        </a>
-                        <a href="profile.html">
-                            <li>Perfil</li>
-                        </a>
+                        <li>
+                            <a>
+                                <img src="img/logo.png">
+                                <b>Jogar</b>
+                            </a>
+                        </li>
 
-                        <div class="currency">
+                        <li>
+                            <a href="store.html">
+                                <p>Loja</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="profile.html">
+                                <p>Perfil</p>
+                            </a>
+                        </li>
+
+                        <li class="currency">
 
                             <img src="img/coin.png" alt="Ícone de moeda">
-                            <p id="p_currency"></p>
+                            <p id="p_currency">0.00</p>
     
-                        </div>
+                        </li>
 
-                        <div class="music">
+                        <li>
+                            <a href="login.html">
+                                <p>Sair</p>
+                            </a>
+                        </li>
+
+                        <li class="music">
 
                             <img id="muted_music" src="img/muted.png" 
                             onclick="play_music()">
@@ -50,12 +64,7 @@
                             <img id="playing_music" src="img/playing.png" 
                             onclick="stop_music()" style="display: none;">
         
-                        </div>
-
-                        <a href="login.html">
-                            <li>Sair</li>
-                        </a>
-
+                        </li>
                     </ul>
 
                 </div>
@@ -163,7 +172,7 @@
 
             <div class="game_buttons">
 
-                <button id="bt_magic" class="button1" onclick="magic()">Magia</button>
+                <button id="bt_magic" class="button1" onclick="magic()">Usar magia</button>
                 <button id="bt_attack" class="button1" onclick="attack()">Atacar</button>
 
             </div>

@@ -21,16 +21,16 @@ function load_currency() {
 }
 
 function change_deck(selected_deck) {
-    deck_number = selected_deck;
-
-    var clicked_button = 'button' + deck_number;
 
     for (var i = 0; i <= 80; i += 20) {
         var i_button = 'button' + i;
-        document.getElementById(i_button).style.opacity = `100%`;
+        document.getElementById(i_button).style.opacity = `30%`;
     }
+
+    deck_number = selected_deck;
+    var clicked_button = 'button' + deck_number;
     
-    document.getElementById(clicked_button).style.opacity = `30%`;
+    document.getElementById(clicked_button).style.opacity = `100%`;
 }
 
 function start() {
@@ -49,6 +49,9 @@ function start() {
 }
 
 function show_cards() {
+    bt_magic.style.display = `block`;
+    bt_attack.style.display = `block`;
+
     card = parseInt(Math.random() * 20 + 1) + deck_number;
 
     enemy_card = parseInt(Math.random() * 100 + 1);
@@ -165,9 +168,15 @@ function magic() {
 
     p_attack.innerHTML = card_attack;
 
+    var magic_sound = new Audio('audio/magic.mp3');
+    magic_sound.play();
+
 }
 
 function attack() {
+
+    bt_magic.style.display = `none`;
+    bt_attack.style.display = `none`;
 
     rotate();
 
@@ -204,11 +213,11 @@ function attack() {
     
         else {
             show_cards();
-            bt_magic.style.display = `block`;
         }
 
     }, 1000)
 
+    
 }
 
 function rotate() {

@@ -8,19 +8,33 @@ body {
 
 p {
     margin: 0;
+
+    text-align: center;
 }
 
 a {
     text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
     color: inherit;
+
+    cursor: pointer;
+}
+
+b {
+    text-align: center;
 }
 
 button {
     border: none;
+
     font-family: 'MedievalSharp', sans-serif;
+    text-transform: uppercase;
 }
 
 input {
+    width: 230px;
+
     background-color: transparent;
 
     border: none;
@@ -34,6 +48,11 @@ input {
 
     text-align: center;
 }
+
+    input:focus {
+        border-bottom: 1px solid #DBCD7C;
+        transition-duration: 0.2s;
+    }
 
 .container {
     height: 100%;
@@ -77,7 +96,7 @@ input {
 .button2:hover,
 a:hover {
     opacity: 50%;
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
 }
 
 /* --------------------- HEADER --------------------- */
@@ -114,10 +133,9 @@ a:hover {
             text-transform: uppercase;
 
             display: flex;
-            flex-flow: row wrap;
 
             align-items: center;
-            justify-content: space-evenly;
+            justify-content: center;
         }
         
             .navbar ul {
@@ -259,7 +277,7 @@ a:hover {
     justify-content: space-evenly;
 }
 
-    .login {
+    #div_login, #div_recovery {
         height: 60%;
         width: 30%;
         
@@ -276,29 +294,35 @@ a:hover {
         justify-content: space-evenly;
     }
 
-        .login p {
+        #div_login p, #div_recovery p {
             color: #FFF;
             font-size: 20px;
 
             text-align: center;
         }
 
-        .login b {
+        #div_login b, #div_recovery b {
             color: #DBCD7C;
             font-size: 25px;
         }
 
-        .login a {
+        #div_login a, #div_recovery a {
             color: #FFF;
             font-size: 15px;
         }
 
-        .login form {
+        #div_login form, #div_recovery form {
+            width: 80%;
+
             display: flex;
             flex-flow: column nowrap;
     
             align-items: center;
             justify-content: space-evenly;
+        }
+
+        #div_recovery p:last-of-type {
+            font-size: 15px;
         }
 
 /* --------------------- SIGNUP --------------------- */
@@ -359,9 +383,6 @@ a:hover {
             justify-content: space-evenly;
         }
 
-            .signup_inputs {
-            }
-
 /* --------------------- GAME --------------------- */
 
 .game_banner {
@@ -410,7 +431,7 @@ a:hover {
 
             .selection p {
                 color: #FFF;
-                font-size: 20px;
+                font-size: 15px;
 
                 text-align: center;
             }
@@ -423,6 +444,7 @@ a:hover {
             }
 
             .deck_list {
+                height: 150px;
                 width: 100%;
 
                 display: flex;
@@ -433,6 +455,8 @@ a:hover {
                 .deck_list button {
                     background-color: transparent;
                     border: none;
+
+                    opacity: 30%;
                 }
 
                     .deck_list img {
@@ -442,7 +466,8 @@ a:hover {
                     }
 
                     .deck_list button:hover {
-                        opacity: 30% !important;
+                        margin-bottom: 15px !important;
+                        opacity: 100% !important;
 
                         transition-duration: 0.2s !important;
                     }
@@ -569,6 +594,7 @@ a:hover {
                     }
 
     .game_buttons {
+        height: 30px;
         width: 30%;
 
         display: flex;
