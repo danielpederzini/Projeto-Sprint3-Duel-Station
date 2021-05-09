@@ -23,14 +23,14 @@ function load_currency() {
 function change_deck(selected_deck) {
 
     for (var i = 0; i <= 80; i += 20) {
-        var i_button = 'button' + i;
-        document.getElementById(i_button).style.opacity = `30%`;
+        var i_button= `bt_deck${i}`;
+        document.getElementById(`${i_button}`).style.opacity = `30%`;
     }
 
     deck_number = selected_deck;
-    var clicked_button = 'button' + deck_number;
+    var clicked_button = `bt_deck${deck_number}`;
     
-    document.getElementById(clicked_button).style.opacity = `100%`;
+    document.getElementById(`${clicked_button}`).style.opacity = `100%`;
 }
 
 function start() {
@@ -49,9 +49,23 @@ function start() {
 }
 
 function show_cards() {
-    bt_magic.style.display = `block`;
+    
+    document.getElementById(`bt_ability${deck_number}`).style.display = `block`;
+
+    if (deck_number == 0 && player_lifepoints <= 100) {
+        bt_ability0.style.display = `none`;
+    }
+
+    if (deck_number == 40 && player_lifepoints <= 750) {
+        bt_ability40.style.display = `none`;
+    }
+
     bt_attack.style.display = `block`;
 
+    var exodia = parseInt(Math.random() * 5 + 1) == 5 && deck_number == 60;
+
+    exodia ?
+    card = 101 :
     card = parseInt(Math.random() * 20 + 1) + deck_number;
 
     enemy_card = parseInt(Math.random() * 100 + 1);
@@ -100,15 +114,16 @@ function set_attack() {
 
     var attacks = [
         '3000', '2400', '2400', '1950', '1200', '1700', '1300', '1600', '2300', '2900',
-        '2700', '3000', '1400', '2500', '2100', '1800', '2100', '3000', '1400', '1600',
+        '2700', '3000', '1400', '2500', '2100', '1800', '2100', '3000', '1400', '1500',
+        '1800', '1700', '1400', '2100', '2600', '3200', '2350', '3300', '1200', '1000',
+        '1400', '2000', '2800', '1700', '2400', '1800', '2800', '1800', '2500', '2400',
+        '3500', '3000', '2900', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
         '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
         '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
         '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
         '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
         '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
-        '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
-        '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
-        '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
+        ''
     ];
 
     card_attack = attacks[card - 1];
@@ -127,26 +142,47 @@ function set_name() {
         'Tempestade de Batalha',
         'A Atmosfera',
         'Wivern do Eclipse',
-        'Celestia, Anja Luminosa',
+        'Dragão Kabuki',
         'Ulevo',
         'Dragão Caveira Negro',
         'Michael, o Arquiluminoso',
         'Pássaro Sônico',
-        'Athena',
+        'Dragão Pandêmico',
         'Vortex, o Redemoinho',
         'Dragão da Nevasca',
         'Chimera, a Besta Mítica Alada',
         'Devorador de Estrelas',
-        'Anjo Resplandecente',
-        'Birdface',
-        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'Dragão Mascarado',
+        'Ranryu',
+        'Kairyu-Shin',
+        'Soldado Peixe-Lança',
+        'Invasor Azul Perdido', 
+        'Evigishki Merrowgeist', 
+        'Levia-Dragão Daedalus',
+        'Gishki Zielgigas', 
+        'Baleia Cidadela', 
+        'Leviathan, o Grande Protetor do Mar', 
+        'Sirena Abisnereida',
+        'Tubarão Águia',
+        'Codarus',
+        'Tubarão Pesadelo',
+        'Molinglacia, o Lorde Elemental', 
+        'Habitante do Abismo', 
+        'Dragão Coral', 
+        'Rei Barahstos, o Fundurador', 
+        'Poseidra, o Dragão Atlântico', 
+        'Caçador Aquático Armado', 
+        'Mestra do Gelo', 
+        'Paleozoico Anomalocaris', 
+        'Tirano Condutor Final',
+        'Soldado do Lustro Negro',
+        '', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'Exodia, o Proibido'
     ];
 
     card_name = names[card - 1];
@@ -154,18 +190,58 @@ function set_name() {
     enemy_card_name = names[enemy_card - 1];
 }
 
-function magic() {
+function fly() {
 
-    bt_magic.style.display = `none`;
+    bt_ability0.style.display = `none`;
 
-    var magic_multiplier = Math.random() * 1.50 + 0.25;
+    player_lifepoints -= 100;
 
-    if (magic_multiplier > 1.74) {
-        magic_multiplier = 1.75;
+    var old_card = card;
+
+    while (card == old_card) {
+        card = parseInt(Math.random() * 20 + 1) + deck_number;
     }
+    
+    set_attack();
+    set_name();
 
-    card_attack = Math.round(card_attack * magic_multiplier);
+    span_player_lifepoints.innerHTML = player_lifepoints;
 
+    img_card.src = `img/cards/${card}.png`;
+    p_card_name.innerHTML = card_name;
+    p_attack.innerHTML = card_attack;
+
+    var wing_sound = new Audio('audio/wing.mp3');
+    wing_sound.play();
+
+}
+
+function sea_healing() {
+
+    bt_ability20.style.display = `none`;
+
+    var life_bonus = parseInt(Math.random() * (1500 - 499) + 500);
+    var attack_multiplier = Number(Math.random() * (0.75 - 0.50) + 0.50).toFixed(2);
+
+    player_lifepoints = player_lifepoints + life_bonus;
+
+    card_attack = Math.round(card_attack * attack_multiplier);
+
+    span_player_lifepoints.innerHTML = player_lifepoints;
+    p_attack.innerHTML = card_attack;
+
+}
+
+function earth_fury() {
+
+    bt_ability40.style.display = `none`;
+
+    var attack_multiplier = Number(Math.random() * (1.50 - 1.05) + 1.05).toFixed(2);
+
+    player_lifepoints -= 750;
+    card_attack = Math.round(card_attack * attack_multiplier);
+
+    span_player_lifepoints.innerHTML = player_lifepoints;
     p_attack.innerHTML = card_attack;
 
     var magic_sound = new Audio('audio/magic.mp3');
@@ -174,8 +250,8 @@ function magic() {
 }
 
 function attack() {
-
-    bt_magic.style.display = `none`;
+    
+    document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
     bt_attack.style.display = `none`;
 
     rotate();

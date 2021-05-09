@@ -30,6 +30,8 @@ button {
 
     font-family: 'MedievalSharp', sans-serif;
     text-transform: uppercase;
+
+    cursor: pointer;
 }
 
 input {
@@ -403,7 +405,7 @@ a:hover {
 
     .options {
         height: 60%;
-        width: 50%;
+        width: 60%;
         
         margin-top: 5%;
 
@@ -457,12 +459,12 @@ a:hover {
                     border: none;
 
                     opacity: 30%;
+
+                    cursor: pointer;
                 }
 
                     .deck_list img {
                         width: 75px;
-
-                        cursor: pointer;
                     }
 
                     .deck_list button:hover {
@@ -562,6 +564,9 @@ a:hover {
 
             .card_desc {
                 height: 40%;
+                width: 90%;
+
+                margin: auto;
 
                 display: flex;
                 flex-flow: column nowrap;
@@ -585,7 +590,7 @@ a:hover {
                 }
 
                     .card_attack b {
-                        color: #4A37A3;
+                        color: #000;
                         font-size: 30px;
                     }
 
