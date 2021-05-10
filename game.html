@@ -78,13 +78,53 @@
 
     <div class="game_banner">
 
-        <div class="options" id="div_options">
+        <div class="options" id="div_player_options">
 
             <div class="selection">
 
-                <b>Selecione Um Deck Padrão</b>
+                <b>Selecione Um Duelista</b>
 
-                <div class="deck_list">
+                <div class="selection_list">
+                    <button id="bt_player1" value="1" onclick="change_player(Number(this.value))">
+                        <img src="img/players/player1.png">
+                        <p>Seto Kaiba</p>
+                    </button>
+
+                    <button id="bt_player2" value="2" onclick="change_player(Number(this.value))">
+                        <img src="img/players/player2.png">
+                        <p>Mako Tsunami</p>
+                    </button>
+
+                    <button id="bt_player3" value="3" onclick="change_player(Number(this.value))">
+                        <img src="img/players/player3.png">
+                        <p>S. Leblanc</p>
+                    </button>
+
+                    <button id="bt_player4" value="4" onclick="change_player(Number(this.value))">
+                        <img src="img/players/player4.png">
+                        <p>Yami Yugi</p>
+                    </button>
+
+                    <button id="bt_player5" value="5" onclick="change_player(Number(this.value))">
+                        <img src="img/players/player5.png">
+                        <p>Ishizu Ishtar</p>
+                    </button>
+
+                </div>
+
+                <div class="button1" onclick="next()">Próximo</div>
+
+            </div>
+
+        </div>
+
+        <div class="options" id="div_deck_options" style="display: none;">
+
+            <div class="selection">
+
+                <b>Selecione Um Deck</b>
+
+                <div class="selection_list">
                     <button id="bt_deck0" value="0" onclick="change_deck(Number(this.value))">
                         <img src="img/types/type0.png">
                         <p>Voador</p>
@@ -118,12 +158,12 @@
 
         </div>
 
-        <div class="board" id="div_board">
+        <div class="board" id="div_board" style="display: none;">
 
             <div class="stats">
 
                 <div class="stats_box">
-                    <img src="img/profile.png" alt="Foto de perfil">
+                    <img id="img_player">
                     <p><span id="span_player_lifepoints">5000</span> PV</p>
                 </div>
 
@@ -132,7 +172,7 @@
                 </div>
 
                 <div class="stats_box">
-                    <img src="img/enemy.png" alt="Ícone do adversário">
+                    <img src="img/players/enemy.png">
                     <p><span id="span_enemy_lifepoints">5000</span> PV</p>
                 </div>
 
@@ -176,8 +216,7 @@
                 <button id="bt_ability20" class="button1" onclick="sea_healing()" style="display: none;">Cura Marítima</button>
                 <button id="bt_ability40" class="button1" onclick="earth_fury()" style="display: none;">Fúria da Terra</button>
                 <button id="bt_ability60" class="button1" onclick="last_whisper()" style="display: none;">Último Suspiro</button>
-                <button id="bt_ability80" class="button1" onclick="the_awakening()" style="display: none;">O Despertar</button>
-
+                
                 <button id="bt_attack" class="button2" onclick="attack()">Atacar</button>
 
             </div>

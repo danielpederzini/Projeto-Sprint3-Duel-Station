@@ -287,6 +287,8 @@ a:hover {
 
         background-color: #000000AA;
 
+        overflow: auto;
+
         border-radius: 10px;
 
         display: flex;
@@ -351,6 +353,8 @@ a:hover {
 
         background-color: #000000AA;
 
+        overflow: auto;
+
         border-radius: 10px;
 
         display: flex;
@@ -411,6 +415,8 @@ a:hover {
 
         background-color: #000000AA;
 
+        overflow: auto;
+
         border-radius: 10px;
 
         display: flex;
@@ -445,16 +451,19 @@ a:hover {
                 text-align: center;
             }
 
-            .deck_list {
+            .selection_list {
                 height: 150px;
-                width: 100%;
+                width: 80%;
 
                 display: flex;
+                flex-flow: row wrap;
 
                 justify-content: space-evenly;
             }
 
-                .deck_list button {
+                .selection_list button {
+                    width: 20%;
+
                     background-color: transparent;
                     border: none;
 
@@ -463,11 +472,13 @@ a:hover {
                     cursor: pointer;
                 }
 
-                    .deck_list img {
+                    .selection_list img {
                         width: 75px;
+
+                        border-radius: 50%;
                     }
 
-                    .deck_list button:hover {
+                    .selection_list button:hover {
                         margin-bottom: 15px !important;
                         opacity: 100% !important;
 
@@ -484,9 +495,11 @@ a:hover {
 
     background-color: #000000AA;
 
+    overflow: auto;
+
     border-radius: 10px;
 
-    display: none;
+    display: flex;
     flex-flow: column nowrap;
 
     align-items: center;
@@ -617,6 +630,8 @@ a:hover {
 
     background-color: #000000AA;
 
+    overflow: auto;
+
     border-radius: 10px;
 
     display: none;
@@ -678,6 +693,8 @@ a:hover {
     margin-top: 5%;
 
     background-color: #000000AA;
+
+    overflow: auto;
 
     border-radius: 10px;
 }
