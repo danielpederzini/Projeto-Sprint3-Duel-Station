@@ -11,6 +11,7 @@ var enemy_card_attack;
 
 var player_lifepoints = 5000;
 var enemy_lifepoints = 5000;
+var last_whisper_match = false;
 
 var round = 0;
 
@@ -52,23 +53,29 @@ function show_cards() {
     
     document.getElementById(`bt_ability${deck_number}`).style.display = `block`;
 
-    if (deck_number == 0 && player_lifepoints <= 100) {
-        bt_ability0.style.display = `none`;
-    }
+        if (deck_number == 0 && player_lifepoints <= 100) {
+            document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
+        }
 
-    if (deck_number == 40 && player_lifepoints <= 750) {
-        bt_ability40.style.display = `none`;
-    }
+        if (deck_number == 40 && player_lifepoints <= 1000) {
+            document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
+        }
+
+        if (last_whisper_match) {
+            document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
+        }
 
     bt_attack.style.display = `block`;
 
-    var exodia = parseInt(Math.random() * 5 + 1) == 5 && deck_number == 60;
+    round++;
 
-    exodia ?
-    card = 101 :
-    card = parseInt(Math.random() * 20 + 1) + deck_number;
+    span_round.innerHTML = round;
 
-    enemy_card = parseInt(Math.random() * 100 + 1);
+    card = deck_number != 80 ?
+    parseInt(Math.random() * 20 + 1) + deck_number :
+    parseInt(Math.random() * 3 + 1) + deck_number;
+
+    enemy_card = parseInt(Math.random() * 80 + 1);
 
     set_attack()
     set_name()
@@ -82,29 +89,13 @@ function show_cards() {
     p_enemy_card_name.innerHTML = enemy_card_name;
     p_enemy_attack.innerHTML = enemy_card_attack;
 
-    if (enemy_card <= 20) {
-        img_enemy_type.src = `img/types/type0.png`;
+    if (enemy_card % 20 == 0) {
+        img_enemy_type.src = `img/types/type${enemy_card - 20}.png`;
     }
 
-    else if (enemy_card <= 40) {
-        img_enemy_type.src = `img/types/type20.png`;
+    for (var i = enemy_card; i % 20 != 0 || i * 1 != 0; i --) {
+        img_enemy_type.src = `img/types/type${i}.png`;
     }
-
-    else if (enemy_card <= 60) {
-        img_enemy_type.src = `img/types/type40.png`;
-    }
-
-    else if (enemy_card <= 80) {
-        img_enemy_type.src = `img/types/type60.png`;
-    }
-
-    else {
-        img_enemy_type.src = `img/types/type80.png`;
-    }
-
-    round++;
-
-    span_round.innerHTML = round;
 
     var card_draw_audio = new Audio('audio/card_draw.mp3');
     card_draw_audio.play();
@@ -117,13 +108,11 @@ function set_attack() {
         '2700', '3000', '1400', '2500', '2100', '1800', '2100', '3000', '1400', '1500',
         '1800', '1700', '1400', '2100', '2600', '3200', '2350', '3300', '1200', '1000',
         '1400', '2000', '2800', '1700', '2400', '1800', '2800', '1800', '2500', '2400',
-        '3500', '3000', '2900', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
+        '3500', '3000', '2800', '1500', '2100', '3000', '2250', '1040', '2340', '1390',
         '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
         '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
         '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
-        '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
-        '2500', '1400', '2000', '3000', '2400', '3000', '2250', '1040', '2340', '1390',
-        ''
+        `${round * 500}`, `0` , `${parseInt(enemy_lifepoints * 0.75)}`
     ];
 
     card_attack = attacks[card - 1];
@@ -176,13 +165,17 @@ function set_name() {
         'Paleozoico Anomalocaris', 
         'Tirano Condutor Final',
         'Soldado do Lustro Negro',
-        '', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
-        'Exodia, o Proibido'
+        'Granmarg o Mega-Monarca', 
+        'Balista do Mecanismo Antigo', 
+        'Guerreiro Gravitacional', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome','algum nome','algum nome', 'algum nome', 
+        'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'algum nome','algum nome','algum nome','algum nome','algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome', 'algum nome',
+        'algum nome',
+        'Slifer, o Dragão Celeste',
+        'Obelisco, o Atormentador',
+        'O Dragão Alado de Rá',
+        'Holactie, o Criador da Luz'
     ];
 
     card_name = names[card - 1];
@@ -192,7 +185,7 @@ function set_name() {
 
 function fly() {
 
-    bt_ability0.style.display = `none`;
+    document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
 
     player_lifepoints -= 100;
 
@@ -218,10 +211,10 @@ function fly() {
 
 function sea_healing() {
 
-    bt_ability20.style.display = `none`;
+    document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
 
     var life_bonus = parseInt(Math.random() * (1500 - 499) + 500);
-    var attack_multiplier = Number(Math.random() * (0.75 - 0.50) + 0.50).toFixed(2);
+    var attack_multiplier = Number(Math.random() * (0.75 - 0.25) + 0.25).toFixed(2);
 
     player_lifepoints = player_lifepoints + life_bonus;
 
@@ -234,11 +227,11 @@ function sea_healing() {
 
 function earth_fury() {
 
-    bt_ability40.style.display = `none`;
+    document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
 
     var attack_multiplier = Number(Math.random() * (1.50 - 1.05) + 1.05).toFixed(2);
 
-    player_lifepoints -= 750;
+    player_lifepoints -= 1000;
     card_attack = Math.round(card_attack * attack_multiplier);
 
     span_player_lifepoints.innerHTML = player_lifepoints;
@@ -246,6 +239,31 @@ function earth_fury() {
 
     var magic_sound = new Audio('audio/magic.mp3');
     magic_sound.play();
+
+}
+
+function last_whisper() {
+
+    document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
+
+    last_whisper_match = true;
+
+    player_lifepoints = 1;
+    enemy_lifepoints = 1;
+
+    span_player_lifepoints.innerHTML = player_lifepoints;
+    span_enemy_lifepoints.innerHTML = enemy_lifepoints;
+
+    var magic_sound = new Audio('audio/magic.mp3');
+    magic_sound.play();
+
+    show_cards();
+
+}
+
+function the_awakening() {
+
+    document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
 
 }
 
@@ -261,7 +279,16 @@ function attack() {
     }
 
     else {
-        player_lifepoints -= enemy_card_attack - card_attack;
+
+        if (deck_number == 80 && card == 82) {
+            player_lifepoints -= parseInt((enemy_card_attack - card_attack) * 0.1);
+            enemy_lifepoints += enemy_card_attack - card_attack;
+        }
+
+        else {
+            player_lifepoints -= enemy_card_attack - card_attack;
+        }
+        
     }
 
     span_player_lifepoints.innerHTML = player_lifepoints <= 0 ?
@@ -316,27 +343,35 @@ function result() {
     var player_win = enemy_lifepoints <= 0;
 
     var lifepoints_diff = player_win ?
-    player_lifepoints :
-    enemy_lifepoints;
+        player_lifepoints :
+        enemy_lifepoints;
 
     var new_currency = lifepoints_diff * 0.01;
 
-    p_result.innerHTML = player_win ?
-    `Parabéns! Você venceu <br> 
-    após <b>${round}</b> rounds <br>
-    com <b>${lifepoints_diff}</b> pontos de vida a mais.` :
+        if (last_whisper_match && player_win) {
+            new_currency = 10;
+        }
 
-    `Que pena! Você perdeu <br> 
-    após <b>${round}</b> rounds <br>
-    com <b>${lifepoints_diff}</b> pontos de vida a menos.`;
+        else if (last_whisper_match && player_win == false) {
+            new_currency = 20;
+        }
+
+    p_result.innerHTML = player_win ?
+        `Parabéns! Você venceu <br> 
+        após <b>${round}</b> rounds <br>
+        com <b>${lifepoints_diff}</b> pontos de vida a mais.` :
+
+        `Que pena! Você perdeu <br> 
+        após <b>${round}</b> rounds <br>
+        com <b>${lifepoints_diff}</b> pontos de vida a menos.`;
 
     div_new_currency.innerHTML = player_win ?
-    `<p>+</p> <img src="img/coin.png"> <p>${new_currency.toFixed(2)}</p>` :
-    `<p>-</p> <img src="img/coin.png"> <p>${new_currency.toFixed(2)}</p>`;
+        `<p>+</p> <img src="img/coin.png"> <p>${new_currency.toFixed(2)}</p>` :
+        `<p>-</p> <img src="img/coin.png"> <p>${new_currency.toFixed(2)}</p>`;
 
     player_win ?
-    currency += new_currency :
-    currency -= new_currency;
+        currency += new_currency :
+        currency -= new_currency;
 
     if (currency < 0) {
         currency = 0;
