@@ -263,6 +263,22 @@ a:hover {
                 width: 180px;
             }
 
+/* --------------------- ABOUT --------------------- */
+
+.about_banner {
+    height: 100vh;
+
+    background-image: url(img/about_banner.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 /* --------------------- LOGIN --------------------- */
 
 .login_banner {
@@ -462,7 +478,12 @@ a:hover {
             }
 
                 .selection_list button {
+                    height: 95px;
                     width: 20%;
+
+                    margin: auto;
+
+                    overflow: hidden;
 
                     background-color: transparent;
                     border: none;
@@ -478,8 +499,12 @@ a:hover {
                         border-radius: 50%;
                     }
 
+                    .selection_list button p:last-of-type {
+                        font-size: 12.5px;
+                    }
+
                     .selection_list button:hover {
-                        margin-bottom: 15px !important;
+                        height: 150px !important;
                         opacity: 100% !important;
 
                         transition-duration: 0.2s !important;

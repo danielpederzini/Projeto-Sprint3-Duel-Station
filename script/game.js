@@ -74,8 +74,8 @@ function start() {
 
         show_cards();
 
-        if (player_number == 5) {
-            player_lifepoints += 2000;
+        if (player_number == 1) {
+            player_lifepoints += 500;
         }
 
         span_player_lifepoints.innerHTML = player_lifepoints;
@@ -94,7 +94,7 @@ function show_cards() {
     }
     
         if ((deck_number == 0 && player_lifepoints <= 100) ||
-            (deck_number == 40 && player_lifepoints <= 1000) ||
+            (deck_number == 40 && player_lifepoints <= 750) ||
             (last_whisper_match)) {
             document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
         }
@@ -157,14 +157,16 @@ function set_attack() {
         2700, 3000, 1400, 2500, 2100, 1800, 2100, 3000, 1400, 1500,
         1800, 1700, 1400, 2100, 2600, 3200, 2350, 3300, 1200, 1000,
         1400, 2000, 2800, 1700, 2400, 1800, 2800, 1800, 2500, 2400,
-        3500, 3000, 2800, 1500, 2100, 3000, 2250, 1040, 2340, 1390,
-        2500, 1400, 2000, 3000, 2400, 3000, 2250, 1040, 2340, 1390,
-        2500, 1400, 2000, 3000, 2400, 3000, 2250, 1040, 2340, 1390,
-        2500, 1400, 2000, 3000, 2400, 3000, 2250, 1040, 2340, 1390,
-        500 + round * 500, 
-        2000, 
-        1000 + Math.round(enemy_lifepoints * 0.75),
-        9999999 
+        3500, 3000, 2800, 1500, 2100, 2600, 2000, 2200, 1400, 3000,
+        1500, 1600, 1800, 1600, 2000, 2800, 3500, 1200, 1150, 1000,
+        2500, 1400, 2900, 1800, 2400, 2500, 2000, 1800, 2800, 2800,
+        2000, 1700, 1800, 2700, 2400, 2000, 2450, 1000, 1000, 2300,
+
+        500 + round * 500, // Slifer, o Dragão Celeste
+        1000 + Math.round(player_lifepoints * 0.05), // Obelisco, o Atormentador
+        1000 + Math.round(enemy_lifepoints * 0.75), // O Dragão Alado de Rá
+
+        100000 // Holakthy, o Criador da Luz
     ];
 
     card_attack = player_number == 4 ?
@@ -187,13 +189,13 @@ function set_name() {
         'Wivern do Eclipse',
         'Dragão Kabuki',
         'Ulevo',
-        'Dragão Caveira Negro',
-        'Michael, o Arquiluminoso',
+        'Dragão Caveira Negra',
+        'Michael, O Arquiluminoso',
         'Pássaro Sônico',
         'Dragão Pandêmico',
-        'Vortex, o Redemoinho',
+        'Vortex, O Redemoinho',
         'Dragão da Nevasca',
-        'Chimera, a Besta Mítica Alada',
+        'Chimera, A Besta Mítica Alada',
         'Devorador de Estrelas',
         'Dragão Mascarado',
         'Ranryu',
@@ -204,63 +206,63 @@ function set_name() {
         'Levia-Dragão Daedalus',
         'Gishki Zielgigas', 
         'Baleia Cidadela', 
-        'Leviathan, o Grande Protetor do Mar', 
+        'Leviathan, O Grande Protetor do Mar', 
         'Sirena Abisnereida',
         'Tubarão Águia',
         'Codarus',
         'Tubarão Pesadelo',
-        'Molinglacia, o Lorde Elemental', 
+        'Molinglacia, O Lorde Elemental', 
         'Habitante do Abismo', 
         'Dragão Coral', 
-        'Rei Barahstos, o Fundurador', 
-        'Poseidra, o Dragão Atlântico', 
+        'Rei Barahstos, O Fundurador', 
+        'Poseidra, O Dragão Atlântico', 
         'Caçador Aquático Armado', 
         'Mestra do Gelo', 
         'Paleozoico Anomalocaris', 
         'Tirano Condutor Final',
         'Soldado do Lustro Negro',
-        'Granmarg o Mega-Monarca', 
+        'Granmarg, O Mega Monarca', 
         'Balista do Mecanismo Antigo', 
         'Guerreiro Gravitacional', 
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome', 
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'algum nome',
-        'Slifer, o Dragão Celeste',
-        'Obelisco, o Atormentador',
+        'Cavaleiro Gaia, A Força da Terra',
+        'Soldado Desgastado',
+        'Valquíria Sigrun',
+        'Soldado Canhão',
+        'Golem do Mecanismo Antigo',
+        'Guerreiro Karbonala',
+        'Protótipo do Rei Máquina',
+        'Postulado Pelo Cálice Mundial',
+        'Cérbero, O Cavaleiro do Pesadelo',
+        'Grenossauro',
+        'Cão de Caça Mecânico',
+        'Chimera Dinolutadora',
+        'Guerreiro Torre',
+        'Guardião de Metal',
+        'Lenhador, Herói Elemental', 
+        'Mago Sombrio',
+        'Mago Ilusionista sem Rosto',
+        'Paladino Sombrio',
+        'Pumpking, O Rei dos Fantasmas',
+        'Guerreiro de Ardosta',
+        'Bram, O Cavaleiro Vampiro Carmesin',
+        'Oráculo do Coveiro',
+        'Gilgamesh, O Rei do Abismo',
+        'Caius, O Mega Monarca',
+        'Desespero do Escuro',
+        'Arquidemônio Aniquilador',
+        'Mago da Tragédia',
+        'Alma Desencadeada da Raiva',
+        'Alma Desencadeada do Desastre',
+        'Alma Desencadeada da Angústia',
+        'Maga Sombria',
+        'Chakra',
+        'Luvas dos Cavaleiros Fantasmas',
+        'Aleister, O Invocador',
+        'Freed, O General Sombrio',
+        'Slifer, O Dragão Celeste',
+        'Obelisco, O Atormentador',
         'O Dragão Alado de Rá',
-        'Holactie, o Criador da Luz'
+        'Holakthy, O Criador da Luz'
     ];
 
     card_name = names[card - 1];
@@ -316,7 +318,7 @@ function earth_fury() {
 
     var attack_multiplier = (Math.random() * (1.50 - 1.05) + 1.05).toFixed(2);
 
-    player_lifepoints -= 1000;
+    player_lifepoints -= 750;
     card_attack = Math.round(card_attack * attack_multiplier);
 
     span_player_lifepoints.innerHTML = player_lifepoints;
@@ -332,7 +334,7 @@ function last_whisper() {
     last_whisper_match = true;
 
     player_lifepoints = 1;
-    enemy_lifepoints = 1;
+    enemy_lifepoints = 200;
 
     span_player_lifepoints.innerHTML = player_lifepoints;
     span_enemy_lifepoints.innerHTML = enemy_lifepoints;
@@ -354,19 +356,27 @@ function attack() {
 
     rotate();
 
+    var attack_difference = Math.abs(card_attack - enemy_card_attack)
+
     if (card_attack > enemy_card_attack) {
-        enemy_lifepoints -= card_attack - enemy_card_attack;
+
+        enemy_lifepoints -= attack_difference;
+
+        if (player_number == 5 && card != 84) {
+            player_lifepoints += 
+            Math.round(attack_difference * 0.10);
+        }
+
     }
 
     else if (player_number == 2) {
         player_lifepoints -= 
-        Math.round((enemy_card_attack - card_attack) * 0.75);
+        Math.round(attack_difference * 0.75);
     }
 
     else {
-        player_lifepoints -= enemy_card_attack - card_attack;
+        player_lifepoints -= attack_difference;
     }
-        
 
     span_player_lifepoints.innerHTML = player_lifepoints <= 0 ?
     '0' :
@@ -433,11 +443,11 @@ function result() {
             new_currency = 20;
         }
 
-        else if (player_number == 3) {
-            new_currency = player_win ?
-                new_currency * 1.25 :
-                new_currency * 0.75;
-        }
+            if (player_number == 3) {
+                new_currency = player_win ?
+                    new_currency * 1.25 :
+                    new_currency * 0.75;
+            }
 
     p_result.innerHTML = player_win ?
         `Parabéns! Você venceu <br> 
