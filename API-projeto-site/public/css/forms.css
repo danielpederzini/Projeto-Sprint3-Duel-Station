@@ -1,0 +1,129 @@
+/* --------------------- LOGIN --------------------- */
+
+.login_banner {
+    height: 100vh;
+
+    background-image: url(../img/login_banner.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+    #div_login, #div_recovery {
+        height: 60%;
+        width: 30%;
+
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        margin-top: 5%;
+
+        background-color: #000000AA;
+
+        overflow: auto;
+
+        border-radius: 10px;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+        #div_login p, #div_recovery p {
+            color: #FFF;
+            font-size: 20px;
+
+            text-align: center;
+        }
+
+        #div_login b, #div_recovery b {
+            color: #DBCD7C;
+            font-size: 25px;
+        }
+
+        #div_login a, #div_recovery a {
+            color: #FFF;
+            font-size: 15px;
+        }
+
+        #div_login form, #div_recovery form {
+            width: 80%;
+
+            display: flex;
+            flex-flow: column nowrap;
+    
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        #div_recovery p:last-of-type {
+            font-size: 15px;
+        }
+
+/* --------------------- SIGNUP --------------------- */
+
+.signup_banner {
+    height: 100vh;
+
+    background-image: url(../img/signup_banner.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+    .signup {
+        height: 75%;
+        width: 30%;
+        
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        margin-top: 5%;
+
+        background-color: #000000AA;
+
+        overflow: auto;
+
+        border-radius: 10px;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+        .signup p {
+            color: #FFF;
+            font-size: 20px;
+
+            text-align: center;
+        }
+
+        .signup b {
+            color: #DBCD7C;
+            font-size: 25px;
+        }
+
+        .signup a {
+            color: #FFF;
+            font-size: 15px;
+        }
+
+        .signup form {
+            display: flex;
+            flex-flow: column nowrap;
+    
+            align-items: center;
+            justify-content: space-evenly;
+        }

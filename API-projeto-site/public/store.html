@@ -9,11 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/store.css">
     <script src="script/general.js"></script>
-    <script src="script/game.js"></script>
+    <script src="script/general_logged.js"></script>
+    <script src="script/store.js"></script>
 </head>
 
-<body onload="load_currency()">
+<body onload="load_info()">
 
     <div class="header">
 
@@ -21,34 +23,40 @@
 
             <ul>
                 <li>
+                    <a href="hub.html">
+                        <p>Hub</p>
+                    </a>
+                </li>
+
+                <li>
                     <a href="game.html">
-                        <p>Jogar</p>
+                        <p>Play</p>
                     </a>
                 </li>
 
                 <li>
                     <a>
                         <img src="img/logo.png">
-                        <b>Loja</b>
+                        <b>Store</b>
                     </a>
                 </li>
 
                 <li>
                     <a href="profile.html">
-                        <p>Perfil</p>
+                        <p id="p_user_name">Profile</p>
                     </a>
                 </li>
 
                 <li class="currency">
 
-                    <img src="img/coin.png" alt="Ícone de moeda">
+                    <img src="img/coin.png" alt="Coin icon">
                     <p id="p_currency">0.00</p>
 
                 </li>
 
                 <li>
                     <a href="login.html">
-                        <p>Sair</p>
+                        <p>Logoff</p>
                     </a>
                 </li>
 
@@ -70,59 +78,196 @@
 
         <div class="store">
 
-            <div class="section">
+            <div class="store_list">
 
-                <div class="product_list">
+                <button id="bt_player1" value="1" onclick="change_player(Number(this.value))">
+                    <img src="img/players/player1.png">
+                    <p>Seto Kaiba</p>
+                    <p>+500 LP</p>
+                </button>
 
-                    <b>Decks</b>
+                <button id="bt_unknown_player2" value="2">
+                    <img src="img/unknown.png">
+                    <p>Mako Tsunami</p>
 
-                    <div class="product">
-
+                    <div class="price">
+                        <img src="img/coin.png" alt="Coin Icon">
+                        <p>250.00</p>
                     </div>
+                </button>
 
-                    <div class="product">
+                <button id="bt_player2" value="2" onclick="change_player(Number(this.value))" style="display: none;">
+                    <img src="img/players/player2.png">
+                    <p>Mako Tsunami</p>
 
+                    <p>+25% Defense</p>
+                </button>
+
+                <button id="bt_unknown_player3" value="3">
+                    <img src="img/unknown.png">
+                    <p>S. Leblanc</p>
+
+                    <div class="price">
+                        <img src="img/coin.png" alt="Coin Icon">
+                        <p>500.00</p>
                     </div>
+                </button>
 
-                    <div class="product">
+                <button id="bt_player3" value="3" onclick="change_player(Number(this.value))" style="display: none;">
+                    <img src="img/players/player3.png">
+                    <p>S. Leblanc</p>
 
+                    <p>+25% Profit</p>
+                </button>
+
+                <button id="bt_unknown_player4" value="4">
+                    <img src="img/unknown.png">
+                    <p>Yami Yugi</p>
+
+                    <div class="price">
+                        <img src="img/coin.png" alt="Coin Icon">
+                        <p>750.00</p>
                     </div>
+                </button>
 
-                    <div class="product">
+                <button id="bt_player4" value="4" onclick="change_player(Number(this.value))" style="display: none;">
+                    <img src="img/players/player4.png">
+                    <p>Yami Yugi</p>
 
+                    <p>+5% Attack</p>
+                </button>
+
+                <button id="bt_unknown_player5" value="5">
+                    <img src="img/unknown.png">
+                    <p>Yami Marik</p>
+
+                    <div class="price">
+                        <img src="img/coin.png" alt="Coin icon">
+                        <p>1000.00</p>
                     </div>
+                </button>
 
-                    <div class="product">
+                <button id="bt_player5" value="5" onclick="change_player(Number(this.value))" style="display: none;">
+                    <img src="img/players/player5.png">
+                    <p>Yami Marik</p>
 
-                    </div>
-
-                </div>
-
-                <div class="product_list">
-
-                    <div class="product">
-
-                    </div>
-
-                    <div class="product">
-
-                    </div>
-
-                    <div class="product">
-
-                    </div>
-
-                    <div class="product">
-
-                    </div>
-
-                    <div class="product">
-
-                    </div>
-
-                </div>
+                    <p>+10% Vampirism</p>
+                </button>
 
             </div>
+
+            <div class="store_list">
+
+                <button id="bt_deck0" value="0" onclick="change_deck(Number(this.value))">
+                    <img src="img/types/type0.png">
+                    <p>Winged</p>
+
+                    <p>Fly</p>
+                </button>
+
+                <button id="bt_unknown_deck20" value="20">
+                    <img src="img/unknown.png">
+                    <p>Aquatic</p>
+
+                    <div class="price">
+                        <img src="img/coin.png" alt="Coin Icon">
+                        <p>250.00</p>
+                    </div>
+                </button>
+
+                <button id="bt_deck20" value="20" onclick="change_deck(Number(this.value))" style="display: none;">
+                    <img src="img/types/type20.png">
+                    <p>Aquatic</p>
+
+                    <p>Sea Healing</p>
+                </button>
+
+                <button id="bt_unknown_deck40" value="40">
+                    <img src="img/unknown.png">
+                    <p>Earthy</p>
+
+                    <div class="price">
+                        <img src="img/coin.png" alt="Coin Icon">
+                        <p>500.00</p>
+                    </div>
+                </button>
+
+                <button id="bt_deck40" value="40" onclick="change_deck(Number(this.value))" style="display: none;">
+                    <img src="img/types/type40.png">
+                    <p>Earthy</p>
+
+                    <p>Earth Fury</p>
+                </button>
+
+                <button id="bt_unknown_deck60" value="60">
+                    <img src="img/unknown.png">
+                    <p>Dark</p>
+
+                    <div class="price">
+                        <img src="img/coin.png" alt="Coin Icon">
+                        <p>750.00</p>
+                    </div>
+                </button>
+
+                <button id="bt_deck60" value="60" onclick="change_deck(Number(this.value))" style="display: none;">
+                    <img src="img/types/type60.png">
+                    <p>Dark</p>
+
+                    <p>Last Whisper</p>
+                </button>
+
+                <button id="bt_unknown_deck80" value="80">
+                    <img src="img/unknown.png">
+                    <p>Divine</p>
+
+                    <div class="price">
+                        <img src="img/coin.png" alt="Coin Icon">
+                        <p>1000.00</p>
+                    </div>
+                </button>
+
+                <button id="bt_deck80" value="80" onclick="change_deck(Number(this.value))" style="display: none;">
+                    <img src="img/types/type80.png">
+                    <p>Divine</p>
+
+                    <p>The Awakening</p>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="description">
+
+            <b id="b_item_name"></b>
+
+            <p id="p_item_description"></p>
+
+            <button id="bt_buy_player" class="button2" onclick="buy_player()" style="display: none;">
+
+                <p>Comprar</p>
+
+                <div class="price">
+                    <img id="img_coin" src="img/coin.png">
+                    <p id="p_player_price"></p>
+                </div>
+
+            </button>
+
+            <button id="bt_buy_deck" class="button2" onclick="buy_deck()" style="display: none;">
+
+                <p>Comprar</p>
+
+                <div class="price">
+                    <img id="img_coin" src="img/coin.png">
+                    <p id="p_deck_price"></p>
+                </div>
+
+            </button>
+
+            <p id="p_bought" style="display: none;">
+                Comprado
+            </p>
 
         </div>
 

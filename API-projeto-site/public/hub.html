@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duel Station | Hub</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/hub.css">
+    <script src="script/general.js"></script>
+    <script src="script/general_logged.js"></script>
+</head>
+
+<body onload="load_info()">
+
+    <div class="header">
+
+        <div class="navbar">
+
+            <ul>
+                <li>
+                    <a>
+                        <img src="img/logo.png">
+                        <b>Hub</b>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="game.html">
+                        <p>Play</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="store.html">
+                        <p>Store</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        <p id="p_user_name">Profile</p>
+                    </a>
+                </li>
+
+                <li class="currency">
+
+                    <img src="img/coin.png" alt="Ícone de moeda">
+                    <p id="p_currency">0.00</p>
+
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        <p>Logoff</p>
+                    </a>
+                </li>
+
+                <li class="music">
+
+                    <img id="muted_music" src="img/muted.png" onclick="play_music()">
+
+                    <img id="playing_music" src="img/playing.png" onclick="stop_music()" style="display: none;">
+
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="hub_banner">
+
+        <div class="main_hub">
+
+        </div>
+
+        <div class="side_hub">
+
+            <b>Top 10 players</b>
+
+            <div class="top10">
+
+                <p id="p_top1">1º</p>
+                <p id="p_top2">2º</p>
+                <p id="p_top3">3º</p>
+                <p id="p_top4">4º</p>
+                <p id="p_top5">5º</p>
+                <p id="p_top6">6º</p>
+                <p id="p_top7">7º</p>
+                <p id="p_top8">8º</p>
+                <p id="p_top9">9º</p>
+                <p id="p_top10">10º</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function load_hub() {
+        fetch("/usuarios/rankear", {
+            method: "POST",
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    var top10 = [
+                        json.nomeUsuario,
+                        json.saldo
+                    ];
+
+                });
+
+            } else {
+                console.log('Erro ao carregar top10!');
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+</script>

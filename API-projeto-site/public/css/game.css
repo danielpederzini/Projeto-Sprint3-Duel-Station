@@ -1,0 +1,306 @@
+.game_banner {
+    height: 100vh;
+
+    background-image: url(../img/store_banner.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* --------------------- GAME - SELECTION --------------------- */
+
+    .options {
+        height: 60%;
+        width: 60%;
+        
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        margin-top: 5%;
+
+        background-color: #000000AA;
+
+        overflow: auto;
+
+        border-radius: 10px;
+
+        display: flex;
+        flex-flow: row wrap;
+
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+        .selection {
+            height: 100%;
+            width: 100%;
+
+            display: flex;
+            flex-flow: column nowrap;
+
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+            .selection p {
+                color: #FFF;
+                font-size: 15px;
+
+                text-align: center;
+            }
+
+            .selection b {
+                color: #DBCD7C;
+                font-size: 25px;
+
+                text-align: center;
+            }
+
+            .selection_list {
+                height: 150px;
+                width: 80%;
+
+                display: flex;
+                flex-flow: row wrap;
+
+                justify-content: space-evenly;
+            }
+
+                .selection_list button {
+                    width: 20%;
+
+                    margin: auto;
+
+                    background-color: transparent;
+                    border: none;
+                    
+                    opacity: 30%;
+                }
+
+                    .selection_list button > img {
+                        width: 75px;
+
+                        border-radius: 50%;
+                    }
+
+                    .price {
+                        display: flex;
+
+                        align-items: center;
+                        justify-content: center;
+
+                        opacity: 100%;
+                    }
+
+                        .price img {
+                            width: 15px;
+
+                            margin-bottom: 5px;
+                        }
+
+                        .price p {
+                            font-size: 15px;
+
+                            margin-left: 5px;
+                        }
+
+                    .selection_list button p:last-of-type {
+                        font-size: 12.5px;
+                    }
+
+                    .selection_list button:hover {
+                        opacity: 100% !important;
+
+                        transition-duration: 0.2s !important;
+                    }
+
+/* --------------------- GAME - BOARD --------------------- */
+
+.board {
+    height: 75%;
+    width: 50%;
+    
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    margin-top: 5%;
+
+    background-color: #000000AA;
+
+    overflow: auto;
+
+    border-radius: 10px;
+
+    display: flex;
+    flex-flow: column nowrap;
+
+    align-items: center;
+    justify-content: space-around;
+}
+
+    .stats {
+        height: 15%;
+
+        display: flex;
+        flex-flow: row wrap;
+        
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+        .stats_box {
+            width: 25%;
+
+            display: flex;
+            flex-flow: row wrap;
+
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .stats_box img {
+            width: 30%;
+
+            border-radius: 50%;
+        }
+
+        .stats_box p {
+            color: #FFF;
+            font-size: 25px;
+        }
+
+        .stats_box b {
+            color: #DBCD7C;
+            font-size: 25px;
+        }
+
+    .versus_cards {
+        width: 80%;
+
+        display: flex;
+        flex-flow: row wrap;
+
+        align-items: center;
+        justify-content: space-around;
+    }
+
+        .versus_cards b {
+            color: #FFF;
+            font-size: 30px;
+        }
+
+        .card_template {
+            height: 260px;
+            width: 195px;
+
+            border-radius: 10px;
+
+            background-color: #FFF;
+
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+            .card_template img:first-child {
+                border-radius: 10px 10px 0 0;
+
+                height: 60%;
+            }
+
+            .card_desc {
+                height: 40%;
+                width: 90%;
+
+                margin: auto;
+
+                display: flex;
+                flex-flow: column nowrap;
+
+                align-items: center;
+                justify-content: space-evenly;
+            }
+
+                .card_desc p {
+                    text-align: center;
+                }
+
+                .card_attack {
+                    width: 100%;
+
+                    display: flex;
+                    flex-flow: row nowrap;
+
+                    align-items: center;
+                    justify-content: space-evenly;
+                }
+
+                    .card_attack b {
+                        color: #000;
+                        font-size: 30px;
+                    }
+
+                    .card_attack img {
+                        height: 45px;
+                    }
+
+    .game_buttons {
+        height: 30px;
+        width: 30%;
+
+        display: flex;
+
+        justify-content: space-evenly;
+    }
+
+/* --------------------- GAME - RESULT --------------------- */
+
+.result {
+    height: 50%;
+    width: 35%;
+    
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    margin-top: 5%;
+
+    background-color: #000000AA;
+
+    overflow: auto;
+
+    border-radius: 10px;
+
+    display: none;
+    flex-flow: column nowrap;
+
+    align-items: center;
+    justify-content: space-around;
+}
+
+    .result p {
+        color: #FFF;
+        font-size: 20px;
+
+        text-align: center;
+    }
+
+    #div_new_currency {
+        width: 125px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+        .result img {
+            width: 25px;
+
+            margin-bottom: 5px;
+        }
+
+    .result b {
+        color: #DBCD7C;
+        font-size: 20px;
+    }

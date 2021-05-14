@@ -16,14 +16,7 @@ var last_whisper_match = false;
 
 var round = 0;
 
-var user_id = window.sessionStorage.getItem('id_usuario_meuapp');
-var currency = Number(window.sessionStorage.getItem('saldo_usuario_meuapp'));
-
 var match_info = [];
-
-function load_currency() {
-    document.getElementById('p_currency').innerHTML = `${currency.toFixed(2)}`;
-}
 
 function change_player(selected_player) {
 
@@ -36,6 +29,7 @@ function change_player(selected_player) {
     var clicked_button = `bt_player${player_number}`;
     
     document.getElementById(`${clicked_button}`).style.opacity = `100%`;
+
 }
 
 function next() {
@@ -64,6 +58,7 @@ function change_deck(selected_deck) {
     var clicked_button = `bt_deck${deck_number}`;
     
     document.getElementById(`${clicked_button}`).style.opacity = `100%`;
+
 }
 
 function start() {
@@ -112,10 +107,13 @@ function show_cards() {
 
     enemy_card = parseInt(Math.random() * 80 + 1);
 
-    var awaken = parseInt(Math.random() * 100 + 1) == 100 && deck_number == 80;
+    var awakening = parseInt(Math.random() * 50 + 1) == 50 && deck_number == 80;
 
-        if (awaken) {
+        if (awakening) {
             card = 84;
+
+            var awakening_sound = new Audio('audio/deck80.mp3');
+            awakening_sound.play();
         }
 
     set_attack();
@@ -166,10 +164,10 @@ function set_attack() {
         2000, 1700, 1800, 2700, 2400, 2000, 2450, 1000, 1000, 2300,
 
         500 + round * 500, // Slifer, o Dragão Celeste
-        1000 + Math.round(player_lifepoints * 0.05), // Obelisco, o Atormentador
+        1000 + Math.round(player_lifepoints * 0.20), // Obelisco, o Atormentador
         1000 + Math.round(enemy_lifepoints * 0.75), // O Dragão Alado de Rá
 
-        100000 // Holakthy, o Criador da Luz
+        99999999999 // Holakthy, o Criador da Luz
     ];
 
     card_attack = player_number == 4 ?
@@ -294,7 +292,7 @@ function fly() {
     p_card_name.innerHTML = card_name;
     p_attack.innerHTML = card_attack;
 
-    var wing_sound = new Audio('audio/wing.mp3');
+    var wing_sound = new Audio('audio/deck0.mp3');
     wing_sound.play();
 
 }
@@ -303,7 +301,7 @@ function sea_healing() {
 
     document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
 
-    var life_bonus = parseInt(Math.random() * (1500 - 499) + 500);
+    var life_bonus = parseInt(Math.random() * (750 - 499) + 500);
     var attack_multiplier = (Math.random() * (0.75 - 0.25) + 0.25).toFixed(2);
 
     player_lifepoints = player_lifepoints + life_bonus;
@@ -312,6 +310,9 @@ function sea_healing() {
 
     span_player_lifepoints.innerHTML = player_lifepoints;
     p_attack.innerHTML = card_attack;
+
+    var sea_healing_sound = new Audio('audio/deck20.mp3');
+    sea_healing_sound.play();
 
 }
 
@@ -327,8 +328,8 @@ function earth_fury() {
     span_player_lifepoints.innerHTML = player_lifepoints;
     p_attack.innerHTML = card_attack;
 
-    var magic_sound = new Audio('audio/magic.mp3');
-    magic_sound.play();
+    var earth_fury_sound = new Audio('audio/deck40.mp3');
+    earth_fury_sound.play();
 
 }
 
@@ -342,10 +343,10 @@ function last_whisper() {
     span_player_lifepoints.innerHTML = player_lifepoints;
     span_enemy_lifepoints.innerHTML = enemy_lifepoints;
 
-    var magic_sound = new Audio('audio/magic.mp3');
-    magic_sound.play();
-
     show_cards(); 
+
+    var last_whisper_sound = new Audio('audio/deck60.mp3');
+    last_whisper_sound.play();
 
 }
 
@@ -453,13 +454,13 @@ function result() {
             }
 
     p_result.innerHTML = player_win ?
-        `Parabéns! Você venceu <br> 
-        após <b>${round}</b> rounds <br>
-        com <b>${lifepoints_diff}</b> pontos de vida a mais.` :
+        `Congratulations! You won <br> 
+        after <b>${round}</b> rounds <br>
+        with <b>${lifepoints_diff}</b> more lifepoints.` :
 
-        `Que pena! Você perdeu <br> 
-        após <b>${round}</b> rounds <br>
-        com <b>${lifepoints_diff}</b> pontos de vida a menos.`;
+        `What a shame! You lost <br> 
+        after <b>${round}</b> rounds <br>
+        with <b>${lifepoints_diff}</b> less lifepoints.`;
 
     div_new_currency.innerHTML = player_win ?
         `<p>+</p> <img src="img/coin.png"> <p>${new_currency.toFixed(2)}</p>` :
@@ -482,20 +483,20 @@ function result() {
     result_audio.play();
 
     // Structuring SQL array
-    var player_names = ['Kaiba', 'Tsunami', 'Leblanc', 'Yugi', 'Marik'];
-    var deck_names = ['Voador', 'Aquático', 'Terrestre', 'Sombrio', 'Divino'];
+    var player_names = ['Seto Kaiba', 'Mako Tsunami', 'S. Leblanc', 'Yami Yugi', 'Yami Marik'];
+    var deck_names = ['Winged', 'Aquatic', 'Earthy', 'Dark', 'Divine'];
 
     var player_name = player_names[player_number - 1];
     var deck_name = deck_names[deck_number / 20];
 
     match_info.push(
-    `${user_id}`, 
-    `${player_name}`, 
-    `${deck_name}`, 
-    `${round}`, 
-    `${player_win ? 'vitoria' : 'derrota'}`,
-    `${lifepoints_diff}`,
-    `${Number(new_currency.toFixed(2))}`
+        `${user_id}`, 
+        `${player_name}`, 
+        `${deck_name}`, 
+        `${round}`, 
+        `${player_win ? 'win' : 'lose'}`,
+        `${lifepoints_diff}`,
+        `${player_win ? new_currency.toFixed(2) : -(new_currency).toFixed(2)}`
     )
 
     fetch("/partidas/registrar", {
@@ -514,5 +515,3 @@ function result() {
 function reset() {
     document.location.reload();
 }
-
-module.exports = match_info;

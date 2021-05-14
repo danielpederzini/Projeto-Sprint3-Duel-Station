@@ -12,7 +12,12 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
-		},		
+		},
+		nomeUsuario: {
+			field: 'nomeUsuario',
+			type: DataTypes.STRING,
+			allowNull: false
+		},			
 		login: {
 			field: 'login',
 			type: DataTypes.STRING,

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/forms.css">
     <script src="script/general.js"></script>
     <script src="script/login.js"></script>
 </head>
@@ -23,19 +24,19 @@
                 <li>
                     <a>
                         <img src="img/logo.png">
-                        <b>Login</b>
+                        <b>Sign In</b>
                     </a>
                 </li>
 
                 <li>
                     <a href="signup.html">
-                        <p>Cadastro</p>
+                        <p>Sign Up</p>
                     </a>
                 </li>
 
                 <li>
                     <a href="index.html">
-                        <p>Início</p>
+                        <p>Home</p>
                     </a>
                 </li>
 
@@ -56,22 +57,22 @@
 
         <div id="div_login">
 
-            <b onclick="teste()">Acesse Sua Conta</b>
+            <b onclick="teste()">Access Your Account</b>
 
             <form id="form_login" method="post" autocomplete="off" onsubmit="return entrar()">
 
-                <p>Usuário ou E-mail</p>
+                <p>Username or E-mail</p>
                 <input type="text" name="login"> <br>
 
-                <p>Senha</p>
+                <p>Password</p>
                 <input type="password" name="password"> <br>
 
-                <button class="button1" id="bt_login">Entrar</button>
+                <button class="button1" id="bt_login">Submit</button>
 
                 <br><br>
 
-                <a onclick="show_pwd_recovery()">Esqueci minha senha</a> <br>
-                <a href="signup.html">Não tenho uma conta</a>
+                <a onclick="show_pwd_recovery()">Forgot My Passowrd</a> <br>
+                <a href="signup.html">I Don't Have an Account</a>
 
             </form>
 
@@ -79,22 +80,22 @@
 
         <div id="div_recovery" style="display: none;">
 
-            <b>Recuperamento de Senha</b>
+            <b>Password Recovery</b>
 
             <form id="form_recovery" method="post" autocomplete="off" onsubmit="return entrar()">
 
-                <p>Informe seu E-mail</p>
+                <p>Your E=mail</p>
                 <input type="text" name="email"> <br>
 
-                <p>Enviaremos um passo a passo de como alterar sua senha</p>
+                <p>We're gonna send you a guide on how to change your password</p>
 
                 <br><br>
 
-                <button class="button1" id="bt_recovery">Enviar</button>
+                <button class="button1" id="bt_recovery">Submit</button>
 
                 <br><br>
 
-                <a onclick="hide_pwd_recovery()">Voltar para login</a>
+                <a onclick="hide_pwd_recovery()">Back to Login</a>
 
             </form>
 
@@ -119,11 +120,11 @@
 
                 resposta.json().then(json => {
 
-                    sessionStorage.login_usuario_meuapp = json.login;
                     sessionStorage.id_usuario_meuapp = json.idUsuario;
+                    sessionStorage.nome_usuario_meuapp = json.nomeUsuario;
                     sessionStorage.saldo_usuario_meuapp = json.saldo;
 
-                    window.location.href = 'game.html';
+                    window.location.href = 'hub.html';
                 });
 
             } else {
