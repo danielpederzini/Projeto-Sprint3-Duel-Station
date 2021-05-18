@@ -1,0 +1,86 @@
+.modal_shadow {
+    height: 100%;
+    width: 100%;
+
+    background-color: #000000AA;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+}
+
+    .modal {
+        height: 60%;
+        width: 30%;
+
+        padding-right: 2.5%;
+        padding-left: 2.5%;
+        
+        margin-top: 5%;
+
+        background-color: #000;
+
+        border: 2px solid #333;
+
+        overflow: auto;
+
+        border-radius: 10px;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+        .modal b {
+            color: #DBCD7C;
+            font-size: 25px;
+        }
+
+        .modal p {
+            color: #FFF;
+            font-size: 20px;
+
+            text-align: center;
+        }
+
+        .modal button {
+            width: 100px;
+
+            display: flex;
+            flex-flow: column nowrap;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+            #loading_modal img,
+            #success_login_modal img,
+            #success_signup_modal img {
+                width: 150px;
+            }
+
+            #buy_modal img {
+                width: 25px;
+            }
+
+            #buy_modal div {
+                width: 80%;
+
+                display: flex;
+
+                align-items: center;
+                justify-content: space-evenly;
+            }
+
+            #buy_modal .button1 {
+                width: 50px;
+            }
+
+            #buy_modal .button2 {
+                width: 150px;
+            }

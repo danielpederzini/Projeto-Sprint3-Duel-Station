@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/store.css">
+    <link rel="stylesheet" href="css/modals.css">
     <script src="script/general.js"></script>
     <script src="script/general_logged.js"></script>
     <script src="script/store.js"></script>
@@ -55,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="login.html">
+                    <a onclick="logoff()">
                         <p>Logoff</p>
                     </a>
                 </li>
@@ -78,15 +79,17 @@
 
         <div class="store">
 
+            <b>Click to See More</b>
+
             <div class="store_list">
 
-                <button id="bt_player1" value="1" onclick="change_player(Number(this.value))">
+                <button id="bt_player1" value="1" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/players/player1.png">
                     <p>Seto Kaiba</p>
-                    <p>+500 LP</p>
+                    <p>Bought</p>
                 </button>
 
-                <button id="bt_unknown_player2" value="2">
+                <button id="bt_unknown_player2" value="2" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/unknown.png">
                     <p>Mako Tsunami</p>
 
@@ -96,14 +99,14 @@
                     </div>
                 </button>
 
-                <button id="bt_player2" value="2" onclick="change_player(Number(this.value))" style="display: none;">
+                <button id="bt_player2" value="2" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
                     <img src="img/players/player2.png">
                     <p>Mako Tsunami</p>
 
-                    <p>+25% Defense</p>
+                    <p>Bought</p>
                 </button>
 
-                <button id="bt_unknown_player3" value="3">
+                <button id="bt_unknown_player3" value="3" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/unknown.png">
                     <p>S. Leblanc</p>
 
@@ -113,14 +116,14 @@
                     </div>
                 </button>
 
-                <button id="bt_player3" value="3" onclick="change_player(Number(this.value))" style="display: none;">
+                <button id="bt_player3" value="3" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
                     <img src="img/players/player3.png">
                     <p>S. Leblanc</p>
 
-                    <p>+25% Profit</p>
+                    <p>Bought</p>
                 </button>
 
-                <button id="bt_unknown_player4" value="4">
+                <button id="bt_unknown_player4" value="4" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/unknown.png">
                     <p>Yami Yugi</p>
 
@@ -130,14 +133,14 @@
                     </div>
                 </button>
 
-                <button id="bt_player4" value="4" onclick="change_player(Number(this.value))" style="display: none;">
+                <button id="bt_player4" value="4" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
                     <img src="img/players/player4.png">
                     <p>Yami Yugi</p>
 
-                    <p>+5% Attack</p>
+                    <p>Bought</p>
                 </button>
 
-                <button id="bt_unknown_player5" value="5">
+                <button id="bt_unknown_player5" value="5" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/unknown.png">
                     <p>Yami Marik</p>
 
@@ -147,25 +150,25 @@
                     </div>
                 </button>
 
-                <button id="bt_player5" value="5" onclick="change_player(Number(this.value))" style="display: none;">
+                <button id="bt_player5" value="5" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
                     <img src="img/players/player5.png">
                     <p>Yami Marik</p>
 
-                    <p>+10% Vampirism</p>
+                    <p>Bought</p>
                 </button>
 
             </div>
 
             <div class="store_list">
 
-                <button id="bt_deck0" value="0" onclick="change_deck(Number(this.value))">
+                <button id="bt_deck0" value="0" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/types/type0.png">
                     <p>Winged</p>
 
-                    <p>Fly</p>
+                    <p>Bought</p>
                 </button>
 
-                <button id="bt_unknown_deck20" value="20">
+                <button id="bt_unknown_deck20" value="20" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/unknown.png">
                     <p>Aquatic</p>
 
@@ -175,14 +178,14 @@
                     </div>
                 </button>
 
-                <button id="bt_deck20" value="20" onclick="change_deck(Number(this.value))" style="display: none;">
+                <button id="bt_deck20" value="20" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
                     <img src="img/types/type20.png">
                     <p>Aquatic</p>
 
-                    <p>Sea Healing</p>
+                    <p>Bought</p>
                 </button>
 
-                <button id="bt_unknown_deck40" value="40">
+                <button id="bt_unknown_deck40" value="40" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/unknown.png">
                     <p>Earthy</p>
 
@@ -192,14 +195,14 @@
                     </div>
                 </button>
 
-                <button id="bt_deck40" value="40" onclick="change_deck(Number(this.value))" style="display: none;">
+                <button id="bt_deck40" value="40" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
                     <img src="img/types/type40.png">
                     <p>Earthy</p>
 
-                    <p>Earth Fury</p>
+                    <p>Bought</p>
                 </button>
 
-                <button id="bt_unknown_deck60" value="60">
+                <button id="bt_unknown_deck60" value="60" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/unknown.png">
                     <p>Dark</p>
 
@@ -209,14 +212,14 @@
                     </div>
                 </button>
 
-                <button id="bt_deck60" value="60" onclick="change_deck(Number(this.value))" style="display: none;">
+                <button id="bt_deck60" value="60" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
                     <img src="img/types/type60.png">
                     <p>Dark</p>
 
-                    <p>Last Whisper</p>
+                    <p>Bought</p>
                 </button>
 
-                <button id="bt_unknown_deck80" value="80">
+                <button id="bt_unknown_deck80" value="80" onclick="show_buy_box(Number(this.value), this.id)">
                     <img src="img/unknown.png">
                     <p>Divine</p>
 
@@ -226,53 +229,56 @@
                     </div>
                 </button>
 
-                <button id="bt_deck80" value="80" onclick="change_deck(Number(this.value))" style="display: none;">
+                <button id="bt_deck80" value="80" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
                     <img src="img/types/type80.png">
                     <p>Divine</p>
 
-                    <p>The Awakening</p>
+                    <p>Bought</p>
                 </button>
 
             </div>
 
         </div>
 
-        <div class="description">
+        <div class="modal_shadow" id="modal_shadow" style="display: none;">
 
-            <b id="b_item_name"></b>
+            <div class="modal" id="buy_modal" style="display: none;">
 
-            <p id="p_item_description"></p>
+                <b id="b_item_name"></b>
 
-            <button id="bt_buy_player" class="button2" onclick="buy_player()" style="display: none;">
+                <p id="p_item_description"></p>
 
-                <p>Comprar</p>
+                <div>
 
-                <div class="price">
-                    <img id="img_coin" src="img/coin.png">
-                    <p id="p_player_price"></p>
+                    <button class="button1" onclick="close_window()">
+                        <p>🡸</p>
+                    </button>
+
+                    <button id="bt_buy" class="button2" onclick="buy()">
+                        <p>Buy</p>
+                        
+                        <div class="price">
+                            <img src="img/coin.png" alt="Coin icon">
+                            <p id="p_item_price"></p>
+                        </div>
+                        
+                    </button>
+
                 </div>
 
-            </button>
-
-            <button id="bt_buy_deck" class="button2" onclick="buy_deck()" style="display: none;">
-
-                <p>Comprar</p>
-
-                <div class="price">
-                    <img id="img_coin" src="img/coin.png">
-                    <p id="p_deck_price"></p>
-                </div>
-
-            </button>
-
-            <p id="p_bought" style="display: none;">
-                Comprado
-            </p>
+            </div>
 
         </div>
+
 
     </div>
 
 </body>
 
 </html>
+
+<script>
+    function buy() {
+        
+    }
+</script>

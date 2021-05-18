@@ -73,7 +73,7 @@ function start() {
         show_cards();
 
         if (player_number == 1) {
-            player_lifepoints += 500;
+            player_lifepoints += 200;
         }
 
         span_player_lifepoints.innerHTML = player_lifepoints;
@@ -153,7 +153,7 @@ function show_cards() {
 
 function set_attack() {
 
-    var attacks = [
+    var card_attacks = [
         3000, 2400, 2400, 1950, 1200, 1700, 1300, 1600, 2300, 2900,
         2700, 3000, 1400, 2500, 2100, 1800, 2100, 3000, 1400, 1500,
         1800, 1700, 1400, 2100, 2600, 3200, 2350, 3300, 1200, 1000,
@@ -171,111 +171,111 @@ function set_attack() {
     ];
 
     card_attack = player_number == 4 ?
-    Math.round(attacks[card - 1] * 1.05) :
-    attacks[card - 1]
+    Math.round(card_attacks[card - 1] * 1.05) :
+    card_attacks[card - 1]
 
-    enemy_card_attack = attacks[enemy_card - 1];
+    enemy_card_attack = card_attacks[enemy_card - 1];
 }
 
 function set_name() {
 
-    var names = [
-        'Dragão Branco de Olhos Azuis',
-        'Dragão Negro de Olhos Vermelhos',
-        'Anjo Caído das Rosas',
-        'Irmãs Harpia',
-        'Águia Heráldica de Duas Cabeças',
-        'Tempestade de Batalha',
-        'A Atmosfera',
-        'Wivern do Eclipse',
-        'Dragão Kabuki',
-        'Ulevo',
-        'Dragão Caveira Negra',
-        'Michael, O Arquiluminoso',
-        'Pássaro Sônico',
-        'Dragão Pandêmico',
-        'Vortex, O Redemoinho',
-        'Dragão da Nevasca',
-        'Chimera, A Besta Mítica Alada',
-        'Devorador de Estrelas',
-        'Dragão Mascarado',
-        'Ranryu',
-        'Kairyu-Shin',
-        'Soldado Peixe-Lança',
-        'Invasor Azul Perdido', 
-        'Evigishki Merrowgeist', 
-        'Levia-Dragão Daedalus',
-        'Gishki Zielgigas', 
-        'Baleia Cidadela', 
-        'Leviathan, O Grande Protetor do Mar', 
-        'Sirena Abisnereida',
-        'Tubarão Águia',
-        'Codarus',
-        'Tubarão Pesadelo',
-        'Molinglacia, O Lorde Elemental', 
-        'Habitante do Abismo', 
-        'Dragão Coral', 
-        'Rei Barahstos, O Fundurador', 
-        'Poseidra, O Dragão Atlântico', 
-        'Caçador Aquático Armado', 
-        'Mestra do Gelo', 
-        'Paleozoico Anomalocaris', 
-        'Tirano Condutor Final',
-        'Soldado do Lustro Negro',
-        'Granmarg, O Mega Monarca', 
-        'Balista do Mecanismo Antigo', 
-        'Guerreiro Gravitacional', 
-        'Cavaleiro Gaia, A Força da Terra',
-        'Soldado Desgastado',
-        'Valquíria Sigrun',
-        'Soldado Canhão',
-        'Golem do Mecanismo Antigo',
-        'Guerreiro Karbonala',
-        'Protótipo do Rei Máquina',
-        'Postulado Pelo Cálice Mundial',
-        'Cérbero, O Cavaleiro do Pesadelo',
-        'Grenossauro',
-        'Cão de Caça Mecânico',
-        'Chimera Dinolutadora',
-        'Guerreiro Torre',
-        'Guardião de Metal',
-        'Lenhador, Herói Elemental', 
-        'Mago Sombrio',
-        'Mago Ilusionista sem Rosto',
-        'Paladino Sombrio',
-        'Pumpking, O Rei dos Fantasmas',
-        'Guerreiro de Ardosta',
-        'Bram, O Cavaleiro Vampiro Carmesin',
-        'Oráculo do Coveiro',
-        'Gilgamesh, O Rei do Abismo',
-        'Caius, O Mega Monarca',
-        'Desespero do Escuro',
-        'Arquidemônio Aniquilador',
-        'Mago da Tragédia',
-        'Alma Desencadeada da Raiva',
-        'Alma Desencadeada do Desastre',
-        'Alma Desencadeada da Angústia',
-        'Maga Sombria',
-        'Chakra',
-        'Luvas dos Cavaleiros Fantasmas',
-        'Aleister, O Invocador',
-        'Freed, O General Sombrio',
-        'Slifer, O Dragão Celeste',
-        'Obelisco, O Atormentador',
-        'O Dragão Alado de Rá',
-        'Holakthy, O Criador da Luz'
+    var card_names = [
+        "Blue Eyes White Dragon",
+        "Red Eyes Black Dragon",
+        "Fallen Angel of Roses",
+        "Harpie Lady Sisters",
+        "Heraldic Twin Headed Eagle",
+        "Battlestorm",
+        "The Atmosphere",
+        "Eclipse Wyvern",
+        "Kabuki Dragon",
+        "Ulevo",
+        "Black Skull Dragon",
+        "Michael, The Arch-Lightsworn",
+        "Sonic Bird",
+        "Pandemic Dragon",
+        "Vortex, The Whirlwind",
+        "Blizzard Dragon",
+        "Chimera, The Flying Mythical Beast",
+        "Star Eater",
+        "Masked Dragon",
+        "Ranryu",
+        "Kairyu-Shin",
+        "Swordfish Soldier",
+        "Lost Blue Breaker", 
+        "Evigishki Merrowgeist", 
+        "Levia-Dragon Daedalus",
+        "Gishki Zielgigas", 
+        "Citadel Whale", 
+        "Leviathan, The Great Sea Protector", 
+        "Mermail Abyssnerei",
+        "Eagle Shark",
+        "Codarus",
+        "Nightmare Shark",
+        "Moulinglacia, The Elemental Lord", 
+        "Abyss Dweller", 
+        "Coral Dragon", 
+        "True King Barahstos, The Fathomer", 
+        "Poseidra, The Atlantean Dragon", 
+        "Armed Sea Hunter", 
+        "Ice Master", 
+        "Paleozoic Anomalocaris", 
+        "Ultimate Conductor Tyranno",
+        "Black Luster Soldier",
+        "Granmarg, The Mega Monarch", 
+        "Ancient Gear Ballista", 
+        "Gravity Warrior", 
+        "Gaia Knight, The Force of Earth",
+        "Weathering Soldier",
+        "Valkyrie Sigrun",
+        "Cannon Soldier",
+        "Ancient Gear Golem",
+        "Karbonala Warrior",
+        "Machine King Prototype",
+        "Beckoned by The World Chalice",
+        "Knightmare Cerberus",
+        "Grenosaurus",
+        "Mechanical Hound",
+        "Dinowrestler Chimera",
+        "Turret Warrior",
+        "Metal Guardian",
+        "Elemental Hero Woodsman", 
+        "Dark Magician",
+        "Illusionist Faceless Mage",
+        "Dark Paladin",
+        "Pumpking, The King of Ghosts",
+        "Slate Warrior",
+        "Bram, The Vampire Elderitter",
+        "Gravekeeper's Oracle",
+        "Abyss King Gilgamesh",
+        "Caius, The Mega Monarch",
+        "Despair From The Dark",
+        "Annihilator Archfiend",
+        "Disgraced Mage",
+        "Unchained Soul of Anger",
+        "Unchained Soul of Disaster",
+        "Unchained Soul of Anguish",
+        "Dark Magician Girl",
+        "Chakra",
+        "The Phantom Knights of Ragged Gloves",
+        "Aleister, The Invoker",
+        "Dark General Freed",
+        "Slifer, The Sky Dragon",
+        "Obelisk, The Tormentor",
+        "The Winged Dragon of Ra",
+        "Holakthy, The Creator of Ligth"
     ];
 
-    card_name = names[card - 1];
+    card_name = card_names[card - 1];
 
-    enemy_card_name = names[enemy_card - 1];
+    enemy_card_name = card_names[enemy_card - 1];
 }
 
 function fly() {
 
     document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
 
-    player_lifepoints -= 100;
+    player_lifepoints -= 200;
 
     var old_card = card;
 
@@ -515,3 +515,13 @@ function result() {
 function reset() {
     document.location.reload();
 }
+
+exports = { 
+    user_id: match_info[0],
+    duelist_name: match_info[1],
+    deck_name: match_info[2],
+    rounds: match_info[3],
+    result: match_info[4],
+    lifepoints_diff: match_info[5],
+    currency_change: match_info[6]
+};

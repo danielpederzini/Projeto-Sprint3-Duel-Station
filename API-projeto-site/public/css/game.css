@@ -1,3 +1,7 @@
+.navbar {
+    width: 100%;
+}
+
 .game_banner {
     height: 100vh;
 
@@ -16,7 +20,7 @@
 
     .options {
         height: 60%;
-        width: 60%;
+        width: 50%;
         
         padding-left: 2.5%;
         padding-right: 2.5%;
@@ -62,7 +66,7 @@
 
             .selection_list {
                 height: 150px;
-                width: 80%;
+                width: 90%;
 
                 display: flex;
                 flex-flow: row wrap;
@@ -72,6 +76,9 @@
 
                 .selection_list button {
                     width: 20%;
+                    height: 95px;
+
+                    overflow: hidden;
 
                     margin: auto;
 
@@ -114,9 +121,14 @@
 
                     .selection_list button:hover {
                         opacity: 100% !important;
+                        height: 120px !important;
 
                         transition-duration: 0.2s !important;
                     }
+
+            .selection > button {
+                width: 150px;
+            }
 
 /* --------------------- GAME - BOARD --------------------- */
 
@@ -248,12 +260,16 @@
 
     .game_buttons {
         height: 30px;
-        width: 30%;
+        width: 50%;
 
         display: flex;
 
         justify-content: space-evenly;
     }
+
+        .game_buttons button {
+            width: 150px;
+        }
 
 /* --------------------- GAME - RESULT --------------------- */
 

@@ -1,91 +1,62 @@
 var player_names = ['Seto Kaiba', 'Mako Tsunami', 'S. Leblanc', 'Yami Yugi', 'Yami Marik'];
 var player_prices = ['0.00', '250.00', '500.00', '750.00', '1000.00'];
 var player_descriptions = [
-    'Inteligente, competitivo e oportunista, começa o jogo com 500 pontos de vida a mais',
-    'Corajoso e persistente, recebe 25% menos dano de ataques inimigos',
-    'Assertiva e calculista, recebe 25% mais moedas ao final da partida',
-    'Focado e determinado, seus monstros recebem 5% de ataque adicional',
-    'Insano e manipulador, cura-se em 10% de todo dano causado'
+    'Smart, competitive and opportunist, starts the game with 200 more lifepoints',
+    'Brave and persistent, takes 25% less damage',
+    'Assertive and calculist, gains 25% more coins at the end of the game',
+    'Focused and determinated, his monsters gain 5% additional attack',
+    'Insane and manipulative, heals himself by 10% of all dealt damage'
 ];
 
-var deck_names = ['Voador', 'Aquático', 'Terrestre', 'Sombrio', 'Divino'];
+var deck_names = ['Winged', 'Aquatic', 'Earthy', 'Dark', 'Divine'];
 var deck_prices = ['0.00', '250.00', '500.00', '750.00', '1000.00'];
 var deck_descriptions = [
-    `Dragões, pássaros e outras criaturas aladas. Cartas de poder equilibrado. <br><br>
-    <b>Habilidade: Levantar Vôo</b> <br><br>
-    Desconta 100 pontos de vida para trocar carta atual por uma outra aleatória.`,
+    `Dragons, birds and other winged creatures. Equilibrated card power. <br><br>
+    <b>Ability: Fly</b> <br><br>
+    Loses 100 lifepoints in order to change the current card.`,
 
-    `Feras, monstros e outras criaturas aquáticas. Cartas mais fortes e cartas mais fracas. <br><br>
-    <b>Habilidade: Cura Marítima</b> <br><br>
-    Recupra entre 500 e 750 pontos de vida, porém, enfraquece a carta atual entre 25% e 75%.`,
+    `Beasts, monsters and other aquatic creatures. Sligth power variation. <br><br>
+    <b>Ability: Sea Healing</b> <br><br>
+    Heals the player by 500 to 750 lifepoints. However, weakens the current card by 25% to 75%.`,
 
-    `Dinossauros, gigantes, guerreiros e outros seres de força bruta. Cartas muito fortes e cartas muito fracas. <br><br>
-    <b>Habilidade: Fúria da Terra</b> <br><br>
-    Desconta 750 pontos de vida para aumentar o poder da carta atual entre 5% e 50%. `,
+    `Dinosaurs, giants, warriors and other brute strength beings. High power variation. <br><br>
+    <b>Ability: Earth Fury</b> <br><br>
+    Loses 750 lifepoints in order to increase the power of the current card by 5% to 50%.`,
 
-    `Magos, vampiros, espíritos e outros seres sombrios . Cartas de poder equilibrado. <br><br>
-    <b>Habilidade: Último Suspiro</b> <br><br>
-    Define seus pontos de vida como 1, e os do adversário como 200. A partir daí a vitória lhe dá 10 moedas, e a derrota lhe tira 20.`,
+    `Mages, vampires, spirits and other dark beings. Equilibrated card power. <br><br>
+    <b>Ability: Last Whisper</b> <br><br>
+    Sets your lifepoints as 1, and the opponents' as 200. From now on, you get 10 coins for winning and loses 20 otherwise`,
 
-    `Os 3 deuses egípcios. Cartas de poder variável e escalável. <br><br>
-    <b>Habilidade: O Despertar</b> <br><br>
-    Todo round, há uma pequena chance de invocar "Holakthy, o Criador da Luz", um deus de poder infinito`
+    `The 3 egyptian gods. Variable and scalable power. <br><br>
+    <b>Ability: The Awakening</b> <br><br>
+    Every round, there's a small chance of summoning "Holakthy, The Creator of Light", a god of unlimited power`
 ];
 
-function change_store_item(selected_item, clicked_button) {
+function show_buy_box(selected_item, item_id) {
 
-    for (var i = 1; i <= 10; i ++) {
-        document.getElementById(`bt_item${i}`).style.opacity = `30%`;
+    var item_name = selected_item % 20 == 0 ? deck_names[selected_item / 20]  : player_names[selected_item - 1];
+    var item_price = selected_item % 20 == 0 ? deck_prices[selected_item / 20]  : player_prices[selected_item - 1];
+    var item_description =  selected_item % 20 == 0 ? deck_descriptions[selected_item / 20]  : player_descriptions[selected_item - 1];
+
+    modal_shadow.style.display = `flex`;
+    buy_modal.style.display = `flex`;
+
+    b_item_name.innerHTML = item_name;
+    p_item_description.innerHTML = item_description;
+
+    if (item_id.includes('unknown')) {
+        p_item_price.innerHTML = item_price;
     }
-
-    document.getElementById(`${clicked_button}`).style.opacity = `100%`;
-
-    if (selected_item % 20 == 0) {
-        
-        b_item_name.innerHTML = deck_names[selected_item / 20];
-
-        p_deck_price.innerHTML = deck_prices[selected_item / 20];
     
-        p_item_description.innerHTML = deck_descriptions[selected_item / 20]
-    
-        bt_buy_player.style.display = `none`;
-        bt_buy_deck.style.display = `block`;
-
-    }
-
     else {
-
-        b_item_name.innerHTML = player_names[selected_item - 1];
-
-        p_player_price.innerHTML = player_prices[selected_item - 1];
-    
-        p_item_description.innerHTML = player_descriptions[selected_item - 1]
-    
-        bt_buy_deck.style.display = `none`;
-        bt_buy_player.style.display = `block`;
-
+        bt_buy.style.display = `none`;
     }
 
 }
 
-function buy_player() {
-    if (currency >= Number(p_player_price.innerHTML)) {
-        
-        currency -= Number(p_player_price.innerHTML);
+function close_window() {
+    modal_shadow.style.display = `none`;
+    buy_modal.style.display = `none`;
 
-        sessionStorage.setItem('saldo_usuario_meuapp', currency)
-
-        document.location.reload();
-    }
-}
-
-function buy_deck() {
-    if (currency >= Number(p_deck_price.innerHTML)) {
-        
-        currency -= Number(p_deck_price.innerHTML);
-
-        sessionStorage.setItem('saldo_usuario_meuapp', currency)
-
-        document.location.reload();
-    }
+    bt_buy.style.display = `flex`;
 }

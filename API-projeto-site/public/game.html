@@ -55,7 +55,7 @@
                 </li>
 
                 <li>
-                    <a href="login.html">
+                    <a onclick="logoff()">
                         <p>Logoff</p>
                     </a>
                 </li>
@@ -86,7 +86,7 @@
                     <button id="bt_player1" value="1" onclick="change_player(Number(this.value))">
                         <img src="img/players/player1.png">
                         <p>Seto Kaiba</p>
-                        <p>+500 LP</p>
+                        <p>+200 LP</p>
                     </button>
 
                     <button id="bt_unknown_player2" value="2" style="display: none;">
@@ -159,7 +159,7 @@
 
                 </div>
 
-                <div class="button1" onclick="next()">Next</div>
+                <button class="button1" onclick="next()">Next</button>
 
             </div>
 
@@ -250,7 +250,7 @@
 
                 </div>
 
-                <div class="button1" onclick="start()">It's time to duel!</div>
+                <button class="button1" onclick="start()">It's time to duel!</button>
 
             </div>
 

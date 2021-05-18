@@ -1,0 +1,17 @@
+.navbar {
+    width: 100%;
+}
+
+.profile_banner {
+    height: 100vh;
+
+    background-image: url(../img/store_banner.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-evenly;
+}

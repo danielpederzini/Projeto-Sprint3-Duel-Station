@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/modals.css">
     <script src="script/general.js"></script>
 </head>
 
@@ -48,7 +49,7 @@
                 </li>
             </ul>
 
-       </div>
+        </div>
 
     </div>
 
@@ -70,7 +71,7 @@
                 <input type="password" name="password"> <br>
 
                 <p>Confirm Password</p>
-                <input type="password"> <br>
+                <input type="password" name="password_confirm"> <br>
 
                 <button class="button1" id="bt_login">Submit</button>
 
@@ -79,6 +80,38 @@
                 <a href="login.html">I Already Have an Account</a>
 
             </form>
+
+        </div>
+
+        <div class="modal_shadow" id="modal_shadow" style="display: none;">
+
+            <div class="modal" id="loading_modal" style="display: none;">
+
+                <b>Loading...</b>
+
+                <img src="img/loading.gif" alt="Loading gif">
+
+            </div>
+
+            <div class="modal" id="success_signup_modal" style="display: none;">
+
+                <b>Successfully signed up!</b>
+
+                <p id="p_username"></p>
+
+                <button class="button2" onclick="change_window()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="failure_signup_modal" style="display: none;">
+
+                <b>Couldn't sign up!</b>
+
+                <p id="p_signup_error"></p>
+
+                <button class="button2" onclick="retry()">Ok</button>
+
+            </div>
 
         </div>
 
@@ -91,27 +124,55 @@
 <script>
 
     function signup() {
+
+        modal_shadow.style.display = `flex`;
+        loading_modal.style.display = `flex`;
+
         var formulario = new URLSearchParams(new FormData(form_signup));
         fetch("/usuarios/cadastrar", {
             method: "POST",
             body: formulario
         }).then(function (response) {
-            
+
             if (response.ok) {
 
-                window.location.href='login.html';
+                setTimeout(function () {
+
+                    loading_modal.style.display = `none`;
+                    success_signup_modal.style.display = `flex`;
+
+                }, 1000);
+
+                response.json().then(json => {
+                    p_username.innerHTML = `Sign in as ${json.nomeUsuario} to continue`;
+                });
 
             } else {
 
-                console.log('Erro de cadastro!');
-                response.text().then(function (resposta) {
-                    alert(resposta);
-                });
+                setTimeout(function () {
+
+                    loading_modal.style.display = `none`;
+                    failure_signup_modal.style.display = `flex`;
+
+                    p_signup_error.innerHTML = `Make sure to fill all fields with valid information`;
+                    
+                }, 1000);
 
             }
         });
 
         return false;
     }
+
+    function change_window() {
+        window.location.href = 'login.html';
+    }
+
+    function retry() {
+        modal_shadow.style.display = `none`;
+        failure_signup_modal.style.display = `none`;
+    }
+
+    
 
 </script>

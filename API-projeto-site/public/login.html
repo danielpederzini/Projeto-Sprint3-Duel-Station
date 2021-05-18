@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/modals.css">
     <script src="script/general.js"></script>
-    <script src="script/login.js"></script>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
 
         <div id="div_login">
 
-            <b onclick="teste()">Access Your Account</b>
+            <b>Access Your Account</b>
 
             <form id="form_login" method="post" autocomplete="off" onsubmit="return entrar()">
 
@@ -84,7 +84,7 @@
 
             <form id="form_recovery" method="post" autocomplete="off" onsubmit="return entrar()">
 
-                <p>Your E=mail</p>
+                <p>Your E-mail</p>
                 <input type="text" name="email"> <br>
 
                 <p>We're gonna send you a guide on how to change your password</p>
@@ -101,8 +101,39 @@
 
         </div>
 
-    </div>
+        <div class="modal_shadow" id="modal_shadow" style="display: none;">
 
+            <div class="modal" id="loading_modal" style="display: none;">
+
+                <b>Loading...</b>
+
+                <img src="img/loading.gif" alt="Loading gif">
+
+            </div>
+
+            <div class="modal" id="success_login_modal" style="display: none;">
+
+                <b>Successfully signed in!</b>
+
+                <p id="p_username"></p>
+
+                <button id="bt_sign_in" class="button2" onclick="change_window()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="failure_login_modal" style="display: none;">
+
+                <b>Couldn't sign in!</b>
+
+                <p id="p_login_error"></p>
+
+                <button id="bt_try_again" class="button2" onclick="retry()">Ok</button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
 
@@ -110,6 +141,9 @@
 
 <script>
     function entrar() {
+        modal_shadow.style.display = `flex`;
+        loading_modal.style.display = `flex`;
+
         var formulario = new URLSearchParams(new FormData(form_login));
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -118,26 +152,63 @@
 
             if (resposta.ok) {
 
-                resposta.json().then(json => {
+                setTimeout(function () {
 
-                    sessionStorage.id_usuario_meuapp = json.idUsuario;
-                    sessionStorage.nome_usuario_meuapp = json.nomeUsuario;
-                    sessionStorage.saldo_usuario_meuapp = json.saldo;
+                    loading_modal.style.display = `none`;
+                    success_login_modal.style.display = `flex`;
 
-                    window.location.href = 'hub.html';
-                });
+                    bt_sign_in.focus();
+
+                    resposta.json().then(json => {
+
+                        sessionStorage.id_usuario_meuapp = json.idUsuario;
+                        sessionStorage.nome_usuario_meuapp = json.nomeUsuario;
+                        sessionStorage.login_usuario_meuapp = json.login;
+                        sessionStorage.saldo_usuario_meuapp = json.saldo;
+
+                        p_username.innerHTML = `Welcome ${json.nomeUsuario}!`;
+
+                    });
+
+                }, 1000);
 
             } else {
 
-                console.log('Erro de login!');
+                setTimeout(function () {
 
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizar_aguardar(texto);
-                });
+                    loading_modal.style.display = `none`;
+                    failure_login_modal.style.display = `flex`;
+
+                    bt_try_again.focus();
+
+                    resposta.text().then(texto => {
+                        p_login_error.innerHTML = texto;
+                    });
+                    
+                }, 1000);
             }
+
         });
 
         return false;
+    }
+
+    function change_window() {
+        window.location.href = 'hub.html';
+    }
+
+    function retry() {
+        modal_shadow.style.display = `none`;
+        failure_login_modal.style.display = `none`;
+    }
+
+    function show_pwd_recovery() {
+        div_login.style.display = `none`;
+        div_recovery.style.display = `flex`;
+    }
+
+    function hide_pwd_recovery() {
+        div_login.style.display = `flex`;
+        div_recovery.style.display = `none`;
     }
 </script>

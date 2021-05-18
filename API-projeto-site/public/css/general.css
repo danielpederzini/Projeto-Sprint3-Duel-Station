@@ -42,7 +42,7 @@ input {
     border: none;
     outline: none;
 
-    border-bottom: 1px solid #4A37A3;
+    border-bottom: 1px solid #333;
 
     font-family: 'MedievalSharp', sans-serif;
     font-size: 20px;
@@ -52,7 +52,7 @@ input {
 }
 
     input:focus {
-        border-bottom: 1px solid #DBCD7C;
+        border-bottom: 1px solid #4A37A3;
         transition-duration: 0.2s;
     }
 
