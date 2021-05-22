@@ -1,25 +1,46 @@
 function load_hub() {
     fetch("/usuarios/rankear", {
-        method: "POST",
-    }).then(resposta => {
+        method: "GET",
+    }).then(resultado => {
 
-        if (resposta.ok) {
+        if (resultado.ok) {
 
-            resposta.json().then(json => {
+            console.log(resultado);
 
-                var top10 = [
-                    json.nomeUsuario,
-                    json.saldo
-                ];
+            resultado.json().then(json => {
+
+                for (var i = 0; i < 10; i++) {
+                    var sup;
+
+                    if (i == 0) {
+                        sup = `st`
+                    }
+
+                    else if (i == 1) {
+                        sup = `nd`
+                    }
+
+                    else if (i == 2) {
+                        sup = `rd`
+                    }
+
+                    else {
+                        sup = `th`
+                    }
+
+                    document.getElementById(`p_top${i + 1}_name`).innerHTML += `${i + 1}<sup>${sup}</sup> ${json[i].nomeUsuario}`;
+                    document.getElementById(`div_top${i + 1}_currency`).innerHTML = `<img src="img/coin.png"> <p>${json[i].saldo}</p>`;
+                }
 
             });
 
         } else {
-            console.log('Erro ao carregar top10!');
+            console.log('Error on loading top10!');
 
-            resposta.text().then(texto => {
+            resultado.text().then(texto => {
                 console.error(texto);
             });
+
         }
     });
 

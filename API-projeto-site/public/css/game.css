@@ -5,7 +5,7 @@
 .game_banner {
     height: 100vh;
 
-    background-image: url(../img/store_banner.png);
+    background-image: url(../img/game_banner.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -26,7 +26,7 @@
         padding-right: 2.5%;
         margin-top: 5%;
 
-        background-color: #000000AA;
+        background-color: #000000CC;
 
         overflow: auto;
 
@@ -140,7 +140,7 @@
     padding-right: 2.5%;
     margin-top: 5%;
 
-    background-color: #000000AA;
+    background-color: #000000CC;
 
     overflow: auto;
 
@@ -281,7 +281,7 @@
     padding-right: 2.5%;
     margin-top: 5%;
 
-    background-color: #000000AA;
+    background-color: #000000CC;
 
     overflow: auto;
 

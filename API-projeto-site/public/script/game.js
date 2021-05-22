@@ -163,11 +163,11 @@ function set_attack() {
         2500, 1400, 2900, 1800, 2400, 2500, 2000, 1800, 2800, 2800,
         2000, 1700, 1800, 2700, 2400, 2000, 2450, 1000, 1000, 2300,
 
-        500 + round * 500, // Slifer, o Dragão Celeste
-        1000 + Math.round(player_lifepoints * 0.20), // Obelisco, o Atormentador
-        1000 + Math.round(enemy_lifepoints * 0.75), // O Dragão Alado de Rá
+        0 + round * 500, // Slifer, The Sky Dragon
+        2000 + Math.round(player_lifepoints * 0.20), // Obelisk, The Tormentor
+        0 + Math.round(enemy_lifepoints * 0.75), // The Winged Dragon of Rá
 
-        99999999999 // Holakthy, o Criador da Luz
+        99999999999 // Holakthy, The Creator of Light
     ];
 
     card_attack = player_number == 4 ?
@@ -440,17 +440,15 @@ function result() {
     var new_currency = lifepoints_diff * 0.01;
 
         if (last_whisper_match && player_win) {
-            new_currency = 10;
+            new_currency = lifepoints_diff * 10.00;
         }
 
         else if (last_whisper_match && player_win == false) {
-            new_currency = 20;
+            new_currency = lifepoints_diff * 0.10;
         }
 
             if (player_number == 3) {
-                new_currency = player_win ?
-                    new_currency * 1.25 :
-                    new_currency * 0.75;
+                new_currency *= player_win ? 1.25 : 0.75;
             }
 
     p_result.innerHTML = player_win ?
@@ -467,14 +465,14 @@ function result() {
         `<p>-</p> <img src="img/coin.png"> <p>${new_currency.toFixed(2)}</p>`;
 
     player_win ?
-        currency += new_currency :
-        currency -= new_currency;
+        currency = Number(currency) + new_currency :
+        currency = Number(currency) - new_currency;
 
     if (currency < 0) {
         currency = 0;
     }
 
-    p_currency.innerHTML = `${currency.toFixed(2)}`;
+    p_currency.innerHTML = `${Number(currency).toFixed(2)}`;
 
     var result_audio = new Audio( player_win ?
         'audio/win.mp3' :
@@ -484,30 +482,20 @@ function result() {
 
     // Structuring SQL array
     var player_names = ['Seto Kaiba', 'Mako Tsunami', 'S. Leblanc', 'Yami Yugi', 'Yami Marik'];
-    var deck_names = ['Winged', 'Aquatic', 'Earthy', 'Dark', 'Divine'];
+    var deck_names = ['Alado', 'Aquático', 'Terrestre', 'Sombrio', 'Divino'];
 
     var player_name = player_names[player_number - 1];
     var deck_name = deck_names[deck_number / 20];
 
-    match_info.push(
-        `${user_id}`, 
-        `${player_name}`, 
-        `${deck_name}`, 
-        `${round}`, 
-        `${player_win ? 'win' : 'lose'}`,
-        `${lifepoints_diff}`,
-        `${player_win ? new_currency.toFixed(2) : -(new_currency).toFixed(2)}`
-    )
-
-    fetch("/partidas/registrar", {
+    fetch(`/partidas/registrar/${user_id}/${player_name}/${deck_name}/${round}/${player_win ? 'vitoria' : 'derrota'}/${lifepoints_diff}/${player_win ? new_currency : -(new_currency)}/${currency}`, {
         method: "POST"
     }).then(function (response) {
         
         if (response.ok) {
-            console.log('Partida registrada com sucesso!');
+            console.log('Successfully registered the match!');
 
         } else {
-            console.log('Erro ao registrar partida!');
+            console.log("Couldn't register the match");
         }
     });
 }
@@ -515,13 +503,3 @@ function result() {
 function reset() {
     document.location.reload();
 }
-
-exports = { 
-    user_id: match_info[0],
-    duelist_name: match_info[1],
-    deck_name: match_info[2],
-    rounds: match_info[3],
-    result: match_info[4],
-    lifepoints_diff: match_info[5],
-    currency_change: match_info[6]
-};

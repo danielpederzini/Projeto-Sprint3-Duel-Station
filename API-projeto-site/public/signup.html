@@ -62,16 +62,16 @@
             <form id="form_signup" method="post" autocomplete="off" onsubmit="return signup()">
 
                 <p>Username</p>
-                <input type="text" name="login"> <br>
+                <input type="text" name="login" required minlength="4" required maxlength="16"> <br>
 
                 <p>E-mail</p>
-                <input type="email" name="email"> <br>
+                <input type="email" name="email" required minlength="4"> <br>
 
                 <p>Password</p>
-                <input type="password" name="password"> <br>
+                <input type="password" name="password" required minlength="4"> <br>
 
                 <p>Confirm Password</p>
-                <input type="password" name="password_confirm"> <br>
+                <input type="password" name="password_confirm" required minlength="4"> <br>
 
                 <button class="button1" id="bt_login">Submit</button>
 
@@ -129,6 +129,7 @@
         loading_modal.style.display = `flex`;
 
         var formulario = new URLSearchParams(new FormData(form_signup));
+
         fetch("/usuarios/cadastrar", {
             method: "POST",
             body: formulario

@@ -7,7 +7,7 @@ let sessoes = [];
 
 /* Recuperar usuário por login e senha */
 router.post('/autenticar', function(req, res, next) {
-	console.log('Recuperando usuário por login e senha');
+	console.log('Recovering user by login/email and password');
 
 	var login = req.body.login;
 	var senha = req.body.password;	
@@ -18,11 +18,11 @@ router.post('/autenticar', function(req, res, next) {
 	sequelize.query(instrucaoSql, {
 		model: Usuario
 	}).then(resultado => {
-		console.log(`Encontrados: ${resultado.length}`);
+		console.log(`Found: ${resultado.length}`);
 
 		if (resultado.length == 1) {
 			sessoes.push(resultado[0].dataValues.login);
-			console.log('sessoes: ',sessoes);
+			console.log('sessions: ',sessoes);
 			res.json(resultado[0]);
 		} else if (resultado.length == 0) {
 			res.status(403).send('Invalid login or password!');
@@ -38,14 +38,14 @@ router.post('/autenticar', function(req, res, next) {
 
 /* Cadastrar usuário */
 router.post('/cadastrar', function(req, res, next) {
-	console.log('Criando um usuário');
+	console.log('Creating an user');
 	
 	if (req.body.login == '' || req.body.email == '' || req.body.password == '' || req.body.password_confirm != req.body.password ||
 	req.body.email.includes('@') == false || req.body.email.includes('.com') == false) {
 
 		Usuario.create({
 		}).then(resultado => {
-			console.log(`Registro criado: ${resultado}`)
+			console.log(`Created register: ${resultado}`)
 			res.send(resultado);
 		}).catch(erro => {
 			console.error(erro);
@@ -63,7 +63,7 @@ router.post('/cadastrar', function(req, res, next) {
 			senha: req.body.password,
 			saldo: 150
 		}).then(resultado => {
-			console.log(`Registro criado: ${resultado}`)
+			console.log(`Created register: ${resultado}`)
 			res.send(resultado);
 		}).catch(erro => {
 			console.error(erro);
@@ -78,18 +78,18 @@ router.post('/cadastrar', function(req, res, next) {
 /* Verificação de usuário */
 router.get('/sessao/:login', function(req, res, next) {
 	let login = req.params.login;
-	console.log(`Verificando se o usuário ${login} tem sessão`);
+	console.log(`Checking if user ${login} has a session`);
 	
-	let tem_sessao = false;
+	let has_session = false;
 	for (let u=0; u<sessoes.length; u++) {
 		if (sessoes[u] == login) {
-			tem_sessao = true;
+			has_session = true;
 			break;
 		}
 	}
 
-	if (tem_sessao) {
-		let mensagem = `Usuário ${login} possui sessão ativa!`;
+	if (has_session) {
+		let mensagem = `User ${login} has a session!`;
 		console.log(mensagem);
 		res.send(mensagem);
 	} else {
@@ -116,15 +116,77 @@ router.get('/sair/:login', function(req, res, next) {
 
 /* Recuperar todos os usuários */
 router.get('/', function(req, res, next) {
-	console.log('Recuperando todos os usuários');
+	console.log('Recovering all users');
 	Usuario.findAndCountAll().then(resultado => {
-		console.log(`${resultado.count} registros`);
+		console.log(`${resultado.count} registers`);
 
 		res.json(resultado.rows);
 	}).catch(erro => {
 		console.error(erro);
 		res.status(500).send(erro.message);
   	});
+});
+
+/* Recuperar top 10 usuários */
+router.post('/rankear', function(req, res, next) {
+	console.log('Getting top 10 players');
+	
+	let instrucaoSql = `select nomeUsuario, saldo from usuario order by saldo`;
+	console.log(instrucaoSql);
+
+	sequelize.query(instrucaoSql, {
+		model: Usuario
+	}).then(resultado => {
+		console.log(`Found: ${resultado.length}`);
+		console.log(resultado);
+
+		console.log(resultado[1].nomeUsuario);
+
+		if (resultado.length < 10) {
+			console.log(`Successfully got ${resultado.length} top 10 players`);
+		} else {
+			res.status(403).send("Successfully got all top 10 players");
+		}
+
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+  	});
+});
+
+router.get('/rankear', function(req, res, next) {
+	console.log('Getting top 10 players');
+	
+	let instrucaoSql = `select nomeUsuario, saldo from usuario order by saldo desc`;
+	console.log(instrucaoSql);
+
+	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+	.then(resultado => {
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+
+});
+
+router.get('/buscar_saldo/:user_id', function(req, res, next) {
+	console.log("Getting user's currency");
+
+	var user_id = req.params.user_id;
+	
+	let instrucaoSql = `select saldo from usuario where idUsuario="${user_id}"`;
+	console.log(instrucaoSql);
+
+	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+	.then(resultado => {
+		console.log(resultado);
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+
 });
 
 module.exports = router;

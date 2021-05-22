@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="css/hub.css">
     <script src="script/general.js"></script>
     <script src="script/general_logged.js"></script>
+    <script src="script/hub.js"></script>
 </head>
 
-<body onload="load_info()">
+<body onload="check_login(), load_hub()">
 
     <div class="header">
 
@@ -72,28 +73,73 @@
 
     </div>
 
-    <div class="hub_banner">
+    <div class="hub_centralizer">
 
-        <div class="main_hub">
+        <div class="hub_card">
 
-        </div>
-
-        <div class="side_hub">
-
-            <b>Top 10 players</b>
+            <b>Top 10 Players</b>
 
             <div class="top10">
 
-                <p id="p_top1">1º</p>
-                <p id="p_top2">2º</p>
-                <p id="p_top3">3º</p>
-                <p id="p_top4">4º</p>
-                <p id="p_top5">5º</p>
-                <p id="p_top6">6º</p>
-                <p id="p_top7">7º</p>
-                <p id="p_top8">8º</p>
-                <p id="p_top9">9º</p>
-                <p id="p_top10">10º</p>
+                <div>
+                    <p id="p_top1_name"></p>
+
+                    <div class="currency_top10" id="div_top1_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top2_name"></p>
+
+                    <div class="currency_top10" id="div_top2_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top3_name"></p>
+
+                    <div class="currency_top10" id="div_top3_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top4_name"></p>
+
+                    <div class="currency_top10" id="div_top4_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top5_name"></p>
+
+                    <div class="currency_top10" id="div_top5_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top6_name"></p>
+
+                    <div class="currency_top10" id="div_top6_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top7_name"></p>
+
+                    <div class="currency_top10" id="div_top7_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top8_name"></p>
+
+                    <div class="currency_top10" id="div_top8_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top9_name"></p>
+
+                    <div class="currency_top10" id="div_top9_currency"></div>
+                </div>
+
+                <div>
+                    <p id="p_top10_name"></p>
+                    
+                    <div class="currency_top10" id="div_top10_currency"></div>
+                </div>
 
             </div>
 
@@ -104,33 +150,3 @@
 </body>
 
 </html>
-
-<script>
-    function load_hub() {
-        fetch("/usuarios/rankear", {
-            method: "POST",
-        }).then(resposta => {
-
-            if (resposta.ok) {
-
-                resposta.json().then(json => {
-
-                    var top10 = [
-                        json.nomeUsuario,
-                        json.saldo
-                    ];
-
-                });
-
-            } else {
-                console.log('Erro ao carregar top10!');
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-        });
-
-        return false;
-    }
-</script>

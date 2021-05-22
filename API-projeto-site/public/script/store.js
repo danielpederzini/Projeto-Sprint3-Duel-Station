@@ -1,11 +1,11 @@
 var player_names = ['Seto Kaiba', 'Mako Tsunami', 'S. Leblanc', 'Yami Yugi', 'Yami Marik'];
 var player_prices = ['0.00', '250.00', '500.00', '750.00', '1000.00'];
 var player_descriptions = [
-    'Smart, competitive and opportunist, starts the game with 200 more lifepoints',
-    'Brave and persistent, takes 25% less damage',
-    'Assertive and calculist, gains 25% more coins at the end of the game',
-    'Focused and determinated, his monsters gain 5% additional attack',
-    'Insane and manipulative, heals himself by 10% of all dealt damage'
+    'Smart, competitive and opportunist, starts the game with 200 more lifepoints.',
+    'Brave and persistent, takes 25% less damage.',
+    'Assertive and calculist, gains 25% more coins at the end of the game.',
+    'Focused and determinated, his monsters gain 5% additional attack.',
+    'Insane and manipulative, heals himself by 10% of all dealt damage.'
 ];
 
 var deck_names = ['Winged', 'Aquatic', 'Earthy', 'Dark', 'Divine'];
@@ -25,11 +25,11 @@ var deck_descriptions = [
 
     `Mages, vampires, spirits and other dark beings. Equilibrated card power. <br><br>
     <b>Ability: Last Whisper</b> <br><br>
-    Sets your lifepoints as 1, and the opponents' as 200. From now on, you get 10 coins for winning and loses 20 otherwise`,
+    Sets your lifepoints as 1, and the opponents' as 200. From now on, you get 10 coins for winning and loses 20 otherwise.`,
 
     `The 3 egyptian gods. Variable and scalable power. <br><br>
     <b>Ability: The Awakening</b> <br><br>
-    Every round, there's a small chance of summoning "Holakthy, The Creator of Light", a god of unlimited power`
+    Every round, there's a small chance of summoning "Holakthy, The Creator of Light", a god of unlimited power.`
 ];
 
 function show_buy_box(selected_item, item_id) {

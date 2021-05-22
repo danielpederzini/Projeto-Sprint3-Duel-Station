@@ -2,29 +2,35 @@
     width: 100%;
 }
 
-.hub_banner {
-    height: 100vh;
+.header {
+    position: relative;
+}
 
-    background-image: url(../img/store_banner.png);
+body {
+    background-image: url(../img/hub_banner.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: space-evenly;
 }
 
-    .main_hub {
-        height: 70%;
-        width: 45%;
+.hub_centralizer {
+    margin-top: 2.5%;
 
+    display: flex;
+    flex-flow: column nowrap;
+
+    align-items: center;
+    justify-content: center;
+}
+
+    .hub_card {
+        height: 450px;
+        width: 30%;
+        
         padding-left: 2.5%;
         padding-right: 2.5%;
-        margin-top: 5%;
 
-        background-color: #000000AA;
+        background-color: #000000CC;
 
         overflow: auto;
 
@@ -34,41 +40,58 @@
         flex-flow: column nowrap;
 
         align-items: center;
-        justify-content: space-evenly;
     }
 
-    .side_hub {
-        height: 70%;
-        width: 25%;
-
-        padding-left: 2.5%;
-        padding-right: 2.5%;
-        margin-top: 5%;
-
-        background-color: #000000AA;
-
-        overflow: auto;
-
-        border-radius: 10px;
-
-        display: flex;
-        flex-flow: column nowrap;
-
-        align-items: center;
-        justify-content: space-evenly;
-    }
-
-        .side_hub b {
+        .hub_card:first-of-type b {
             color: #DBCD7C;
             font-size: 25px;
+
+            margin-top: 50px;
+
+            text-align: center;
         }
 
-        .side_hub p {
+        .hub_card p {
             color: #FFF;
             font-size: 20px;
+
+            text-align: center;
         }
 
-        .top10 {
-            display: flex;
-            flex-flow: column nowrap;
-        }
+            .top10 {
+                width: 100%;
+
+                margin-top: 50px;
+
+                display: flex;
+                flex-flow: column nowrap;
+
+                align-items: center;
+                justify-content: center;
+            }
+
+                .top10 > div {
+                    width: 80%;
+
+                    display: flex;
+
+                    align-items: center;
+                    justify-content: space-evenly;
+                }
+
+                .currency_top10 {
+                    display: flex;
+
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                    .currency_top10 p {
+                        margin-left: 5px;
+                    }
+
+                    .currency_top10 img {
+                        width: 20px;
+
+                        margin-bottom: 5px;
+                    }
