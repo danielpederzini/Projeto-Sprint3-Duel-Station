@@ -99,7 +99,8 @@
                     </div>
                 </button>
 
-                <button id="bt_player2" value="2" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
+                <button id="bt_player2" value="2" onclick="show_buy_box(Number(this.value), this.id)"
+                    style="display: none;">
                     <img src="img/players/player2.png">
                     <p>Mako Tsunami</p>
 
@@ -116,7 +117,8 @@
                     </div>
                 </button>
 
-                <button id="bt_player3" value="3" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
+                <button id="bt_player3" value="3" onclick="show_buy_box(Number(this.value), this.id)"
+                    style="display: none;">
                     <img src="img/players/player3.png">
                     <p>S. Leblanc</p>
 
@@ -133,7 +135,8 @@
                     </div>
                 </button>
 
-                <button id="bt_player4" value="4" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
+                <button id="bt_player4" value="4" onclick="show_buy_box(Number(this.value), this.id)"
+                    style="display: none;">
                     <img src="img/players/player4.png">
                     <p>Yami Yugi</p>
 
@@ -150,7 +153,8 @@
                     </div>
                 </button>
 
-                <button id="bt_player5" value="5" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
+                <button id="bt_player5" value="5" onclick="show_buy_box(Number(this.value), this.id)"
+                    style="display: none;">
                     <img src="img/players/player5.png">
                     <p>Yami Marik</p>
 
@@ -178,7 +182,8 @@
                     </div>
                 </button>
 
-                <button id="bt_deck20" value="20" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
+                <button id="bt_deck20" value="20" onclick="show_buy_box(Number(this.value), this.id)"
+                    style="display: none;">
                     <img src="img/types/type20.png">
                     <p>Aquatic</p>
 
@@ -195,7 +200,8 @@
                     </div>
                 </button>
 
-                <button id="bt_deck40" value="40" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
+                <button id="bt_deck40" value="40" onclick="show_buy_box(Number(this.value), this.id)"
+                    style="display: none;">
                     <img src="img/types/type40.png">
                     <p>Earthy</p>
 
@@ -212,7 +218,8 @@
                     </div>
                 </button>
 
-                <button id="bt_deck60" value="60" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
+                <button id="bt_deck60" value="60" onclick="show_buy_box(Number(this.value), this.id)"
+                    style="display: none;">
                     <img src="img/types/type60.png">
                     <p>Dark</p>
 
@@ -229,7 +236,8 @@
                     </div>
                 </button>
 
-                <button id="bt_deck80" value="80" onclick="show_buy_box(Number(this.value), this.id)" style="display: none;">
+                <button id="bt_deck80" value="80" onclick="show_buy_box(Number(this.value), this.id)"
+                    style="display: none;">
                     <img src="img/types/type80.png">
                     <p>Divine</p>
 
@@ -242,7 +250,7 @@
 
         <div class="modal_shadow" id="modal_shadow" style="display: none;">
 
-            <div class="modal" id="buy_modal" style="display: none;">
+            <div class="modal" id="purchase_modal" style="display: none;">
 
                 <b id="b_item_name"></b>
 
@@ -256,20 +264,47 @@
 
                     <button id="bt_buy" class="button2" onclick="buy()">
                         <p>Buy</p>
-                        
+
                         <div class="price">
                             <img src="img/coin.png" alt="Coin icon">
                             <p id="p_item_price"></p>
                         </div>
-                        
+
                     </button>
 
                 </div>
 
             </div>
 
-        </div>
+            <div class="modal" id="loading_modal" style="display: none;">
 
+                <b>Loading...</b>
+
+                <img src="img/loading.gif" alt="Loading gif">
+
+            </div>
+
+            <div class="modal" id="success_purchase_modal" style="display: none;">
+
+                <b>Successfully purchased!</b>
+
+                <p id="p_success_message"></p>
+
+                <button class="button2" onclick="refresh()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="failure_purchase_modal" style="display: none;">
+
+                <b>Couldn't purchase!</b>
+
+                <p id="p_failure_message"></p>
+
+                <button class="button2" onclick="close_window()">Ok</button>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -278,7 +313,60 @@
 </html>
 
 <script>
-    function buy() {
-        
-    }
+
+    fetch(`/compras/validar_duelistas/${user_id}`, {
+        method: "GET",
+    }).then(resultado => {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                for (var i = 0; i < json.length; i++) {
+
+                    document.getElementById(`bt_unknown_player${json[i].idDuelista}`).style.display = `none`;
+                    document.getElementById(`bt_player${json[i].idDuelista}`).style.display = `block`;
+
+                }
+
+            });
+
+        } else {
+            console.log(`Couldn't get user items`);
+
+            resultado.text().then(texto => {
+                console.error(texto);
+            });
+
+        }
+    });
+
+    fetch(`/compras/validar_decks/${user_id}`, {
+        method: "GET",
+    }).then(resultado => {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                for (var i = 0; i < json.length; i++) {
+
+                    console.log(json);
+                    document.getElementById(`bt_unknown_deck${json[i].idDeck * 20 - 20}`).style.display = `none`;
+                    document.getElementById(`bt_deck${json[i].idDeck * 20 - 20}`).style.display = `block`;
+
+                }
+
+            });
+
+        } else {
+            console.log(`Couldn't get user items`);
+
+            resultado.text().then(texto => {
+                console.error(texto);
+            });
+
+        }
+    });
+
 </script>

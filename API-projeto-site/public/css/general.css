@@ -148,8 +148,10 @@ a:hover {
                 align-items: center;
             }
 
-            .navbar img {
-                width: 20px;
+            .navbar a img {
+                width: 30px;
+
+                margin-bottom: 6px;
             }
 
                 .music {
@@ -177,7 +179,7 @@ a:hover {
                     }
 
                     .currency img {
-                        width: 20px;
+                        width: 25px;
 
                         margin-bottom: 5px;
                     }
