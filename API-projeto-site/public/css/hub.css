@@ -2,20 +2,16 @@
     width: 100%;
 }
 
-.header {
-    position: relative;
-}
-
 body {
     background-image: url(../img/hub_banner.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
+    position: relative;
 }
 
 .hub_centralizer {
-    margin-top: 2.5%;
-
     display: flex;
     flex-flow: column nowrap;
 
@@ -24,16 +20,13 @@ body {
 }
 
     .hub_card {
-        height: 450px;
         width: 30%;
-        
-        padding-left: 2.5%;
-        padding-right: 2.5%;
 
+        padding: 3% 2.5%;
+        margin: 2.5% 0 5% 0;
+    
         background-color: #000000CC;
-
-        overflow: auto;
-
+    
         border-radius: 10px;
 
         display: flex;
@@ -42,16 +35,36 @@ body {
         align-items: center;
     }
 
-        .hub_card:first-of-type b {
+    .hub_card:nth-child(1) {
+        margin: 10% 0 5% 0;
+    }
+
+    .hub_wide_card {
+        width: 50%;
+
+        padding: 3% 2.5%;
+        margin: 3% 0 5% 0;
+    
+        background-color: #000000CC;
+    
+        border-radius: 10px;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        align-items: center;
+    }
+
+        .hub_card b,
+        .hub_wide_card b {
             color: #DBCD7C;
             font-size: 25px;
-
-            margin-top: 50px;
 
             text-align: center;
         }
 
-        .hub_card p {
+        .hub_card p,
+        .hub_wide_card p {
             color: #FFF;
             font-size: 20px;
 
@@ -76,7 +89,7 @@ body {
                     display: flex;
 
                     align-items: center;
-                    justify-content: space-evenly;
+                    justify-content: space-between;
                 }
 
                 .currency_top10 {

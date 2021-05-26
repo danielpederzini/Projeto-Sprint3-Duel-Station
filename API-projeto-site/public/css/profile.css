@@ -2,16 +2,91 @@
     width: 100%;
 }
 
-.profile_banner {
-    height: 100vh;
-
+body {
     background-image: url(../img/profile_banner.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
+    position: relative;
+}
+
+.profile_centralizer {
     display: flex;
+    flex-flow: column nowrap;
 
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
+
+    .profile_wide_card {
+        height: 450px;
+        width: 50%;
+        
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+
+        background-color: #000000CC;
+
+        overflow: auto;
+
+        border-radius: 10px;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+        .profile_card b,
+        .profile_wide_card b {
+            color: #DBCD7C;
+            font-size: 25px;
+
+            text-align: center;
+        }
+
+        .profile_card p,
+        .profile_wide_card p {
+            color: #FFF;
+            font-size: 20px;
+
+            text-align: center;
+        }
+
+    .profile_wide_card:nth-child(1) {
+        margin: 10% 0 5% 0;
+    }
+
+        .winrate {
+            width: 250px;
+
+            margin-top: 50px;
+
+            display: flex;
+
+            justify-content: space-between;
+        }
+
+        .winrate_bars {
+            width: 300px;
+
+            display: flex;
+
+            justify-content: space-between;
+        }
+
+            #div_wins_bar {
+                height: 20px;
+                width: 56%;
+
+                background: green;
+            }
+
+            #div_losses_bar {
+                height: 20px;
+                width: 44%;
+
+                background: red;
+            }

@@ -16,33 +16,32 @@ function check_login() {
     } else {
         check_session();
 
-        
         p_user_name.innerHTML = user_name;
+
+        fetch(`/usuarios/buscar_saldo/${user_id}`, {
+            method: "GET"
+        }).then(resposta => {
+    
+            if (resposta.ok) {
+    
+                resposta.json().then(json => {
+                    
+                    currency = json[0].saldo;
+    
+                    p_currency.innerHTML = currency;
+    
+                    console.log('Currency: ' + currency)
+    
+                });
+    
+            } else {
+    
+                console.log("Couldn't get user's currency")
+    
+            }
+    
+        });
     }
-
-    fetch(`/usuarios/buscar_saldo/${user_id}`, {
-        method: "GET"
-    }).then(resposta => {
-
-        if (resposta.ok) {
-
-            resposta.json().then(json => {
-                
-                currency = json[0].saldo;
-
-                p_currency.innerHTML = currency;
-
-                console.log('Currency: ' + currency)
-
-            });
-
-        } else {
-
-            console.log("Couldn't get user's currency")
-
-        }
-
-    });
 
 }
 

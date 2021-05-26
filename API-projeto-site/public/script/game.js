@@ -16,8 +16,6 @@ var last_whisper_match = false;
 
 var round = 0;
 
-var match_info = [];
-
 function change_player(selected_player) {
 
     for (var i = 1; i <= 5; i ++) {

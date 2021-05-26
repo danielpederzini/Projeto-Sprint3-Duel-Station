@@ -3,15 +3,15 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
 
-.header {
     position: relative;
 }
 
 .about_centralizer {
     display: flex;
+    flex-flow: column nowrap;
 
+    align-items: center;
     justify-content: center;
 }
 
@@ -19,7 +19,7 @@ body {
         width: 50%;
 
         padding: 3% 2.5%;
-        margin: 3% 0 5% 0;
+        margin: 10% 0 5% 0;
     
         background-color: #000000CC;
     
@@ -48,3 +48,68 @@ body {
         .about img {
             width: 300px;
         }
+
+    .series {
+        width: 50%;
+
+        padding: 3% 2.5%;
+        margin: 3% 0 5% 0;
+    
+        background-color: #000000CC;
+    
+        border-radius: 10px;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        align-items: center;
+    }
+
+        .series b {
+            color: #DBCD7C;
+            font-size: 25px;
+
+            text-align: center;
+        }
+
+        .series p {
+            color: #FFF;
+            font-size: 15px;
+
+            text-align: center;
+        }
+
+        .series_boxes {
+            width: 100%;
+
+            margin-top: 50px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+            .series_box {
+                height: 250px;
+                width: 200px;
+
+                display: flex;
+                flex-flow: column nowrap;
+
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+                .series_box img {
+                    height: 80%;
+                    width: 80%;
+
+                    margin-bottom: 10px;
+                }
+
+                .series_box:hover {
+                    opacity: 30%;
+
+                    transition-duration: 0.2s;
+                }

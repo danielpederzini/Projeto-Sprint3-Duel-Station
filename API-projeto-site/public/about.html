@@ -15,7 +15,7 @@
 
 <body>
 
-    <div class="header">
+    <div id="header" class="header">
 
         <div class="navbar">
 
@@ -34,7 +34,7 @@
                 </li>
 
                 <li>
-                    <a href="support.html">
+                    <a href="https://duelstation.freshdesk.com/support/tickets/new" target="_blank">
                         <p>Talk to Us</p>
                     </a>
                 </li>
@@ -103,48 +103,117 @@
 
             <img src="img/millennium_items.png" alt="Image of the Millenium Items">
 
-            <br><br>
+        </div>
 
-            <b>My Story With Yu-Gi-Oh</b>
+        <div class="series">
 
-            <br><br>
+            <b>Series</b>
 
-            <p>
-                My first contact with the anime was at 8 years old. I used to watch it on TV Globinho and imitate the characters
-                (I always repeated the iconic protagonist's catchphrase '<i>It's time to duel!</i>'). The power of friendship,
-                persistence and courage were some values the anime used to show a lot: It doesn't matter how difficult the situation
-                was, or how terrifying the opponent was, <i>Yugi</i> never gave up, and his friends were always around to support him.
-                I was fascinated by the strategies, plans and traps they came up, I even had my own deck, even though it was hard to
-                find someone to play.
-            </p>
+            <div class="series_boxes">
 
-            <br><br>
+                <a href="https://en.wikipedia.org/wiki/Yu-Gi-Oh!_(1998_TV_series)" target="_blank" class="series_box">
 
-            <p>
-                Some time later, when I was 10 years old, my brother bougth a Yu-Gi-Oh game for PlayStation2, it was called
-                <i>"Yu-Gi-Oh! The Duelists Of The Roses"</i>. The game was a mixture of strategy, positioning and space visualization,
-                it was like a fusion between chess and fantasy, I felt like an actual duelist playing.
-            </p>
+                    <img src="img/series/series1.png" alt="Yu-Gi-Oh first series banner">
+                    <p>Yu-Gi-Oh! (1998)</p>
 
-            <br><br>
+                </a>
 
-            <p>
-                A few weeks later, it became my favorite game. I started playing for hours, already knew most of the cards, had
-                beatten all enemies several times and made nearly everything possible. This helped me on developing not only my
-                logic, strategy and analysis skills, but also my persistence, determination and friendship valueing.
-            </p>
+                <a href="https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Duel_Monsters" target="_blank" class="series_box">
 
-            <br><br>
+                    <img src="img/series/series2.png" alt="Yu-Gi-Oh second series banner">
+                    <p>Yu-Gi-Oh! Duel Monsters (2000)</p>
 
-            <p>
-                Nowadays, many years later, I still play my PlayStation2 game, and it feels really nostalgic to remeber everything
-                I learned from that. Indeed, Yu-Gi-Oh changed my life and taught me never to give up.
-            </p>
+                </a>
+
+                <a href="https://en.wikipedia.org/wiki/Yu-Gi-Oh!_GX" target="_blank" class="series_box">
+
+                    <img src="img/series/series3.png" alt="Yu-Gi-Oh third series banner">
+                    <p>Yu-Gi-Oh! GX (2004)</p>
+
+                </a>
+
+            </div>
+
+            <div class="series_boxes">
+
+                <a href="https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Capsule_Monsters" target="_blank" class="series_box">
+
+                    <img src="img/series/series4.png" alt="Yu-Gi-Oh fourth series banner">
+                    <p>Yu-Gi-Oh! Capsule Monsters (2006)</p>
+
+                </a>
+
+                <a href="https://en.wikipedia.org/wiki/Yu-Gi-Oh!_5D%27s" target="_blank" class="series_box">
+
+                    <img src="img/series/series5.png" alt="Yu-Gi-Oh fifth series banner">
+                    <p>Yu-Gi-Oh! 5D's (2008)</p>
+
+                </a>
+
+                <a href="https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Zexal" target="_blank" class="series_box">
+
+                    <img src="img/series/series6.png" alt="Yu-Gi-Oh sixth series banner">
+                    <p>Yu-Gi-Oh! Zexal (2010)</p>
+
+                </a>
+
+            </div>
+
+            <div class="series_boxes">
+
+                <a href="https://en.wikipedia.org/wiki/List_of_Yu-Gi-Oh!_Zexal_II_episodes" target="_blank" class="series_box">
+
+                    <img src="img/series/series7.png" alt="Yu-Gi-Oh seventh series banner">
+                    <p>Yu-Gi-Oh! Zexal II (2012)</p>
+
+                </a>
+
+                <a href="https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Arc-V" target="_blank" class="series_box">
+
+                    <img src="img/series/series8.png" alt="Yu-Gi-Oh eighth series banner">
+                    <p>Yu-Gi-Oh! Arc-V (2014)</p>
+
+                </a>
+
+                <a href="https://en.wikipedia.org/wiki/Yu-Gi-Oh!_VRAINS" target="_blank" class="series_box">
+
+                    <img src="img/series/series9.png" alt="Yu-Gi-Oh ninth series banner">
+                    <p>Yu-Gi-Oh! VRAINS (2017)</p>
+
+                </a>
+
+            </div>
 
         </div>
+
+    </div>
+
+    <div class="logo">
+
+        <img src="img/logo.png" alt="Logo Duel Station">
+        <p>© 2021 Duel Station</p>
 
     </div>
 
 </body>
 
 </html>
+
+<script>
+    window.onscroll = function () {
+        fix_header();
+    };
+
+    var header = document.getElementById("header");
+    var sticky = 50;
+
+    function fix_header() {
+
+        if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky")
+        } else {
+            header.classList.remove("sticky");
+        }
+
+    }
+</script>

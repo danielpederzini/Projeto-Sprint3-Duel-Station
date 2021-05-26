@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/hub.css">
+    <link rel="stylesheet" href="css/modals.css">
     <script src="script/general.js"></script>
     <script src="script/general_logged.js"></script>
     <script src="script/hub.js"></script>
@@ -17,7 +18,7 @@
 
 <body onload="check_login(), load_hub()">
 
-    <div class="header">
+    <div id="header" class="header">
 
         <div class="navbar">
 
@@ -77,7 +78,7 @@
 
         <div class="hub_card">
 
-            <b>Top 10 Players</b>
+            <b>Top 10 Players by Currency</b>
 
             <div class="top10">
 
@@ -137,7 +138,7 @@
 
                 <div>
                     <p id="p_top10_name"></p>
-                    
+
                     <div class="currency_top10" id="div_top10_currency"></div>
                 </div>
 
@@ -145,8 +146,78 @@
 
         </div>
 
-    </div>
+        <div class="hub_wide_card">
+
+            <b>Discussion</b>
+
+        </div>
+
+        <div class="modal_shadow" id="modal_shadow" style="display: none;">
+
+            <div class="modal" id="tutorial_modal">
+
+                <b>Tutorial</b>
+
+                <br><br>
+
+                <p>You can disable this in your profile when you want.</p> <br>
+
+                <p>Hub: See the news and interact with people.</p> <br>
+
+                <p>Game: Choose your duelist and your deck, and play to earn coins.</p> <br>
+
+                <p>Store: Spend your coins and see more about the duelists and decks.</p> <br>
+
+                <p>Profile: Check your stats and change your account options.</p>
+
+                <br><br>
+
+                <button class="button1" onclick="close_window()">Close</button>
+
+            </div>
+
+        </div>
+
+        <div class="logo">
+
+            <img src="img/logo.png" alt="Logo Duel Station">
+            <p>© 2021 Duel Station</p>
+
+        </div>
 
 </body>
 
 </html>
+
+<script>
+
+    var tutorialOn = sessionStorage.getItem('status_tutorial_usuario_meuapp') == 'on';
+
+    if (tutorialOn) {
+        modal_shadow.style.display = `flex`;
+    }
+
+    window.onscroll = function () {
+        fix_header();
+    };
+
+    var header = document.getElementById("header");
+    var sticky = 50;
+
+    function fix_header() {
+
+        if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky")
+        } else {
+            header.classList.remove("sticky");
+        }
+
+    }
+
+    function close_window() {
+
+        modal_shadow.style.display = `none`;
+
+    }
+
+</script>

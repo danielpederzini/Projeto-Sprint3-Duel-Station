@@ -37,6 +37,11 @@ module.exports = (sequelize, DataTypes) => {
 			field: 'saldo',
 			type: DataTypes.DECIMAL,
 			allowNull: false
+		},
+		statusTutorial: {
+			field: 'statusTutorial',
+			type: DataTypes.STRING,
+			allowNull: false
 		}
 	}, 
 	{

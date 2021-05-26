@@ -110,6 +110,14 @@ a:hover {
 
     align-items: center;
     justify-content: center;
+
+    transition-duration: 0.7s;
+}
+
+.sticky {
+    background: #000;
+
+    transition-duration: 0.7s;
 }
 
     .navbar {
@@ -183,3 +191,29 @@ a:hover {
 
                         margin-bottom: 5px;
                     }
+
+
+.logo {
+    padding: 5px 5px 5px 20px;
+
+    background: radial-gradient(#000, transparent, transparent);
+
+    display: flex;
+    align-items: flex-end;
+
+    position: absolute;
+
+    bottom: 5px;
+    right: 5px;
+}
+
+    .logo img {
+        width: 30px;
+    }
+
+    .logo p {
+        color: #FFF;
+        font-size: 20px;
+
+        text-align: center;
+    }
