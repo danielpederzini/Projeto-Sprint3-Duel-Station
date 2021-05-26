@@ -66,7 +66,7 @@ body {
         .hub_card p,
         .hub_wide_card p {
             color: #FFF;
-            font-size: 20px;
+            font-size: 17.5px;
 
             text-align: center;
         }
@@ -107,4 +107,72 @@ body {
                         width: 20px;
 
                         margin-bottom: 5px;
+                    }
+
+
+        .comments {
+            width: 100%;
+        }
+
+            .comment {
+                min-height: 100px;
+                width: 100%;
+
+                margin-top: 50px;
+            }
+
+                .author {
+                    height: 20px;
+                    width: 100%;
+
+                    display: flex;
+                    
+                    align-items: center;
+                    justify-content: flex-start;
+                }
+
+                    .author div {
+                        margin-left: 20px;
+                    }
+
+                .comment_content {
+                    min-height: 20px;
+                    width: 100%;
+
+                    padding: 3% 0;
+
+                    border-top: 2px solid #FFF;
+                    border-bottom: 2px solid #FFF;
+                }
+
+                .reactions {
+                    height: 20px;
+                    width: 100%;
+
+                    margin-top: 5px;
+
+                    display: flex;
+
+                    align-items: center;
+                    justify-content: flex-start;
+                }
+
+                    .like, .dislike {
+                        min-width: 20px;
+
+                       display: flex; 
+                       
+                       align-items: center;
+                       justify-content: flex-start;
+                    }
+
+                        .like img, .dislike img {
+                            height: 20px;
+                            width: 20px;
+
+                            margin-right: 5px;
+                        }
+
+                    .dislike {
+                        margin-left: 20px;
                     }

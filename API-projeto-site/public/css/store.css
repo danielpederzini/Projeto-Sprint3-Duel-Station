@@ -40,7 +40,7 @@
 
         .store p {
             color: #FFF;
-            font-size: 15px;
+            font-size: 12.5px;
 
             text-align: center;
         }
@@ -98,14 +98,8 @@
                     }
 
                     .price p {
-                        font-size: 15px;
-
                         margin-left: 5px;
                     }
-
-                .store_list button p:last-of-type {
-                    font-size: 12.5px;
-                }
 
                 .store_list button:hover {
                     opacity: 100% !important;
