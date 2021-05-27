@@ -28,7 +28,7 @@ router.post('/registrar/:user_id/:duelist/:deck/:rounds/:result/:lifepointsDiff/
         difPontosDeVida: difPontosDeVida,
         mudancaSaldo: mudancaSaldo
 	}).then(resultado => {
-		console.log(`Registro criado: ${resultado}`)
+		console.log(`Created: ${resultado}`)
         res.send(resultado);
     }).catch(erro => {
 		console.error(erro);

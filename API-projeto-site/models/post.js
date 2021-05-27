@@ -6,9 +6,9 @@ https://codewithhugo.com/sequelize-data-types-a-practical-guide/
 */
 
 module.exports = (sequelize, DataTypes) => {
-    let Partida = sequelize.define('Partida',{
-		idPartida: {
-			field: 'idPartida',
+    let Post = sequelize.define('Post',{
+		idPost: {
+			field: 'idPost',
 			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
@@ -19,43 +19,28 @@ module.exports = (sequelize, DataTypes) => {
 			foreignKey: true,
 			allowNull: false
 		},
-		duelista: {
-			field: 'duelista',
+		texto: {
+			field: 'texto',
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		deck: {
-			field: 'deck',
-			type: DataTypes.STRING,
-			allowNull: false
-		},	
-		rounds: {
-			field: 'rounds',
+		likes: {
+			field: 'likes',
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
-		resultado: {
-			field: 'resultado',
-			type: DataTypes.STRING,
-			allowNull: false
-		},
-		difPontosDeVida: {
-			field: 'difPontosDeVida',
+		dislikes: {
+			field: 'dislikes',
 			type: DataTypes.INTEGER,
-			allowNull: false
-		},
-		mudancaSaldo: {
-			field: 'mudancaSaldo',
-			type: DataTypes.DECIMAL,
 			allowNull: false
 		}
 	}, 
 	{
-		tableName: 'partida', 
+		tableName: 'post', 
 		freezeTableName: true, 
 		underscored: true,
 		timestamps: false,
 	});
 
-    return Partida;
+    return Post;
 };

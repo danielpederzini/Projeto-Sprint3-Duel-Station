@@ -110,11 +110,44 @@ body {
                     }
 
 
-        .comments {
+        .posts {
             width: 100%;
         }
 
-            .comment {
+            .posts form {
+
+                margin-top: 50px;
+                
+                display: flex;
+
+                align-items: center;
+                justify-content: space-evenly;
+            }
+
+                .posts form textarea {
+                    width: 480px;
+                    height: 50px;
+
+                    padding: 20px;
+
+                    background-color: transparent;
+
+                    outline: none;
+
+                    border: 2px solid #333;
+
+                    font-family: 'MedievalSharp', sans-serif;
+                    font-size: 17.5px;
+                    color: #FFFFFFAA;
+
+                    text-align: center;
+                }
+
+                .posts form button {
+                    height: 50px;
+                }
+
+            .post {
                 min-height: 100px;
                 width: 100%;
 
@@ -124,6 +157,8 @@ body {
                 .author {
                     height: 20px;
                     width: 100%;
+
+                    margin-bottom: 5px;
 
                     display: flex;
                     
@@ -135,14 +170,14 @@ body {
                         margin-left: 20px;
                     }
 
-                .comment_content {
+                .post_content {
                     min-height: 20px;
                     width: 100%;
 
                     padding: 3% 0;
 
-                    border-top: 2px solid #FFF;
-                    border-bottom: 2px solid #FFF;
+                    border-top: 2px solid #333;
+                    border-bottom: 2px solid #333;
                 }
 
                 .reactions {

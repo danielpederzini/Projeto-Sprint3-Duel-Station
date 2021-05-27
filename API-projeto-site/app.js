@@ -10,6 +10,7 @@ var usuariosRouter = require('./routes/usuarios');
 var leiturasRouter = require('./routes/leituras');
 var partidasRouter = require('./routes/partidas');
 var comprasRouter = require('./routes/compras');
+var postsRouter = require('./routes/posts');
 
 var app = express();
 
@@ -24,5 +25,6 @@ app.use('/usuarios', usuariosRouter);
 app.use('/leituras', leiturasRouter);
 app.use('/partidas', partidasRouter);
 app.use('/compras', comprasRouter);
+app.use('/posts', postsRouter);
 
 module.exports = app;

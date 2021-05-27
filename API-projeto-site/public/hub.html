@@ -150,68 +150,13 @@
 
             <b>Discussion</b>
 
-            <div class="comments">
+            <div id="div_posts" class="posts">
 
-                <div class="comment">
+                <form id="form_post" method="post" autocomplete="off" onsubmit="return post()">
+                    <textarea name="text" type="text"></textarea>
 
-                    <div class="author">
-                        <p>danielAdmin</p>
-
-                        <div class="currency_top10">
-                            <img src="img/coin.png" alt="Coin icon">
-                            <p>200.00</p>
-                        </div>
-                    </div>
-
-                    <div class="comment_content">
-
-                        <p>What do you guys think about the new Divine deck? Loved it: Like / Nahh: Dislike</p>
-
-                    </div>
-
-                    <div class="reactions">
-
-                        <div class="like">
-                            <img src="img/like.png" alt="Like icon">
-                            <p>20</p>
-                        </div>
-
-                        <div class="dislike">
-                            <img src="img/dislike.png" alt="Dislike icon">
-                            <p>7</p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="comment">
-
-                    <div class="author"></div>
-                    <div class="comment_content"></div>
-
-                </div>
-
-                <div class="comment">
-
-                    <div class="author"></div>
-                    <div class="comment_content"></div>
-
-                </div>
-
-                <div class="comment">
-
-                    <div class="author"></div>
-                    <div class="comment_content"></div>
-
-                </div>
-
-                <div class="comment">
-
-                    <div class="author"></div>
-                    <div class="comment_content"></div>
-
-                </div>
+                    <button class="button2">Post</button>
+                </form>
 
             </div>
 
@@ -238,6 +183,30 @@
                 <br><br>
 
                 <button class="button1" onclick="close_window()">Close</button>
+
+            </div>
+
+            <div class="modal" id="loading_modal" style="display: none;">
+
+                <b>Loading...</b>
+
+                <img src="img/loading.gif" alt="Loading gif">
+
+            </div>
+
+            <div class="modal" id="success_post_modal" style="display: none;">
+
+                <b>Successfully posted!</b>
+
+                <button id="bt_refresh" class="button2" onclick="refresh()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="failure_post_modal" style="display: none;">
+
+                <b>Couldn't make your post!</b>
+
+                <button id="bt_try_again" class="button2" onclick="close_window()">Ok</button>
 
             </div>
 
@@ -282,6 +251,16 @@
     function close_window() {
 
         modal_shadow.style.display = `none`;
+
+        tutorial_modal.style.display = `none`;
+        success_post_modal.style.display = `none`;
+        failure_post_modal.style.display = `none`;
+
+    }
+
+    function refresh() {
+
+        window.location.reload();
 
     }
 
