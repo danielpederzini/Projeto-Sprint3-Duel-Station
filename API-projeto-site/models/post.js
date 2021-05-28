@@ -33,6 +33,11 @@ module.exports = (sequelize, DataTypes) => {
 			field: 'dislikes',
 			type: DataTypes.INTEGER,
 			allowNull: false
+		},
+		dataPostagem: {
+			field: 'dataPostagem',
+			type: DataTypes.DATE,
+			allowNull: true
 		}
 	}, 
 	{

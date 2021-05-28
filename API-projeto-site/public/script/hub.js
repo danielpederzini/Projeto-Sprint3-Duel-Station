@@ -50,11 +50,7 @@ function load_hub() {
 
         if (resultado.ok) {
 
-            console.log(resultado);
-
             resultado.json().then(json => {
-
-                console.log(json);
 
                 for (var i = 0; i < json.length; i++) {
 
@@ -69,6 +65,8 @@ function load_hub() {
                                 <img src="img/coin.png" alt="Coin icon">
                                 <p>${json[i].saldo}</p>
                             </div>
+
+                            <p>${json[i].dataPostagem.replace('T', ' ').replace('.000Z', '')}</p>
                         </div>
 
                         <div class="post_content">
@@ -81,12 +79,12 @@ function load_hub() {
 
                             <div class="like" onclick="react_to_post('like', ${json[i].idPost})">
                                 <img src="img/like.png" alt="Like icon">
-                                <p>${json[i].likes}</p>
+                                <p id="${'p_like_' + json[i].idPost}">${json[i].likes}</p>
                             </div>
 
                             <div class="dislike" onclick="react_to_post('dislike', ${json[i].idPost})">
                                 <img src="img/dislike.png" alt="Dislike icon">
-                                <p>${json[i].dislikes}</p>
+                                <p id="${'p_dislike_' + json[i].idPost}">${json[i].dislikes}</p>
                             </div>
 
                         </div>
@@ -151,5 +149,8 @@ function react_to_post(reaction_type, post_id) {
     fetch(`/posts/reagir/${post_id}/${reaction_type}`, {
         method: "POST"
     })
+
+    var current_number = Number(document.getElementById(`p_${reaction_type}_${post_id}`).innerHTML);
+    document.getElementById(`p_${reaction_type}_${post_id}`).innerHTML = `${current_number + 1}`
 
 }

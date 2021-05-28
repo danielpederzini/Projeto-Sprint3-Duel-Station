@@ -23,7 +23,7 @@ router.post('/postar/:fkUsuario', function (req, res, next) {
 router.get('/buscar_posts', function (req, res, next) {
     console.log('Getting posts...');
 
-    let instrucaoSql = `select nomeUsuario, saldo, idPost, texto, likes, dislikes from usuario join post on fkUsuario = idUsuario order by idPost desc`;
+    let instrucaoSql = `select nomeUsuario, saldo, idPost, texto, likes, dislikes, dataPostagem from usuario join post on fkUsuario = idUsuario order by idPost desc`;
     console.log(instrucaoSql);
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })

@@ -19,7 +19,7 @@ var round = 0;
 function change_player(selected_player) {
 
     for (var i = 1; i <= 5; i ++) {
-        var i_button= `bt_player${i}`;
+        var i_button= `bt_player${i + 1000}`;
         document.getElementById(`${i_button}`).style.opacity = `30%`;
     }
 
@@ -47,8 +47,8 @@ function next() {
 
 function change_deck(selected_deck) {
 
-    for (var i = 0; i <= 80; i += 20) {
-        var i_button= `bt_deck${i}`;
+    for (var i = 1; i <= 5; i ++) {
+        var i_button= `bt_deck${i + 1000}`;
         document.getElementById(`${i_button}`).style.opacity = `30%`;
     }
 
@@ -66,11 +66,11 @@ function start() {
         div_deck_options.style.display = `none`;
         div_board.style.display = `flex`;
 
-        img_player.src = `img/players/player${player_number}.png`;
+        img_player.src = `img/players/player${player_number - 1000}.png`;
 
         show_cards();
 
-        if (player_number == 1) {
+        if (player_number == 1001) {
             player_lifepoints += 200;
         }
 
@@ -85,12 +85,12 @@ function start() {
 
 function show_cards() {
     
-    if (deck_number != 80) {
+    if (deck_number != 1005) {
         document.getElementById(`bt_ability${deck_number}`).style.display = `block`;
     }
     
-        if ((deck_number == 0 && player_lifepoints <= 100) ||
-            (deck_number == 40 && player_lifepoints <= 750) ||
+        if ((deck_number == 1001 && player_lifepoints <= 100) ||
+            (deck_number == 1003 && player_lifepoints <= 750) ||
             (last_whisper_match)) {
             document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
         }
@@ -99,13 +99,13 @@ function show_cards() {
 
     span_round.innerHTML = ++ round;
 
-    card = deck_number == 80 ?
-    parseInt(Math.random() * 3 + 1) + deck_number :
-    parseInt(Math.random() * 20 + 1) + deck_number;
+    card = deck_number == 1005 ?
+    parseInt(Math.random() * 3 + 1) + (deck_number - 1000) * 20 - 20:
+    parseInt(Math.random() * 20 + 1) + (deck_number - 1000) * 20 - 20;
 
     enemy_card = parseInt(Math.random() * 80 + 1);
 
-    var awakening = parseInt(Math.random() * 50 + 1) == 50 && deck_number == 80;
+    var awakening = parseInt(Math.random() * 50 + 1) == 50 && deck_number == 1005;
 
         if (awakening) {
             card = 84;
@@ -123,7 +123,7 @@ function show_cards() {
     p_attack.innerHTML = card == 84 ?
     `∞` : card_attack;
 
-    img_type.src = `img/types/type${deck_number}.png`;
+    img_type.src = `img/types/type${(deck_number - 1000) * 20 - 20}.png`;
 
     img_enemy_card.src = `img/cards/${enemy_card}.png`;
     p_enemy_card_name.innerHTML = enemy_card_name;
@@ -168,7 +168,7 @@ function set_attack() {
         99999999999 // Holakthy, The Creator of Light
     ];
 
-    card_attack = player_number == 4 ?
+    card_attack = player_number == 1004 ?
     Math.round(card_attacks[card - 1] * 1.05) :
     card_attacks[card - 1]
 
@@ -278,7 +278,7 @@ function fly() {
     var old_card = card;
 
     while (card == old_card) {
-        card = parseInt(Math.random() * 20 + 1) + deck_number;
+        card = parseInt(Math.random() * 20 + 1) + (deck_number - 1000) * 20 - 20;
     }
     
     set_attack();
@@ -350,7 +350,7 @@ function last_whisper() {
 
 function attack() {
     
-    if (deck_number != 80) {
+    if (deck_number != 1005) {
         document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
     }
     
@@ -364,14 +364,14 @@ function attack() {
 
         enemy_lifepoints -= attack_difference;
 
-        if (player_number == 5 && card != 84) {
+        if (player_number == 1005 && card != 84) {
             player_lifepoints += 
             Math.round(attack_difference * 0.10);
         }
 
     }
 
-    else if (player_number == 2) {
+    else if (player_number == 1002) {
         player_lifepoints -= 
         Math.round(attack_difference * 0.75);
     }
@@ -482,8 +482,8 @@ function result() {
     var player_names = ['Seto Kaiba', 'Mako Tsunami', 'S. Leblanc', 'Yami Yugi', 'Yami Marik'];
     var deck_names = ['Alado', 'Aquático', 'Terrestre', 'Sombrio', 'Divino'];
 
-    var player_name = player_names[player_number - 1];
-    var deck_name = deck_names[deck_number / 20];
+    var player_name = player_names[player_number - 1001];
+    var deck_name = deck_names[deck_number - 1001];
 
     fetch(`/partidas/registrar/${user_id}/${player_name}/${deck_name}/${round}/${player_win ? 'vitoria' : 'derrota'}/${lifepoints_diff}/${player_win ? new_currency : -(new_currency)}/${currency}`, {
         method: "POST"

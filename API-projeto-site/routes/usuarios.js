@@ -61,7 +61,8 @@ router.post('/cadastrar', function(req, res, next) {
 			login: req.body.login,
 			email: req.body.email,
 			senha: req.body.password,
-			saldo: 150
+			saldo: 150,
+			statusTutorial: 'on'
 		}).then(resultado => {
 			console.log(`Created register: ${resultado}`)
 			res.send(resultado);

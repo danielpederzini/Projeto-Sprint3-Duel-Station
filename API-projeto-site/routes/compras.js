@@ -1,22 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
-var Usuario = require('../models').Usuario;
-var Duelistas = require('../models').Duelistas;
-var Decks = require('../models').Decks;
+var UsuarioDuelista = require('../models').UsuarioDuelista;
+var UsuarioDeck = require('../models').UsuarioDeck;
 
 /* Comprando um duelista */
 router.post('/comprar_duelista/:item_selecionado/:valor/:idUsuario/:saldo', function(req, res, next) {
 
-	var idDuelista = req.params.item_selecionado;
+	var fkDuelista = req.params.item_selecionado;
 	var valor = Number(req.params.valor);
 	var fkUsuario = req.params.idUsuario;
 	var saldo = Number(req.params.saldo);
 
 	saldo -= valor;
 
-	Duelistas.create({
-		idDuelista: idDuelista,
+	UsuarioDuelista.create({
+		fkDuelista: fkDuelista,
 		fkUsuario: fkUsuario
 	}).then(resultado => {
 		console.log(`Registro criado: ${resultado}`)
@@ -36,15 +35,15 @@ router.post('/comprar_duelista/:item_selecionado/:valor/:idUsuario/:saldo', func
 /* Comprando um deck */
 router.post('/comprar_deck/:item_selecionado/:valor/:idUsuario/:saldo', function(req, res, next) {
 	
-	var idDeck = req.params.item_selecionado;
+	var fkDeck = req.params.item_selecionado;
 	var valor = Number(req.params.valor);
 	var fkUsuario = req.params.idUsuario;
 	var saldo = Number(req.params.saldo);
 
 	saldo -= valor;
 	
-	Decks.create({
-		idDeck: idDeck,
+	UsuarioDeck.create({
+		fkDeck: fkDeck,
 		fkUsuario: fkUsuario
 	}).then(resultado => {
 		console.log(`Registro criado: ${resultado}`)
@@ -67,7 +66,7 @@ router.get('/validar_duelistas/:idUsuario', function(req, res, next) {
 	
 	var idUsuario = req.params.idUsuario;
 	
-	let instrucaoSql = `select idDuelista from duelistas where fkUsuario='${idUsuario}'`;
+	let instrucaoSql = `select fkDuelista from usuarioDuelista where fkUsuario='${idUsuario}'`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
@@ -84,7 +83,7 @@ router.get('/validar_decks/:idUsuario', function(req, res, next) {
 
     var idUsuario = req.params.idUsuario;
 	
-	let instrucaoSql = `select idDeck from decks where fkUsuario='${idUsuario}'`;
+	let instrucaoSql = `select fkDeck from usuarioDeck where fkUsuario='${idUsuario}'`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })

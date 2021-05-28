@@ -42,9 +42,9 @@ function show_buy_box(selected_item, item_id) {
 
     global_selected_item = selected_item;
 
-    item_name = selected_item % 20 == 0 ? deck_names[selected_item / 20] : player_names[selected_item - 1];
-    item_price = selected_item % 20 == 0 ? deck_prices[selected_item / 20] : player_prices[selected_item - 1];
-    item_description = selected_item % 20 == 0 ? deck_descriptions[selected_item / 20] : player_descriptions[selected_item - 1];
+    item_name = selected_item % 20 == 0 ? deck_names[selected_item / 20] : player_names[selected_item - 1001];
+    item_price = selected_item % 20 == 0 ? deck_prices[selected_item / 20] : player_prices[selected_item - 1001];
+    item_description = selected_item % 20 == 0 ? deck_descriptions[selected_item / 20] : player_descriptions[selected_item - 1001];
 
     modal_shadow.style.display = `flex`;
     purchase_modal.style.display = `flex`;
@@ -90,7 +90,7 @@ function buy() {
 
             if (global_selected_item % 20 == 0) {
 
-                fetch(`/compras/comprar_deck/${global_selected_item / 20 + 1}/${item_price}/${user_id}/${currency}`, {
+                fetch(`/compras/comprar_deck/${global_selected_item / 20 + 1001}/${item_price}/${user_id}/${currency}`, {
                     method: "POST"
                 }).then(resposta => {
 
