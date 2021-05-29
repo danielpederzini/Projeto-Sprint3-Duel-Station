@@ -9,7 +9,7 @@ function load_hub() {
 
             resultado.json().then(json => {
 
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 10 && i < json.length; i++) {
                     var sup;
 
                     if (i == 0) {

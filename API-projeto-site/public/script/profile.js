@@ -1,8 +1,6 @@
 var wins = 0;
 var losses = 0;
 
-var total = 0;
-
 function get_matches() {
 
     fetch(`/partidas/buscar_vitorias/${user_id}`, {
@@ -51,19 +49,19 @@ function get_matches() {
 
             resultado.json().then(json => {
 
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 10 && i < json.length; i++) {
 
                     var sup;
 
-                    if (json[i].idPartida == 101) {
+                    if (json.length - i == 1) {
                         sup = 'st';
                     }
 
-                    else if (json[i].idPartida == 102) {
+                    else if (json.length - i == 2) {
                         sup = 'nd';
                     }
 
-                    else if (json[i].idPartida == 103) {
+                    else if (json.length - i == 3) {
                         sup = 'rd';
                     }
 
@@ -73,9 +71,9 @@ function get_matches() {
 
                     history_box.innerHTML +=
 
-                        `<div class="match">
+                    `<div class="match">
 
-                        <p>${json[i].idPartida - 100}<sup>${sup}</sup></p>
+                        <p>${json.length - i}<sup>${sup}</sup></p>
 
                         <p>${json[i].mudancaSaldo < 0 ? 'Lose' : 'Win'}</p>
 
@@ -142,6 +140,12 @@ function get_matches() {
 
             resultado.json().then(json => {
 
+                var total = 0;
+
+                for (var i = 0; i < json.length; i ++) {
+                    total += json[i].numPartidas;
+                }
+
                 for (var i = 0; i < 3; i++) {
                     document.getElementById(`img_top${i + 1}_duelist`).src = `img/players/player${json[i].fkDuelista - 1000}.png`
                     document.getElementById(`p_top${i + 1}_duelist_percent`).innerHTML = `${(json[i].numPartidas / total * 100).toFixed(2)}%`
@@ -161,6 +165,12 @@ function get_matches() {
         if (resultado.ok) {
 
             resultado.json().then(json => {
+
+                var total = 0;
+
+                for (var i = 0; i < json.length; i ++) {
+                    total += json[i].numPartidas;
+                }
 
                 for (var i = 0; i < 3; i++) {
                     document.getElementById(`img_top${i + 1}_deck`).src = `img/types/type${(json[i].fkDeck - 1000) * 20 - 20}.png`
@@ -196,7 +206,7 @@ function get_matches() {
 }
 
 function change_bars() {
-    total = wins + losses;
+    var total = wins + losses;
 
     var wins_percent = wins / total * 100;
     var losses_percent = losses / total * 100;

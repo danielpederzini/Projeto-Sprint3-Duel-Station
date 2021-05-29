@@ -89,7 +89,7 @@ function show_cards() {
         document.getElementById(`bt_ability${deck_number}`).style.display = `block`;
     }
     
-        if ((deck_number == 1001 && player_lifepoints <= 100) ||
+        if ((deck_number == 1001 && player_lifepoints <= 200) ||
             (deck_number == 1003 && player_lifepoints <= 750) ||
             (last_whisper_match)) {
             document.getElementById(`bt_ability${deck_number}`).style.display = `none`;
