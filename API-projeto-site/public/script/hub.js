@@ -56,7 +56,7 @@ function load_hub() {
 
                     div_posts.innerHTML +=
 
-                    `<div class="post">
+                        `<div class="post">
 
                         <div class="author">
                             <p>${json[i].nomeUsuario}</p>
@@ -116,36 +116,12 @@ function post() {
     fetch(`/posts/postar/${user_id}`, {
         method: "POST",
         body: formulario
-    }).then(resultado => {
+    })
 
-        if (resultado.ok) {
-
-            setTimeout(function () {
-
-                loading_modal.style.display = `none`;
-                success_post_modal.style.display = `flex`;
-
-                bt_refresh.focus();
-
-            }, 1000);
-
-        } else {
-
-            setTimeout(function () {
-
-                loading_modal.style.display = `none`;
-                failure_post_modal.style.display = `flex`;
-
-                bt_try_again.focus();
-
-            }, 1000);
-        }
-
-    });
 }
 
 function react_to_post(reaction_type, post_id) {
-    
+
     fetch(`/posts/reagir/${post_id}/${reaction_type}`, {
         method: "POST"
     })

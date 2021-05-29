@@ -1,0 +1,206 @@
+var wins = 0;
+var losses = 0;
+
+var total = 0;
+
+function get_matches() {
+
+    fetch(`/partidas/buscar_vitorias/${user_id}`, {
+        method: "GET"
+    }).then(function (resultado) {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                p_wins.innerHTML = `Wins: ${json[0].numVitorias}`;
+                wins = json[0].numVitorias;
+                change_bars();
+
+            });
+
+        } else {
+            console.log("Couldn't get user's wins");
+        }
+    });
+
+    fetch(`/partidas/buscar_derrotas/${user_id}`, {
+        method: "GET"
+    }).then(function (resultado) {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                p_losses.innerHTML = `Losses: ${json[0].numDerrotas}`;
+                losses = json[0].numDerrotas;
+                change_bars();
+
+            });
+
+        } else {
+            console.log("Couldn't get user's losses");
+        }
+    });
+
+    fetch(`/partidas/buscar_partidas_geral/${user_id}`, {
+        method: "GET"
+    }).then(function (resultado) {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                for (var i = 0; i < 10; i++) {
+
+                    var sup;
+
+                    if (json[i].idPartida == 101) {
+                        sup = 'st';
+                    }
+
+                    else if (json[i].idPartida == 102) {
+                        sup = 'nd';
+                    }
+
+                    else if (json[i].idPartida == 103) {
+                        sup = 'rd';
+                    }
+
+                    else {
+                        sup = 'th';
+                    }
+
+                    history_box.innerHTML +=
+
+                        `<div class="match">
+
+                        <p>${json[i].idPartida - 100}<sup>${sup}</sup></p>
+
+                        <p>${json[i].mudancaSaldo < 0 ? 'Lose' : 'Win'}</p>
+
+                        <img src="img/players/player${json[i].fkDuelista - 1000}.png">
+
+                        <img src="img/types/type${(json[i].fkDeck - 1000) * 20 - 20}.png">
+
+                        <div class="coin_gain">
+                            <p>${json[i].mudancaSaldo < 0 ? '-' : '+'}</p>
+                            <img src="img/coin.png">
+                            <p>${Math.abs(json[i].mudancaSaldo).toFixed(2)}</p>
+                        </div>
+
+                    </div>`
+
+                }
+
+                var match_counters = [0, 0, 0];
+                
+                for (var i = 0; i < json.length; i ++) {
+                    
+                    if (json[i].difPontosDeVida <= 1500) {
+
+                        match_counters[0] ++;
+
+                    } else if (json[i].difPontosDeVida <= 3000) {
+
+                        match_counters[1] ++;
+
+                    } else {
+
+                        match_counters[2] ++;
+
+                    }
+
+                }
+
+                var messages = ['Very Fierce', 'Equilibrated', 'A Stomp'];
+
+                var max = match_counters[0];
+            
+                for (var i = 1; i < match_counters.length; i++) {
+
+                    if (match_counters[i] > max) {
+                        max = match_counters[i];
+                    }
+
+                }
+
+                b_match_type.innerHTML = messages[match_counters.indexOf(max)];
+
+            });
+
+        } else {
+            console.log("Couldn't get user's matches");
+        }
+    });
+
+    fetch(`/partidas/buscar_top_duelistas/${user_id}`, {
+        method: "GET"
+    }).then(function (resultado) {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                for (var i = 0; i < 3; i++) {
+                    document.getElementById(`img_top${i + 1}_duelist`).src = `img/players/player${json[i].fkDuelista - 1000}.png`
+                    document.getElementById(`p_top${i + 1}_duelist_percent`).innerHTML = `${(json[i].numPartidas / total * 100).toFixed(2)}%`
+                }
+
+            });
+
+        } else {
+            console.log("Couldn't get user's top duelists");
+        }
+    });
+
+    fetch(`/partidas/buscar_top_decks/${user_id}`, {
+        method: "GET"
+    }).then(function (resultado) {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                for (var i = 0; i < 3; i++) {
+                    document.getElementById(`img_top${i + 1}_deck`).src = `img/types/type${(json[i].fkDeck - 1000) * 20 - 20}.png`
+                    document.getElementById(`p_top${i + 1}_deck_percent`).innerHTML = `${(json[i].numPartidas / total * 100).toFixed(2)}%`
+                }
+
+            });
+
+        } else {
+            console.log("Couldn't get user's top decks");
+        }
+    });
+
+    fetch(`/partidas/buscar_media_mudanca_saldo/${user_id}`, {
+        method: "GET"
+    }).then(function (resultado) {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                var mediaMudancaSaldo = Number(json[0].mediaMudancaSaldo);
+
+                p_avg_currency_change_signal.innerHTML = mediaMudancaSaldo < 0 ? '-' : '+';
+                p_avg_currency_change.innerHTML = Math.abs(mediaMudancaSaldo).toFixed(2);
+
+            });
+
+        } else {
+            console.log("Couldn't get user's average currency change");
+        }
+    });
+}
+
+function change_bars() {
+    total = wins + losses;
+
+    var wins_percent = wins / total * 100;
+    var losses_percent = losses / total * 100;
+
+    wins_bar.style.width = `${wins_percent}%`
+    losses_bar.style.width = `${losses_percent}%`
+}

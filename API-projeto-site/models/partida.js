@@ -19,14 +19,14 @@ module.exports = (sequelize, DataTypes) => {
 			foreignKey: true,
 			allowNull: false
 		},
-		duelista: {
-			field: 'duelista',
-			type: DataTypes.STRING,
+		fkDuelista: {
+			field: 'fkDuelista',
+			type: DataTypes.INTEGER,
 			allowNull: false
 		},
-		deck: {
-			field: 'deck',
-			type: DataTypes.STRING,
+		fkDeck: {
+			field: 'fkDeck',
+			type: DataTypes.INTEGER,
 			allowNull: false
 		},	
 		rounds: {

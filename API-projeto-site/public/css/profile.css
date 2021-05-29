@@ -20,7 +20,7 @@ body {
 }
 
     .profile_wide_card {
-        height: 450px;
+        height: 825px;
         width: 50%;
         
         padding-left: 2.5%;
@@ -36,7 +36,7 @@ body {
         flex-flow: column nowrap;
 
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
     }
 
         .profile_card b,
@@ -59,34 +59,143 @@ body {
         margin: 10% 0 5% 0;
     }
 
-        .winrate {
-            width: 250px;
-
-            margin-top: 50px;
+        .stats {
+            width: 100%;
 
             display: flex;
 
-            justify-content: space-between;
+            justify-content: space-evenly;
         }
 
-        .winrate_bars {
-            width: 300px;
+            .stats_box {
+                width: 45%;
 
-            display: flex;
+                display: flex;
+                flex-flow: column nowrap;
 
-            justify-content: space-between;
-        }
-
-            #div_wins_bar {
-                height: 20px;
-                width: 56%;
-
-                background: green;
+                align-items: center;
+                justify-content: flex-start;
             }
 
-            #div_losses_bar {
-                height: 20px;
-                width: 44%;
+                .winrate_stats {
+                    width: 100%;
+                }
 
-                background: red;
-            }
+                    .winrate {
+                        width: 100%;
+
+                        display: flex;
+
+                        align-items: center;
+                        justify-content: space-evenly;
+                    }
+
+                        #wins_bar {
+                            height: 20px;
+
+                            border-radius: 5px 0 0 5px;
+
+                            background-color: #4A37A3;
+                        }
+
+                        #losses_bar {
+                            height: 20px;
+
+                            border-radius: 0 5px 5px 0;
+
+                            background-color: red;
+                        }
+
+                .match_history {
+                    width: 100%;
+
+                    margin-top: 30px;
+
+                    border: 2px solid #333;
+
+                    display: flex;
+                    flex-flow: column nowrap;
+                }
+
+                    .match_history > p {
+                        padding: 10px 0;
+                    }
+                
+                    .history_box {
+                        width: 100%;
+
+                        display: flex;
+                        flex-flow: column nowrap;
+
+                        align-items: center;
+                    }
+
+                        .match {
+                            width: 100%;
+
+                            padding: 10px 0;
+
+                            border-top: 2px solid #333;
+
+                            display: flex;
+
+                            align-items: center;
+                            justify-content: space-evenly;
+                        }
+
+                            .match img {
+                                width: 30px;
+
+                                border-radius: 50%;
+                            }
+
+                            .coin_gain {
+                                width: 90px;
+
+                                display: flex;
+
+                                align-items: center;
+                            }
+
+                                .coin_gain img {
+                                    width: 25px;
+
+                                    margin: 0 5px 5px 5px;
+                                }
+
+
+                .right_stats {                    
+                    margin-top: 60px;
+
+                    display: flex;
+                    flex-flow: column nowrap;
+
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                    .choices_stats {
+                        margin-top: 20px;
+
+                        width: 100%;
+
+                        display: flex;
+
+                        justify-content: space-evenly;
+                    }
+
+                    .right_stats .coin_gain {
+                        margin-top: 20px;
+                    }
+
+                    .right_stats b {
+                        margin-top: 20px;
+                    }
+
+                        .choices_stats img {
+                            width: 50px;
+
+                            margin: 0 10px;
+
+                            border-radius: 50%;
+                        }

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/hub.css">
     <link rel="stylesheet" href="css/modals.css">
+    <link rel="icon" href="img/logo.png">
     <script src="script/general.js"></script>
     <script src="script/general_logged.js"></script>
     <script src="script/hub.js"></script>
@@ -170,7 +171,7 @@
 
                 <br><br>
 
-                <p>You can disable this in your profile when you want.</p> <br>
+                <p>You can disable this in the options when you want.</p> <br>
 
                 <p>Hub: See the news and interact with people.</p> <br>
 
@@ -191,22 +192,6 @@
                 <b>Loading...</b>
 
                 <img src="img/loading.gif" alt="Loading gif">
-
-            </div>
-
-            <div class="modal" id="success_post_modal" style="display: none;">
-
-                <b>Successfully posted!</b>
-
-                <button id="bt_refresh" class="button2" onclick="setTimeout(refresh(), 1000)">Ok</button>
-
-            </div>
-
-            <div class="modal" id="failure_post_modal" style="display: none;">
-
-                <b>Couldn't make your post!</b>
-
-                <button id="bt_try_again" class="button2" onclick="close_window()">Ok</button>
 
             </div>
 
@@ -253,14 +238,6 @@
         modal_shadow.style.display = `none`;
 
         tutorial_modal.style.display = `none`;
-        success_post_modal.style.display = `none`;
-        failure_post_modal.style.display = `none`;
-
-    }
-
-    function refresh() {
-
-        window.location.reload();
 
     }
 

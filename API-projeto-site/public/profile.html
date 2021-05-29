@@ -10,13 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="icon" href="img/logo.png">
     <script src="script/general.js"></script>
     <script src="script/general_logged.js"></script>
+    <script src="script/profile.js"></script>
 </head>
 
-<body onload="check_login()">
+<body onload="check_login(), get_matches()">
 
-    <div class="header">
+    <div id="header" class="header">
 
         <div class="navbar">
 
@@ -78,23 +80,115 @@
 
             <b>Stats</b>
 
-            <div class="winrate">
+            <div class="stats">
 
-                <p id="p_wins">Wins: 20</p>
-                <p id="p_losses">Losses: 12</p>
+                <div class="stats_box">
 
-            </div>
+                    <div class="winrate_stats">
 
-            <div class="winrate_bars">
+                        <div class="winrate">
 
-                <div id="div_wins_bar"></div>
-                <div id="div_losses_bar"></div>
+                            <p id="p_wins"></p>
+                            <p id="p_losses"></p>
+    
+                        </div>
+    
+                        <div class="winrate">
+    
+                            <div id="wins_bar"></div>
+                            <div id="losses_bar"></div>
+    
+                        </div>
 
-            </div>
+                    </div>
 
-            <div class="most_played">
+                    <div class="match_history">
 
-                <p>Most played duelists</p>
+                        <p>Last 10 Matches</p>
+
+                        <div id="history_box" class="history_box">
+
+                            
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="stats_box">
+
+                    <div>
+
+                        <p>Most Played Duelists</p>
+
+                        <div class="choices_stats">
+    
+                            <div>
+                                <img id="img_top1_duelist">
+                                <p id="p_top1_duelist_percent"></p>
+                            </div>
+                            
+                            <div>
+                                <img id="img_top2_duelist">
+                                <p id="p_top2_duelist_percent"></p>
+                            </div>
+                            
+                            <div>
+                                <img id="img_top3_duelist">
+                                <p id="p_top3_duelist_percent"></p>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                    
+                    <div class="right_stats">
+
+                        <p>Most Played Decks</p>
+
+                        <div class="choices_stats">
+    
+                            <div>
+                                <img id="img_top1_deck">
+                                <p id="p_top1_deck_percent"></p>
+                            </div>
+                            
+                            <div>
+                                <img id="img_top2_deck">
+                                <p id="p_top2_deck_percent"></p>
+                            </div>
+                            
+                            <div>
+                                <img id="img_top3_deck">
+                                <p id="p_top3_deck_percent"></p>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+
+                    <div class="right_stats">
+
+                        <p>Average Currency Change</p>
+
+                        <div class="coin_gain">
+                            <p id="p_avg_currency_change_signal"></p>
+                            <img src="img/coin.png">
+                            <p id="p_avg_currency_change"></p>
+                        </div>
+
+                    </div>
+
+                    <div class="right_stats">
+
+                        <p>Your Matches Are Mostly</p>
+
+                        <b id="b_match_type"></b>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -112,3 +206,22 @@
 </body>
 
 </html>
+
+<script>
+    window.onscroll = function () {
+        fix_header();
+    };
+
+    var header = document.getElementById("header");
+    var sticky = 50;
+
+    function fix_header() {
+
+        if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky")
+        } else {
+            header.classList.remove("sticky");
+        }
+
+    }
+</script>

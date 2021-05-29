@@ -26,9 +26,9 @@ function check_login() {
     
                 resposta.json().then(json => {
                     
-                    currency = json[0].saldo;
+                    currency = Number(json[0].saldo);
     
-                    p_currency.innerHTML = currency;
+                    p_currency.innerHTML = currency.toFixed(2);
     
                     console.log('Currency: ' + currency)
     

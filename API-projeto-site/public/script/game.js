@@ -162,7 +162,7 @@ function set_attack() {
         2000, 1700, 1800, 2700, 2400, 2000, 2450, 1000, 1000, 2300,
 
         0 + round * 500, // Slifer, The Sky Dragon
-        2000 + Math.round(player_lifepoints * 0.20), // Obelisk, The Tormentor
+        1500 + Math.round(player_lifepoints * 0.20), // Obelisk, The Tormentor
         0 + Math.round(enemy_lifepoints * 0.75), // The Winged Dragon of Rá
 
         99999999999 // Holakthy, The Creator of Light
@@ -445,7 +445,7 @@ function result() {
             new_currency = lifepoints_diff * 0.10;
         }
 
-            if (player_number == 3) {
+            if (player_number == 1003) {
                 new_currency *= player_win ? 1.25 : 0.75;
             }
 
@@ -463,14 +463,14 @@ function result() {
         `<p>-</p> <img src="img/coin.png"> <p>${new_currency.toFixed(2)}</p>`;
 
     player_win ?
-        currency = Number(currency) + new_currency :
-        currency = Number(currency) - new_currency;
+        currency += new_currency :
+        currency -= new_currency;
 
     if (currency < 0) {
         currency = 0;
     }
 
-    p_currency.innerHTML = `${Number(currency).toFixed(2)}`;
+    p_currency.innerHTML = `${currency.toFixed(2)}`;
 
     var result_audio = new Audio( player_win ?
         'audio/win.mp3' :
@@ -478,14 +478,7 @@ function result() {
 
     result_audio.play();
 
-    // Structuring SQL array
-    var player_names = ['Seto Kaiba', 'Mako Tsunami', 'S. Leblanc', 'Yami Yugi', 'Yami Marik'];
-    var deck_names = ['Alado', 'Aquático', 'Terrestre', 'Sombrio', 'Divino'];
-
-    var player_name = player_names[player_number - 1001];
-    var deck_name = deck_names[deck_number - 1001];
-
-    fetch(`/partidas/registrar/${user_id}/${player_name}/${deck_name}/${round}/${player_win ? 'vitoria' : 'derrota'}/${lifepoints_diff}/${player_win ? new_currency : -(new_currency)}/${currency}`, {
+    fetch(`/partidas/registrar/${user_id}/${player_number}/${deck_number}/${round}/${player_win ? 'vitoria' : 'derrota'}/${lifepoints_diff}/${player_win ? new_currency : -(new_currency)}/${currency}`, {
         method: "POST"
     }).then(function (response) {
         

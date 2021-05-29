@@ -36,7 +36,7 @@ body {
     }
 
     .hub_card:nth-child(1) {
-        margin: 10% 0 5% 0;
+        margin: 10% 0 0 0;
     }
 
     .hub_wide_card {
