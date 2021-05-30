@@ -1,6 +1,12 @@
 var wins = 0;
 var losses = 0;
 
+function load_background() {
+
+    profile_body.style.backgroundImage = `url('${background_url}')`
+
+}
+
 function get_matches() {
 
     fetch(`/partidas/buscar_vitorias/${user_id}`, {
@@ -69,13 +75,13 @@ function get_matches() {
                         sup = 'th';
                     }
 
-                    history_box.innerHTML +=
+                    match_history_box.innerHTML +=
 
-                    `<div class="match">
+                        `<div class="match">
 
                         <p>${json.length - i}<sup>${sup}</sup></p>
 
-                        <p>${json[i].mudancaSaldo < 0 ? 'Lose' : 'Win'}</p>
+                        <p>${json[i].rounds} RDs</p>
 
                         <img src="img/players/player${json[i].fkDuelista - 1000}.png">
 
@@ -92,20 +98,20 @@ function get_matches() {
                 }
 
                 var match_counters = [0, 0, 0];
-                
-                for (var i = 0; i < json.length; i ++) {
-                    
+
+                for (var i = 0; i < json.length; i++) {
+
                     if (json[i].difPontosDeVida <= 1500) {
 
-                        match_counters[0] ++;
+                        match_counters[0]++;
 
                     } else if (json[i].difPontosDeVida <= 3000) {
 
-                        match_counters[1] ++;
+                        match_counters[1]++;
 
                     } else {
 
-                        match_counters[2] ++;
+                        match_counters[2]++;
 
                     }
 
@@ -114,7 +120,7 @@ function get_matches() {
                 var messages = ['Very Fierce', 'Equilibrated', 'A Stomp'];
 
                 var max = match_counters[0];
-            
+
                 for (var i = 1; i < match_counters.length; i++) {
 
                     if (match_counters[i] > max) {
@@ -142,7 +148,7 @@ function get_matches() {
 
                 var total = 0;
 
-                for (var i = 0; i < json.length; i ++) {
+                for (var i = 0; i < json.length; i++) {
                     total += json[i].numPartidas;
                 }
 
@@ -168,7 +174,7 @@ function get_matches() {
 
                 var total = 0;
 
-                for (var i = 0; i < json.length; i ++) {
+                for (var i = 0; i < json.length; i++) {
                     total += json[i].numPartidas;
                 }
 
@@ -201,6 +207,62 @@ function get_matches() {
 
         } else {
             console.log("Couldn't get user's average currency change");
+        }
+    });
+}
+
+function get_purchases() {
+    fetch(`/compras/buscar_compras_duelistas/${user_id}`, {
+        method: "GET"
+    }).then(function (resultado) {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                for (var i = 0; i < json.length; i++) {
+
+                    var sup;
+
+                    if (json.length - i == 1) {
+                        sup = 'st';
+                    }
+
+                    else if (json.length - i == 2) {
+                        sup = 'nd';
+                    }
+
+                    else if (json.length - i == 3) {
+                        sup = 'rd';
+                    }
+
+                    else {
+                        sup = 'th';
+                    }
+
+                    purchase_history_box.innerHTML +=
+
+                    `<div class="purchase">
+
+                        <p>${json.length - i}<sup>${sup}</sup></p>
+
+                        <img src="img/players/player${json[i].fkDuelista - 1000}.png">
+
+                        <div class="price">
+                            <img src="img/coin.png">
+                            <p>${json[i].valorDuelista}</p>
+                        </div>
+
+                        <p>${json[i].dataCompra.replace('T', ' ').replace('.000Z', '')}</p>
+
+                    </div>`
+
+                }
+
+            });
+
+        } else {
+            console.log("Couldn't get user's purchases");
         }
     });
 }

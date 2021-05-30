@@ -1,6 +1,8 @@
 var user_id = window.sessionStorage.getItem('id_usuario_meuapp');
 var user_name = window.sessionStorage.getItem('nome_usuario_meuapp');
 var login = window.sessionStorage.getItem('login_usuario_meuapp');
+var background_url = window.sessionStorage.getItem('url_fundo_usuario_meuapp');
+var tutorial_status = window.sessionStorage.getItem('status_tutorial_usuario_meuapp');
 var currency;
 
 function logoff() {
@@ -30,7 +32,9 @@ function check_login() {
     
                     p_currency.innerHTML = currency.toFixed(2);
     
-                    console.log('Currency: ' + currency)
+                    console.log('Currency: ' + currency);
+
+                    in_tutorial_status.checked = tutorial_status == 'on' ? 'checked' : false;
     
                 });
     
@@ -59,4 +63,49 @@ function check_session() {
             }
         });
 
+}
+
+function show_settings() {
+    
+    modal_shadow.style.display = `flex`;
+
+    settings_modal.style.display = `flex`;
+
+}
+
+function save_settings() {
+
+    settings_modal.style.display = `none`;
+    loading_modal.style.display = `flex`;
+
+    var formulario = new URLSearchParams(new FormData(form_settings));
+    
+    fetch(`/usuarios/salvar_configuracoes/${user_id}`, {
+        method: "POST",
+        body: formulario
+    }).then(function (response) {
+
+        if (response.ok) {
+
+            setTimeout(function () {
+
+                loading_modal.style.display = `none`;
+                success_settings_modal.style.display = `flex`;
+
+            }, 1000);
+
+        } else {
+
+            setTimeout(function () {
+
+                loading_modal.style.display = `none`;
+                failure_settings_modal.style.display = `flex`;
+                
+            }, 1000);
+
+        }
+    });
+
+    return false;
+    
 }

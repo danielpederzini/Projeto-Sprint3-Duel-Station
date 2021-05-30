@@ -42,6 +42,11 @@ module.exports = (sequelize, DataTypes) => {
 			field: 'statusTutorial',
 			type: DataTypes.STRING,
 			allowNull: false
+		},
+		urlFundoPerfil: {
+			field: 'urlFundoPerfil',
+			type: DataTypes.STRING,
+			allowNull: false
 		}
 	}, 
 	{

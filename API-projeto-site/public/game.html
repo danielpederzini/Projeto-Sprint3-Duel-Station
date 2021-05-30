@@ -62,13 +62,20 @@
                     </a>
                 </li>
 
-                <li class="music">
+                <li class="nav_icon">
 
                     <img id="muted_music" src="img/muted.png" onclick="play_music()">
 
                     <img id="playing_music" src="img/playing.png" onclick="stop_music()" style="display: none;">
 
                 </li>
+
+                <li class="nav_icon">
+
+                    <img src="img/settings.png" onclick="show_settings()">
+
+                </li>
+
             </ul>
 
         </div>
@@ -101,7 +108,8 @@
                         </div>
                     </button>
 
-                    <button id="bt_player1002" value="1002" onclick="change_player(Number(this.value))" style="display: none;">
+                    <button id="bt_player1002" value="1002" onclick="change_player(Number(this.value))"
+                        style="display: none;">
                         <img src="img/players/player2.png">
                         <p>Mako Tsunami</p>
 
@@ -118,7 +126,8 @@
                         </div>
                     </button>
 
-                    <button id="bt_player1003" value="1003" onclick="change_player(Number(this.value))" style="display: none;">
+                    <button id="bt_player1003" value="1003" onclick="change_player(Number(this.value))"
+                        style="display: none;">
                         <img src="img/players/player3.png">
                         <p>S. Leblanc</p>
 
@@ -135,7 +144,8 @@
                         </div>
                     </button>
 
-                    <button id="bt_player1004" value="1004" onclick="change_player(Number(this.value))" style="display: none;">
+                    <button id="bt_player1004" value="1004" onclick="change_player(Number(this.value))"
+                        style="display: none;">
                         <img src="img/players/player4.png">
                         <p>Yami Yugi</p>
 
@@ -152,7 +162,8 @@
                         </div>
                     </button>
 
-                    <button id="bt_player1005" value="1005" onclick="change_player(Number(this.value))" style="display: none;">
+                    <button id="bt_player1005" value="1005" onclick="change_player(Number(this.value))"
+                        style="display: none;">
                         <img src="img/players/player5.png">
                         <p>Yami Marik</p>
 
@@ -192,7 +203,8 @@
                         </div>
                     </button>
 
-                    <button id="bt_deck1002" value="1002" onclick="change_deck(Number(this.value))" style="display: none;">
+                    <button id="bt_deck1002" value="1002" onclick="change_deck(Number(this.value))"
+                        style="display: none;">
                         <img src="img/types/type20.png">
                         <p>Aquatic</p>
 
@@ -209,7 +221,8 @@
                         </div>
                     </button>
 
-                    <button id="bt_deck1003" value="1003" onclick="change_deck(Number(this.value))" style="display: none;">
+                    <button id="bt_deck1003" value="1003" onclick="change_deck(Number(this.value))"
+                        style="display: none;">
                         <img src="img/types/type40.png">
                         <p>Earthy</p>
 
@@ -226,7 +239,8 @@
                         </div>
                     </button>
 
-                    <button id="bt_deck1004" value="1004" onclick="change_deck(Number(this.value))" style="display: none;">
+                    <button id="bt_deck1004" value="1004" onclick="change_deck(Number(this.value))"
+                        style="display: none;">
                         <img src="img/types/type60.png">
                         <p>Dark</p>
 
@@ -243,7 +257,8 @@
                         </div>
                     </button>
 
-                    <button id="bt_deck1005" value="1005" onclick="change_deck(Number(this.value))" style="display: none;">
+                    <button id="bt_deck1005" value="1005" onclick="change_deck(Number(this.value))"
+                        style="display: none;">
                         <img src="img/types/type80.png">
                         <p>Divine</p>
 
@@ -352,14 +367,77 @@
 
             </div>
 
-    </div>
+            <div class="modal" id="settings_modal" style="display: none;">
 
-    <div class="logo">
+                <b>Settings</b>
 
-        <img src="img/logo.png" alt="Logo Duel Station">
-        <p>© 2021 Duel Station</p>
+                <br><br>
 
-    </div>
+                <form id="form_settings" autocomplete="off" onsubmit="return save_settings()">
+
+                    <p>New Player Name</p>
+                    <input id="in_new_name" type="text" name="new_name" required minlength="4" required maxlength="16">
+
+                    <br><br><br>
+
+                    <div>
+
+                        <p>Tutorial</p>
+                        <input id="in_tutorial_status" type="checkbox" name="tutorial_status">
+
+                    </div>
+
+                    <br><br><br>
+
+                    <p>Profile Background (URL)</p>
+                    <input id="in_background_url" type="text" name="background_url">
+
+                    <br><br><br>
+
+                    <div>
+
+                        <div class="button1" onclick="close_window()">
+                            <p>🡸</p>
+                        </div>
+
+                        <button class="button2" onclick="save_settings()">
+                            <p>Save</p>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal" id="success_settings_modal" style="display: none;">
+
+                <b>Successfully Saved Your Changes!</b>
+
+                <p>Sign In Again to Apply Them</p>
+
+                <button class="button2" onclick="logoff()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="failure_settings_modal" style="display: none;">
+
+                <b>Couldn't Save Your Changes!</b>
+
+                <p>Try again later</p>
+
+                <button class="button2" onclick="close_window()">Back</button>
+
+            </div>
+
+        </div>
+
+        <div class="logo">
+
+            <img src="img/logo.png" alt="Logo Duel Station">
+            <p>© 2021 Duel Station</p>
+
+        </div>
 
 </body>
 
@@ -367,7 +445,7 @@
 
 <script>
 
-fetch(`/compras/validar_duelistas/${user_id}`, {
+    fetch(`/compras/validar_duelistas/${user_id}`, {
         method: "GET",
     }).then(resultado => {
 
@@ -421,5 +499,25 @@ fetch(`/compras/validar_duelistas/${user_id}`, {
 
         }
     });
+
+    function reset() {
+        document.location.reload();
+    }
+
+    function show_redirect_modal() {
+        modal_shadow.style.display = `flex`;
+        redirect_modal.style.display = `flex`;
+    }
+
+    function go_to_store() {
+        window.location.href = `store.html`
+    }
+
+    function close_window() {
+        modal_shadow.style.display = `none`;
+
+        redirect_modal.style.display = `none`;
+        settings_modal.style.display = `none`;
+    }
 
 </script>

@@ -6,12 +6,12 @@ var Usuario = require('../models').Usuario;
 let sessoes = [];
 
 /* Recuperar usuário por login e senha */
-router.post('/autenticar', function(req, res, next) {
+router.post('/autenticar', function (req, res, next) {
 	console.log('Recovering user by login/email and password');
 
 	var login = req.body.login;
-	var senha = req.body.password;	
-	
+	var senha = req.body.password;
+
 	let instrucaoSql = `select * from usuario where (login='${login}' or email='${login}') and senha='${senha}'`;
 	console.log(instrucaoSql);
 
@@ -22,7 +22,7 @@ router.post('/autenticar', function(req, res, next) {
 
 		if (resultado.length == 1) {
 			sessoes.push(resultado[0].dataValues.login);
-			console.log('sessions: ',sessoes);
+			console.log('sessions: ', sessoes);
 			res.json(resultado[0]);
 		} else if (resultado.length == 0) {
 			res.status(403).send('Invalid login or password!');
@@ -33,15 +33,15 @@ router.post('/autenticar', function(req, res, next) {
 	}).catch(erro => {
 		console.error(erro);
 		res.status(500).send(erro.message);
-  	});
+	});
 });
 
 /* Cadastrar usuário */
-router.post('/cadastrar', function(req, res, next) {
+router.post('/cadastrar', function (req, res, next) {
 	console.log('Creating an user');
-	
+
 	if (req.body.login == '' || req.body.email == '' || req.body.password == '' || req.body.password_confirm != req.body.password ||
-	req.body.email.includes('@') == false || req.body.email.includes('.com') == false) {
+		req.body.email.includes('@') == false || req.body.email.includes('.com') == false) {
 
 		Usuario.create({
 		}).then(resultado => {
@@ -62,7 +62,8 @@ router.post('/cadastrar', function(req, res, next) {
 			email: req.body.email,
 			senha: req.body.password,
 			saldo: 150,
-			statusTutorial: 'on'
+			statusTutorial: 'on',
+			urlFundoPerfil: 'img/profile_banner.png'
 		}).then(resultado => {
 			console.log(`Created register: ${resultado}`)
 			res.send(resultado);
@@ -77,12 +78,12 @@ router.post('/cadastrar', function(req, res, next) {
 
 
 /* Verificação de usuário */
-router.get('/sessao/:login', function(req, res, next) {
+router.get('/sessao/:login', function (req, res, next) {
 	let login = req.params.login;
 	console.log(`Checking if user ${login} has a session`);
-	
+
 	let has_session = false;
-	for (let u=0; u<sessoes.length; u++) {
+	for (let u = 0; u < sessoes.length; u++) {
 		if (sessoes[u] == login) {
 			has_session = true;
 			break;
@@ -96,16 +97,16 @@ router.get('/sessao/:login', function(req, res, next) {
 	} else {
 		res.sendStatus(403);
 	}
-	
+
 });
 
 
 /* Logoff de usuário */
-router.get('/sair/:login', function(req, res, next) {
+router.get('/sair/:login', function (req, res, next) {
 	let login = req.params.login;
 	console.log(`Ending user ${login} session`);
 	let nova_sessoes = []
-	for (let u=0; u<sessoes.length; u++) {
+	for (let u = 0; u < sessoes.length; u++) {
 		if (sessoes[u] != login) {
 			nova_sessoes.push(sessoes[u]);
 		}
@@ -116,7 +117,7 @@ router.get('/sair/:login', function(req, res, next) {
 
 
 /* Recuperar todos os usuários */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
 	console.log('Recovering all users');
 	Usuario.findAndCountAll().then(resultado => {
 		console.log(`${resultado.count} registers`);
@@ -125,69 +126,75 @@ router.get('/', function(req, res, next) {
 	}).catch(erro => {
 		console.error(erro);
 		res.status(500).send(erro.message);
-  	});
+	});
 });
 
-/* Recuperar top 10 usuários */
-router.post('/rankear', function(req, res, next) {
+router.get('/rankear', function (req, res, next) {
 	console.log('Getting top 10 players');
-	
-	let instrucaoSql = `select nomeUsuario, saldo from usuario order by saldo`;
-	console.log(instrucaoSql);
 
-	sequelize.query(instrucaoSql, {
-		model: Usuario
-	}).then(resultado => {
-		console.log(`Found: ${resultado.length}`);
-		console.log(resultado);
-
-		console.log(resultado[1].nomeUsuario);
-
-		if (resultado.length < 10) {
-			console.log(`Successfully got ${resultado.length} top 10 players`);
-		} else {
-			res.status(403).send("Successfully got all top 10 players");
-		}
-
-	}).catch(erro => {
-		console.error(erro);
-		res.status(500).send(erro.message);
-  	});
-});
-
-router.get('/rankear', function(req, res, next) {
-	console.log('Getting top 10 players');
-	
 	let instrucaoSql = `select nomeUsuario, saldo from usuario order by saldo desc`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
-	.then(resultado => {
-		res.json(resultado);
-	}).catch(erro => {
-		console.error(erro);
-		res.status(500).send(erro.message);
-	});
+		.then(resultado => {
+			res.json(resultado);
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
 
 });
 
-router.get('/buscar_saldo/:user_id', function(req, res, next) {
+router.get('/buscar_saldo/:idUsuario', function (req, res, next) {
 	console.log("Getting user's currency");
 
-	var user_id = req.params.user_id;
-	
-	let instrucaoSql = `select saldo from usuario where idUsuario="${user_id}"`;
+	var idUsuario = req.params.idUsuario;
+
+	let instrucaoSql = `select saldo from usuario where idUsuario="${idUsuario}"`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
-	.then(resultado => {
-		console.log(resultado);
-		res.json(resultado);
-	}).catch(erro => {
-		console.error(erro);
-		res.status(500).send(erro.message);
-	});
+		.then(resultado => {
+			console.log(resultado);
+			res.json(resultado);
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
 
+});
+
+router.post('/salvar_configuracoes/:idUsuario', function (req, res, next) {
+	console.log('Saving settings');
+
+	var idUsuario = req.params.idUsuario;
+	var novoNome = req.body.new_name.trim();
+	var statusTutorial = req.body.tutorial_status;
+	var urlFundoPerfil = req.body.background_url;
+
+	var selectedInstructions = [];
+
+	if (novoNome != '') {
+		selectedInstructions.push(`update usuario set nomeUsuario = "${novoNome}" where idUsuario = ${idUsuario}`)
+	}
+
+	selectedInstructions.push(`update usuario set statusTutorial = "${statusTutorial ? 'on' : 'off'}" where idUsuario = ${idUsuario}`)
+
+	if (urlFundoPerfil != '') {
+		selectedInstructions.push(`update usuario set urlFundoPerfil = "${urlFundoPerfil}" where idUsuario = ${idUsuario}`)
+	}
+
+	for (var i = 0; i < selectedInstructions.length; i ++) {
+		sequelize.query(selectedInstructions[i], {type: sequelize.QueryTypes.UPDATE })
+		.then(resultado => {
+			console.log(resultado);
+			res.json(resultado);
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
+	}
+	
 });
 
 module.exports = router;

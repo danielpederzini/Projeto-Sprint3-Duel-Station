@@ -65,9 +65,11 @@ function show_buy_box(selected_item, item_id) {
 function close_window() {
 
     modal_shadow.style.display = `none`;
+    
     purchase_modal.style.display = `none`;
     success_purchase_modal.style.display = `none`;
     failure_purchase_modal.style.display = `none`;
+    settings_modal.style.display = `none`;
 
     bt_buy.style.display = `flex`;
 

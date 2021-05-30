@@ -62,11 +62,17 @@
                     </a>
                 </li>
 
-                <li class="music">
+                <li class="nav_icon">
 
                     <img id="muted_music" src="img/muted.png" onclick="play_music()">
 
                     <img id="playing_music" src="img/playing.png" onclick="stop_music()" style="display: none;">
+
+                </li>
+
+                <li class="nav_icon">
+
+                    <img src="img/settings.png" onclick="show_settings()">
 
                 </li>
 
@@ -302,6 +308,69 @@
                 <p id="p_failure_message"></p>
 
                 <button class="button2" onclick="close_window()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="settings_modal" style="display: none;">
+
+                <b>Settings</b>
+
+                <br><br>
+
+                <form id="form_settings" autocomplete="off" onsubmit="return save_settings()">
+
+                    <p>New Player Name</p>
+                    <input id="in_new_name" type="text" name="new_name" required minlength="4" required maxlength="16">
+
+                    <br><br><br>
+
+                    <div>
+
+                        <p>Tutorial</p>
+                        <input id="in_tutorial_status" type="checkbox" name="tutorial_status">
+
+                    </div>
+
+                    <br><br><br>
+
+                    <p>Profile Background (URL)</p>
+                    <input id="in_background_url" type="text" name="background_url">
+
+                    <br><br><br>
+
+                    <div>
+
+                        <div class="button1" onclick="close_window()">
+                            <p>🡸</p>
+                        </div>
+
+                        <button class="button2" onclick="save_settings()">
+                            <p>Save</p>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal" id="success_settings_modal" style="display: none;">
+
+                <b>Successfully Saved Your Changes!</b>
+
+                <p>Sign In Again to Apply Them</p>
+
+                <button class="button2" onclick="logoff()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="failure_settings_modal" style="display: none;">
+
+                <b>Couldn't Save Your Changes!</b>
+
+                <p>Try again later</p>
+
+                <button class="button2" onclick="close_window()">Back</button>
 
             </div>
 

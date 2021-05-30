@@ -56,39 +56,39 @@ function load_hub() {
 
                     div_posts.innerHTML +=
 
-                        `<div class="post">
-
+                    `<div class="post">
+                        
                         <div class="author">
                             <p>${json[i].nomeUsuario}</p>
-
+                            
                             <div class="currency_top10">
                                 <img src="img/coin.png" alt="Coin icon">
                                 <p>${json[i].saldo}</p>
                             </div>
-
+                            
                             <p>${json[i].dataPostagem.replace('T', ' ').replace('.000Z', '')}</p>
                         </div>
-
+                        
                         <div class="post_content">
-
-                            <p>${json[i].texto}</p>
+                        
+                        <p>${json[i].texto}</p>
 
                         </div>
-
+                        
                         <div class="reactions">
-
+                        
                             <div class="like" onclick="react_to_post('like', ${json[i].idPost})">
                                 <img src="img/like.png" alt="Like icon">
                                 <p id="${'p_like_' + json[i].idPost}">${json[i].likes}</p>
                             </div>
-
+                            
                             <div class="dislike" onclick="react_to_post('dislike', ${json[i].idPost})">
                                 <img src="img/dislike.png" alt="Dislike icon">
                                 <p id="${'p_dislike_' + json[i].idPost}">${json[i].dislikes}</p>
                             </div>
 
                         </div>
-
+                        
                     </div>`;
 
                 }
@@ -104,8 +104,6 @@ function load_hub() {
 
         }
     });
-
-    return false;
 }
 
 function post() {
@@ -113,12 +111,41 @@ function post() {
     loading_modal.style.display = `flex`;
 
     var formulario = new URLSearchParams(new FormData(form_post));
+    
     fetch(`/posts/postar/${user_id}`, {
         method: "POST",
         body: formulario
-    })
+    }).then(function (response) {
+
+        if (response.ok) {
+
+            setTimeout(function () {
+
+                loading_modal.style.display = `none`;
+                success_post_modal.style.display = `flex`;
+
+            }, 1000);
+
+            response.json().then(json => {
+                p_username.innerHTML = `Sign in as ${json.nomeUsuario} to continue`;
+            });
+
+        } else {
+
+            setTimeout(function () {
+
+                loading_modal.style.display = `none`;
+                failure_post_modal.style.display = `flex`;
+                
+            }, 1000);
+
+        }
+    });
+
+    return false;
 
 }
+
 
 function react_to_post(reaction_type, post_id) {
 

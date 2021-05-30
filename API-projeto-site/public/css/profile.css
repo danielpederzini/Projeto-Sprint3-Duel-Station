@@ -3,7 +3,6 @@
 }
 
 body {
-    background-image: url(../img/profile_banner.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -69,6 +68,16 @@ body {
 
             .stats_box {
                 width: 45%;
+
+                display: flex;
+                flex-flow: column nowrap;
+
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .wide_stats_box {
+                width: 60%;
 
                 display: flex;
                 flex-flow: column nowrap;
@@ -199,3 +208,89 @@ body {
 
                             border-radius: 50%;
                         }
+
+                .purchase_stats {
+                    width: 100%;
+
+                    display: flex;
+
+                    justify-content: space-evenly;
+                }
+
+                    .purchase_stats div {
+                        display: flex;
+                        flex-flow: column nowrap;
+
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                .purchase_history {
+                    width: 100%;
+
+                    margin-top: 30px;
+
+                    border: 2px solid #333;
+
+                    display: flex;
+                    flex-flow: column nowrap;
+                }
+
+                    .purchase_history > p {
+                        padding: 10px 0;
+                    }
+                
+                    .history_box {
+                        width: 100%;
+
+                        display: flex;
+                        flex-flow: column nowrap;
+
+                        align-items: center;
+                    }
+
+                        .purchase {
+                            width: 100%;
+
+                            padding: 10px 0;
+
+                            border-top: 2px solid #333;
+
+                            display: flex;
+
+                            align-items: center;
+                            justify-content: space-evenly;
+                        }
+
+                            .purchase img {
+                                width: 30px;
+
+                                border-radius: 50%;
+                            }
+
+                            .purchase p:first-child {
+                                width: 7.5%;
+
+                                text-align: left;
+                            }
+
+                            .purchase p:last-child {
+                                width: 48%;
+
+                                text-align: left;
+                            }
+
+                            .price {
+                                width: 20%;
+
+                                display: flex;
+
+                                align-items: center;
+                                justify-content: flex-start;
+                            }
+
+                                .price img {
+                                    width: 25px;
+
+                                    margin: 0 5px 5px 0px;
+                                }

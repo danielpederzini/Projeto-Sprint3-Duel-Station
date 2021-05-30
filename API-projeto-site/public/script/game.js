@@ -490,21 +490,3 @@ function result() {
         }
     });
 }
-
-function reset() {
-    document.location.reload();
-}
-
-function show_redirect_modal() {
-    modal_shadow.style.display = `flex`;
-    redirect_modal.style.display = `flex`;
-}
-
-function go_to_store() {
-    window.location.href = `store.html`
-}
-
-function close_window() {
-    modal_shadow.style.display = `none`;
-    redirect_modal.style.display = `none`;
-}

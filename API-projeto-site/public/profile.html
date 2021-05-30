@@ -10,13 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/modals.css">
     <link rel="icon" href="img/logo.png">
     <script src="script/general.js"></script>
     <script src="script/general_logged.js"></script>
     <script src="script/profile.js"></script>
 </head>
 
-<body onload="check_login(), get_matches()">
+<body id="profile_body" onload="check_login(), get_matches(), get_purchases(), load_background()">
 
     <div id="header" class="header">
 
@@ -61,13 +62,20 @@
                     </a>
                 </li>
 
-                <li class="music">
+                <li class="nav_icon">
 
                     <img id="muted_music" src="img/muted.png" onclick="play_music()">
 
                     <img id="playing_music" src="img/playing.png" onclick="stop_music()" style="display: none;">
 
                 </li>
+
+                <li class="nav_icon">
+
+                    <img src="img/settings.png" onclick="show_settings()">
+
+                </li>
+
             </ul>
 
         </div>
@@ -90,14 +98,14 @@
 
                             <p id="p_wins"></p>
                             <p id="p_losses"></p>
-    
+
                         </div>
-    
+
                         <div class="winrate">
-    
+
                             <div id="wins_bar"></div>
                             <div id="losses_bar"></div>
-    
+
                         </div>
 
                     </div>
@@ -106,9 +114,9 @@
 
                         <p>Last 10 Matches</p>
 
-                        <div id="history_box" class="history_box">
+                        <div id="match_history_box" class="history_box">
 
-                            
+
 
                         </div>
 
@@ -123,47 +131,47 @@
                         <p>Most Played Duelists</p>
 
                         <div class="choices_stats">
-    
+
                             <div>
                                 <img id="img_top1_duelist">
                                 <p id="p_top1_duelist_percent"></p>
                             </div>
-                            
+
                             <div>
                                 <img id="img_top2_duelist">
                                 <p id="p_top2_duelist_percent"></p>
                             </div>
-                            
+
                             <div>
                                 <img id="img_top3_duelist">
                                 <p id="p_top3_duelist_percent"></p>
                             </div>
-                        
+
                         </div>
 
                     </div>
-                    
+
                     <div class="right_stats">
 
                         <p>Most Played Decks</p>
 
                         <div class="choices_stats">
-    
+
                             <div>
                                 <img id="img_top1_deck">
                                 <p id="p_top1_deck_percent"></p>
                             </div>
-                            
+
                             <div>
                                 <img id="img_top2_deck">
                                 <p id="p_top2_deck_percent"></p>
                             </div>
-                            
+
                             <div>
                                 <img id="img_top3_deck">
                                 <p id="p_top3_deck_percent"></p>
                             </div>
-                        
+
                         </div>
 
                     </div>
@@ -193,6 +201,47 @@
             </div>
 
         </div>
+        <div class="profile_wide_card">
+
+            <b>Purchases</b>
+
+            <div class="stats">
+
+                <div class="wide_stats_box">
+
+                    <div class="purchase_stats">
+
+                        <div>
+                            <p>You Have</p>
+                            <b>10</b>
+                            <p>Duelists</p>
+                        </div>
+
+                        <div>
+                            <p>You Have</p>
+                            <b>10</b>
+                            <p>Decks</p>
+                        </div>
+
+                    </div>
+
+                    <div class="purchase_history">
+
+                        <p>Purchase History</p>
+
+                        <div id="purchase_history_box" class="history_box">
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -200,6 +249,81 @@
 
         <img src="img/logo.png" alt="Logo Duel Station">
         <p>© 2021 Duel Station</p>
+
+    </div>
+
+    <div id="modal_shadow" class="modal_shadow" style="display: none;">
+
+        <div class="modal" id="loading_modal" style="display: none;">
+
+            <b>Loading...</b>
+
+            <img src="img/loading.gif" alt="Loading gif">
+
+        </div>
+
+        <div class="modal" id="settings_modal" style="display: none;">
+
+            <b>Settings</b>
+
+            <br><br>
+
+            <form id="form_settings" autocomplete="off" onsubmit="return save_settings()">
+
+                <p>New Player Name</p>
+                <input id="in_new_name" type="text" name="new_name" required minlength="4" required maxlength="16">
+
+                <br><br><br>
+
+                <div>
+
+                    <p>Tutorial</p>
+                    <input id="in_tutorial_status" type="checkbox" name="tutorial_status" checked>
+
+                </div>
+
+                <br><br><br>
+
+                <p>Profile Background (URL)</p>
+                <input id="in_background_url" type="text" name="background_url">
+
+                <br><br><br>
+
+                <div>
+
+                    <div class="button1" onclick="close_window()">
+                        <p>🡸</p>
+                    </div>
+
+                    <button class="button2" onclick="save_settings()">
+                        <p>Save</p>
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="modal" id="success_settings_modal" style="display: none;">
+
+            <b>Successfully Saved Your Changes!</b>
+
+            <p>Sign In Again to Apply Them</p>
+
+            <button class="button2" onclick="logoff()">Ok</button>
+
+        </div>
+
+        <div class="modal" id="failure_settings_modal" style="display: none;">
+
+            <b>Couldn't Save Your Changes!</b>
+
+            <p>Try again later</p>
+
+            <button class="button2" onclick="close_window()">Back</button>
+
+        </div>
 
     </div>
 
@@ -224,4 +348,13 @@
         }
 
     }
+
+    function close_window() {
+
+        modal_shadow.style.display = `none`;
+
+        settings_modal.style.display = `none`;
+
+    }
+
 </script>

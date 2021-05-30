@@ -162,14 +162,16 @@ a:hover {
                 margin-bottom: 6px;
             }
 
-                .music {
+                .nav_icon {
                     display: flex;
 
                     align-items: center;
                     justify-content: center;
+
+                    cursor: pointer;
                 }
 
-                    .music img {
+                    .nav_icon img {
                         width: 20px;
 
                         margin-bottom: 5px;

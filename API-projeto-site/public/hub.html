@@ -62,13 +62,20 @@
                     </a>
                 </li>
 
-                <li class="music">
+                <li class="nav_icon">
 
                     <img id="muted_music" src="img/muted.png" onclick="play_music()">
 
                     <img id="playing_music" src="img/playing.png" onclick="stop_music()" style="display: none;">
 
                 </li>
+
+                <li class="nav_icon">
+
+                    <img src="img/settings.png" onclick="show_settings()">
+
+                </li>
+
             </ul>
 
         </div>
@@ -154,7 +161,7 @@
             <div id="div_posts" class="posts">
 
                 <form id="form_post" autocomplete="off" onsubmit="return post()">
-                    <textarea name="text" type="text"></textarea>
+                    <textarea name="text" type="text" required minlength="2"></textarea>
 
                     <button class="button2">Post</button>
                 </form>
@@ -165,21 +172,22 @@
 
         <div class="modal_shadow" id="modal_shadow" style="display: none;">
 
-            <div class="modal" id="tutorial_modal">
+            <div class="modal" id="tutorial_modal" style="display: none;">
 
                 <b>Tutorial</b>
 
                 <br><br>
 
-                <p>You can disable this in the options when you want.</p> <br>
+                <p>You can disable this in the settings <br>
+                    (right navbar conner)</p> <br>
 
-                <p>Hub: See the news and interact with people.</p> <br>
+                <p>Hub: See the rankings and interact with people.</p> <br>
 
                 <p>Game: Choose your duelist and your deck, and play to earn coins.</p> <br>
 
                 <p>Store: Spend your coins and see more about the duelists and decks.</p> <br>
 
-                <p>Profile: Check your stats and change your account options.</p>
+                <p>Profile: Check your stats and match history.</p>
 
                 <br><br>
 
@@ -192,6 +200,89 @@
                 <b>Loading...</b>
 
                 <img src="img/loading.gif" alt="Loading gif">
+
+            </div>
+
+            <div class="modal" id="success_post_modal" style="display: none;">
+
+                <b>Successfully Posted!</b>
+
+                <p>Click "OK" to refresh the page</p>
+
+                <button class="button2" onclick="refresh()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="failure_post_modal" style="display: none;">
+
+                <b>Couldn't Post!</b>
+
+                <p>Try again later</p>
+
+                <button class="button2" onclick="close_window()">Back</button>
+
+            </div>
+
+            <div class="modal" id="settings_modal" style="display: none;">
+
+                <b>Settings</b>
+
+                <br><br>
+
+                <form id="form_settings" autocomplete="off" onsubmit="return save_settings()">
+
+                    <p>New Player Name</p>
+                    <input id="in_new_name" type="text" name="new_name" required minlength="4" required maxlength="16">
+
+                    <br><br><br>
+
+                    <div>
+
+                        <p>Tutorial</p>
+                        <input id="in_tutorial_status" type="checkbox" name="tutorial_status">
+
+                    </div>
+
+                    <br><br><br>
+
+                    <p>Profile Background (URL)</p>
+                    <input id="in_background_url" type="text" name="background_url">
+
+                    <br><br><br>
+
+                    <div>
+
+                        <div class="button1" onclick="close_window()">
+                            <p>🡸</p>
+                        </div>
+
+                        <button class="button2" onclick="save_settings()">
+                            <p>Save</p>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal" id="success_settings_modal" style="display: none;">
+
+                <b>Successfully Saved Your Changes!</b>
+
+                <p>Sign In Again to Apply Them</p>
+
+                <button class="button2" onclick="logoff()">Ok</button>
+
+            </div>
+
+            <div class="modal" id="failure_settings_modal" style="display: none;">
+
+                <b>Couldn't Save Your Changes!</b>
+
+                <p>Try again later</p>
+
+                <button class="button2" onclick="close_window()">Back</button>
 
             </div>
 
@@ -210,10 +301,11 @@
 
 <script>
 
-    var tutorialOn = sessionStorage.getItem('status_tutorial_usuario_meuapp') == 'on';
+    var tutorialOn = tutorial_status == 'on';
 
     if (tutorialOn) {
         modal_shadow.style.display = `flex`;
+        tutorial_modal.style.display = `flex`;
     }
 
     window.onscroll = function () {
@@ -238,6 +330,15 @@
         modal_shadow.style.display = `none`;
 
         tutorial_modal.style.display = `none`;
+        success_post_modal.style.display = `none`;
+        failure_post_modal.style.display = `none`;
+        settings_modal.style.display = `none`;
+
+    }
+
+    function refresh() {
+
+        window.location.reload();
 
     }
 
