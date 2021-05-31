@@ -162,6 +162,14 @@ body {
                             justify-content: space-evenly;
                         }
 
+                            .match > p:nth-child(1) {
+                                width: 30px;
+                            }
+
+                            .match > p:nth-child(2) {
+                                width: 60px;
+                            }
+
                             .match img {
                                 width: 30px;
 

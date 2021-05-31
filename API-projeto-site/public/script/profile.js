@@ -262,7 +262,7 @@ function get_purchases() {
                             <p>${json[i].valorDuelista.toFixed(2)}</p>
                         </div>
 
-                        <p>${json[i].dataCompra.replace('T', ' ').replace('.000Z', '')}</p>
+                        <p>${json[i].dataCompra.replace('T', ' ').slice(0, -5)}</p>
 
                     </div>`
 

@@ -29,7 +29,7 @@ function load_hub() {
                     }
 
                     document.getElementById(`p_top${i + 1}_name`).innerHTML += `${i + 1}<sup>${sup}</sup> ${json[i].nomeUsuario}`;
-                    document.getElementById(`div_top${i + 1}_currency`).innerHTML = `<img src="img/coin.png"> <p>${json[i].saldo}</p>`;
+                    document.getElementById(`div_top${i + 1}_currency`).innerHTML = `<img src="img/coin.png"> <p>${Number(json[i].saldo).toFixed(2)}</p>`;
                 }
 
             });
@@ -63,10 +63,10 @@ function load_hub() {
                             
                             <div class="currency_top10">
                                 <img src="img/coin.png" alt="Coin icon">
-                                <p>${json[i].saldo}</p>
+                                <p>${Number(json[i].saldo).toFixed(2)}</p>
                             </div>
                             
-                            <p>${json[i].dataPostagem.replace('T', ' ').replace('.000Z', '')}</p>
+                            <p>${json[i].dataPostagem.replace('T', ' ').slice(0, -5)}</p>
                         </div>
                         
                         <div class="post_content">

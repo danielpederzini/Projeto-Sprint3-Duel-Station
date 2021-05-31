@@ -150,7 +150,7 @@ router.get('/buscar_saldo/:idUsuario', function (req, res, next) {
 
 	var idUsuario = req.params.idUsuario;
 
-	let instrucaoSql = `select saldo from usuario where idUsuario="${idUsuario}"`;
+	let instrucaoSql = `select saldo from usuario where idUsuario=${idUsuario}`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
@@ -177,13 +177,13 @@ router.post('/salvar_configuracoes/:idUsuario', function (req, res, next) {
 	var selectedInstructions = [];
 
 	if (novoNome.length >= 4 && novoNome.length <= 16) {
-		selectedInstructions.push(`update usuario set nomeUsuario = "${novoNome}" where idUsuario = ${idUsuario}`)
+		selectedInstructions.push(`update usuario set nomeUsuario = '${novoNome}' where idUsuario = ${idUsuario}`)
 	}
 
-	selectedInstructions.push(`update usuario set statusTutorial = "${statusTutorial ? 'on' : 'off'}" where idUsuario = ${idUsuario}`)
+	selectedInstructions.push(`update usuario set statusTutorial = '${statusTutorial ? 'on' : 'off'}' where idUsuario = ${idUsuario}`)
 
 	if (urlFundoPerfil.length > 0) {
-		selectedInstructions.push(`update usuario set urlFundoPerfil = "${urlFundoPerfil}" where idUsuario = ${idUsuario}`)
+		selectedInstructions.push(`update usuario set urlFundoPerfil = '${urlFundoPerfil}' where idUsuario = ${idUsuario}`)
 	}
 
 	for (var i = 0; i < selectedInstructions.length; i ++) {

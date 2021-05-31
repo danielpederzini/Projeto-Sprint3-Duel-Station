@@ -14,7 +14,7 @@ router.post('/registrar/:user_id/:duelist/:deck/:rounds/:result/:lifepointsDiff/
 	let mudancaSaldo = req.params.currencyChange;
 	let saldo = req.params.currency;
 
-	let instrucaoSql = `update usuario set saldo="${saldo}" where idUsuario="${fkUsuario}"`;
+	let instrucaoSql = `update usuario set saldo=${saldo} where idUsuario=${fkUsuario}`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.UPDATE });

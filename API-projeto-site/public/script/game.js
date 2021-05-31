@@ -40,7 +40,7 @@ function next() {
     }
 
     else {
-        alert('Selecione um Duelista!');
+        alert('Select a duelist!');
     }
 
 }
@@ -78,7 +78,7 @@ function start() {
     }
 
     else {
-        alert('Selecione um Deck!');
+        alert('Select a deck!');
     }
 
 }

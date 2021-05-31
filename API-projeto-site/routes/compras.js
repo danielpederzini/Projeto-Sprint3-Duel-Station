@@ -25,7 +25,7 @@ router.post('/comprar_duelista/:item_selecionado/:valor/:idUsuario/:saldo', func
 		res.status(500).send(erro.message);
 	});
 
-	let instrucaoSql = `update usuario set saldo="${saldo}" where idUsuario="${fkUsuario}"`;
+	let instrucaoSql = `update usuario set saldo=${saldo} where idUsuario=${fkUsuario}`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.UPDATE });
@@ -53,7 +53,7 @@ router.post('/comprar_deck/:item_selecionado/:valor/:idUsuario/:saldo', function
 		res.status(500).send(erro.message);
 	});
 
-	let instrucaoSql = `update usuario set saldo="${saldo}" where idUsuario="${fkUsuario}"`;
+	let instrucaoSql = `update usuario set saldo=${saldo} where idUsuario=${fkUsuario}`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.UPDATE });
@@ -66,7 +66,7 @@ router.get('/validar_duelistas/:idUsuario', function(req, res, next) {
 	
 	var idUsuario = req.params.idUsuario;
 	
-	let instrucaoSql = `select fkDuelista from usuarioDuelista where fkUsuario='${idUsuario}'`;
+	let instrucaoSql = `select fkDuelista from usuarioDuelista where fkUsuario=${idUsuario}`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
@@ -83,7 +83,7 @@ router.get('/validar_decks/:idUsuario', function(req, res, next) {
 
     var idUsuario = req.params.idUsuario;
 	
-	let instrucaoSql = `select fkDeck from usuarioDeck where fkUsuario='${idUsuario}'`;
+	let instrucaoSql = `select fkDeck from usuarioDeck where fkUsuario=${idUsuario}`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
@@ -101,7 +101,7 @@ router.get('/buscar_compras_duelistas/:idUsuario', function(req, res, next) {
 	
 	let instrucaoSql = `select fkDuelista, valorDuelista, dataCompra from usuario 
 	join usuarioDuelista on fkUsuario = idUsuario 
-	join duelista on fkDuelista = idDuelista where idUsuario='${idUsuario}' order by dataCompra desc`;
+	join duelista on fkDuelista = idDuelista where idUsuario=${idUsuario} order by dataCompra desc`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
@@ -119,7 +119,7 @@ router.get('/buscar_compras_decks/:idUsuario', function(req, res, next) {
 	
 	let instrucaoSql = `select fkDeck, valorDeck, dataCompra from usuario 
 	join usuarioDeck on fkUsuario = idUsuario 
-	join deck on fkDeck = idDeck where idUsuario='${idUsuario}' order by dataCompra desc`;
+	join deck on fkDeck = idDeck where idUsuario=${idUsuario} order by dataCompra desc`;
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
