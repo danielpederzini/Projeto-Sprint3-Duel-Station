@@ -377,35 +377,39 @@
 
                     <p>Player Name</p>
                     <input id="in_new_name" type="text" name="new_name">
-
-                    <br><br><br>
-
+    
+                    <br><br>
+    
                     <div>
-
+    
                         <p>Tutorial</p>
                         <input id="in_tutorial_status" type="checkbox" name="tutorial_status" checked>
-
+    
                     </div>
-
-                    <br><br><br>
-
+    
+                    <br><br>
+    
                     <p>Profile Background (URL)</p>
-                    <input id="in_background_url" type="text" name="background_url">
-
-                    <br><br><br>
-
+                    <input id="in_background_url" type="text" name="background_url" onkeyup="show_preview()">
+    
+                    <br><br>
+    
+                    <img id="img_background_preview" alt="Not an image">
+    
+                    <br><br>
+    
                     <div>
-
+    
                         <div class="button1" onclick="close_window()">
                             <p>🡸</p>
                         </div>
-
+    
                         <button class="button2" onclick="save_settings()">
                             <p>Save</p>
                         </button>
-
+    
                     </div>
-
+    
                 </form>
 
             </div>

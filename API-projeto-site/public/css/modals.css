@@ -61,6 +61,17 @@
             #success_login_modal img,
             #success_signup_modal img {
                 width: 150px;
+
+                font-family: 'MedievalSharp', sans-serif;;
+                color: #FFF;
+            }
+
+            #settings_modal img {
+                height: 150px;
+                width: 250px;
+
+                font-family: 'MedievalSharp', sans-serif;;
+                color: #FFF;
             }
 
             #purchase_modal img {
@@ -97,4 +108,12 @@
                 height: 20px;
 
                 margin-left: 10px;
+            }
+
+            #form_settings {
+                display: flex;
+                flex-flow: column nowrap;
+
+                align-items: center;
+                justify-content: center;
             }

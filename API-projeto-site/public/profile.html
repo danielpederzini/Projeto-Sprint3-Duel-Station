@@ -88,7 +88,7 @@
 
             <b>Stats</b>
 
-            <div class="stats">
+            <div id="div_match_stats" class="stats" style="display: none;">
 
                 <div class="stats_box">
 
@@ -200,7 +200,14 @@
 
             </div>
 
+            <div id="div_no_match_message">
+
+                <p>You'll see your stats here once you've played a match</p>
+
+            </div>
+
         </div>
+
         <div class="profile_wide_card">
 
             <b>Purchases</b>
@@ -285,7 +292,7 @@
                 <p>Player Name</p>
                 <input id="in_new_name" type="text" name="new_name">
 
-                <br><br><br>
+                <br><br>
 
                 <div>
 
@@ -294,12 +301,16 @@
 
                 </div>
 
-                <br><br><br>
+                <br><br>
 
                 <p>Profile Background (URL)</p>
-                <input id="in_background_url" type="text" name="background_url">
+                <input id="in_background_url" type="text" name="background_url" onkeyup="show_preview()">
 
-                <br><br><br>
+                <br><br>
+
+                <img id="img_background_preview" alt="Not an image">
+
+                <br><br>
 
                 <div>
 

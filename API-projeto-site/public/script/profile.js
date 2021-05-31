@@ -55,64 +55,71 @@ function get_matches() {
 
             resultado.json().then(json => {
 
-                for (var i = 0; i < 10 && i < json.length; i++) {
+                if (json.length > 0) {
 
-                    var sup;
+                    div_no_match_message.style.display = `none`;
+                    div_match_stats.style.display = `flex`;
+                    
+                    for (var i = 0; i < 10 && i < json.length; i++) {
 
-                    if (json.length - i == 1) {
-                        sup = 'st';
+                        var sup;
+    
+                        if (json.length - i == 1) {
+                            sup = 'st';
+                        }
+    
+                        else if (json.length - i == 2) {
+                            sup = 'nd';
+                        }
+    
+                        else if (json.length - i == 3) {
+                            sup = 'rd';
+                        }
+    
+                        else {
+                            sup = 'th';
+                        }
+    
+                        match_history_box.innerHTML +=
+    
+                            `<div class="match">
+    
+                            <p>${json.length - i}<sup>${sup}</sup></p>
+    
+                            <p>${json[i].rounds} RDs</p>
+    
+                            <img src="img/players/player${json[i].fkDuelista - 1000}.png">
+    
+                            <img src="img/types/type${(json[i].fkDeck - 1000) * 20 - 20}.png">
+    
+                            <div class="coin_gain">
+                                <p>${json[i].mudancaSaldo < 0 ? '-' : '+'}</p>
+                                <img src="img/coin.png">
+                                <p>${Math.abs(json[i].mudancaSaldo).toFixed(2)}</p>
+                            </div>
+    
+                        </div>`
+    
                     }
-
-                    else if (json.length - i == 2) {
-                        sup = 'nd';
-                    }
-
-                    else if (json.length - i == 3) {
-                        sup = 'rd';
-                    }
-
-                    else {
-                        sup = 'th';
-                    }
-
-                    match_history_box.innerHTML +=
-
-                        `<div class="match">
-
-                        <p>${json.length - i}<sup>${sup}</sup></p>
-
-                        <p>${json[i].rounds} RDs</p>
-
-                        <img src="img/players/player${json[i].fkDuelista - 1000}.png">
-
-                        <img src="img/types/type${(json[i].fkDeck - 1000) * 20 - 20}.png">
-
-                        <div class="coin_gain">
-                            <p>${json[i].mudancaSaldo < 0 ? '-' : '+'}</p>
-                            <img src="img/coin.png">
-                            <p>${Math.abs(json[i].mudancaSaldo).toFixed(2)}</p>
-                        </div>
-
-                    </div>`
-
-                }
-
-                var match_counters = [0, 0, 0];
-
-                for (var i = 0; i < json.length; i++) {
-
-                    if (json[i].difPontosDeVida <= 1500) {
-
-                        match_counters[0]++;
-
-                    } else if (json[i].difPontosDeVida <= 3000) {
-
-                        match_counters[1]++;
-
-                    } else {
-
-                        match_counters[2]++;
-
+    
+                    var match_counters = [0, 0, 0];
+    
+                    for (var i = 0; i < json.length; i++) {
+    
+                        if (json[i].difPontosDeVida <= 1500) {
+    
+                            match_counters[0]++;
+    
+                        } else if (json[i].difPontosDeVida <= 3000) {
+    
+                            match_counters[1]++;
+    
+                        } else {
+    
+                            match_counters[2]++;
+    
+                        }
+    
                     }
 
                 }

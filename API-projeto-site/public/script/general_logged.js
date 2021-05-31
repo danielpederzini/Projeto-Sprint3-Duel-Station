@@ -111,3 +111,15 @@ function save_settings() {
     return false;
     
 }
+
+function show_preview() {
+
+    var background_url = in_background_url.value.trim();
+    
+    img_background_preview.src = background_url;
+
+}
+
+setTimeout( function () {
+    show_preview()   
+}, 1000);
