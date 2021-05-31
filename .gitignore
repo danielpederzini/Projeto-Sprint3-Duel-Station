@@ -62,3 +62,5 @@ typings/
 
 .directory
 package-lock.json
+
+config.js

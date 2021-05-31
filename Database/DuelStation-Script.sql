@@ -45,6 +45,8 @@ nomeDuelista VARCHAR(50),
 valorDuelista INT
 ) AUTO_INCREMENT = 1001;
 
+SELECT NOW() - INTERVAL 3 HOUR;
+
 CREATE TABLE usuarioDuelista (
 fkUsuario INT,
 fkDuelista INT,
