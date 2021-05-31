@@ -220,6 +220,8 @@ function get_purchases() {
 
             resultado.json().then(json => {
 
+                b_duelists_number.innerHTML = json.length + 1;
+
                 for (var i = 0; i < json.length; i++) {
 
                     var sup;
@@ -240,7 +242,7 @@ function get_purchases() {
                         sup = 'th';
                     }
 
-                    purchase_history_box.innerHTML +=
+                    duelist_purchase_history_box.innerHTML +=
 
                     `<div class="purchase">
 
@@ -250,7 +252,7 @@ function get_purchases() {
 
                         <div class="price">
                             <img src="img/coin.png">
-                            <p>${json[i].valorDuelista}</p>
+                            <p>${json[i].valorDuelista.toFixed(2)}</p>
                         </div>
 
                         <p>${json[i].dataCompra.replace('T', ' ').replace('.000Z', '')}</p>
@@ -258,6 +260,96 @@ function get_purchases() {
                     </div>`
 
                 }
+
+                duelist_purchase_history_box.innerHTML +=
+
+                `<div class="purchase">
+
+                    <p>Initial</p>
+
+                    <img src="img/players/player1.png">
+
+                    <div class="price">
+                        <img src="img/coin.png">
+                        <p>0.00</p>
+                    </div>
+
+                    <p>On Account Creation</p>
+
+                </div>`;
+
+            });
+
+        } else {
+            console.log("Couldn't get user's purchases");
+        }
+    });
+
+    fetch(`/compras/buscar_compras_decks/${user_id}`, {
+        method: "GET"
+    }).then(function (resultado) {
+
+        if (resultado.ok) {
+
+            resultado.json().then(json => {
+
+                b_decks_number.innerHTML = json.length + 1;
+
+                for (var i = 0; i < json.length; i++) {
+
+                    var sup;
+
+                    if (json.length - i == 1) {
+                        sup = 'st';
+                    }
+
+                    else if (json.length - i == 2) {
+                        sup = 'nd';
+                    }
+
+                    else if (json.length - i == 3) {
+                        sup = 'rd';
+                    }
+
+                    else {
+                        sup = 'th';
+                    }
+
+                    deck_purchase_history_box.innerHTML +=
+
+                        `<div class="purchase">
+
+                        <p>${json.length - i}<sup>${sup}</sup></p>
+
+                        <img src="img/types/type${(json[i].fkDeck - 1000) * 20 - 20}.png">
+
+                        <div class="price">
+                            <img src="img/coin.png">
+                            <p>${json[i].valorDeck.toFixed(2)}</p>
+                        </div>
+
+                        <p>${json[i].dataCompra.replace('T', ' ').replace('.000Z', '')}</p>
+
+                    </div>`
+
+                }
+
+                deck_purchase_history_box.innerHTML +=
+
+                `<div class="purchase">
+
+                    <p>Initial</p>
+
+                    <img src="img/types/type0.png">
+
+                    <div class="price">
+                        <img src="img/coin.png">
+                        <p>0.00</p>
+                    </div>
+
+                    <p>On Account Creation</p>
+
+                </div>`;
 
             });
 

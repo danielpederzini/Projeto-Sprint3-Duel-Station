@@ -168,19 +168,21 @@ router.post('/salvar_configuracoes/:idUsuario', function (req, res, next) {
 	console.log('Saving settings');
 
 	var idUsuario = req.params.idUsuario;
+
 	var novoNome = req.body.new_name.trim();
 	var statusTutorial = req.body.tutorial_status;
 	var urlFundoPerfil = req.body.background_url;
+	
 
 	var selectedInstructions = [];
 
-	if (novoNome != '') {
+	if (novoNome.length >= 4 && novoNome.length <= 16) {
 		selectedInstructions.push(`update usuario set nomeUsuario = "${novoNome}" where idUsuario = ${idUsuario}`)
 	}
 
 	selectedInstructions.push(`update usuario set statusTutorial = "${statusTutorial ? 'on' : 'off'}" where idUsuario = ${idUsuario}`)
 
-	if (urlFundoPerfil != '') {
+	if (urlFundoPerfil.length > 0) {
 		selectedInstructions.push(`update usuario set urlFundoPerfil = "${urlFundoPerfil}" where idUsuario = ${idUsuario}`)
 	}
 

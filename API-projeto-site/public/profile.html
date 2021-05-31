@@ -213,25 +213,37 @@
 
                         <div>
                             <p>You Have</p>
-                            <b>10</b>
-                            <p>Duelists</p>
+                            <b id="b_duelists_number">1</b>
+                            <p>Duelist(s)</p>
                         </div>
 
                         <div>
                             <p>You Have</p>
-                            <b>10</b>
-                            <p>Decks</p>
+                            <b id="b_decks_number">1</b>
+                            <p>Deck(s)</p>
                         </div>
 
                     </div>
 
                     <div class="purchase_history">
 
-                        <p>Purchase History</p>
+                        <p>Duelist Purchase History</p>
 
-                        <div id="purchase_history_box" class="history_box">
+                        <div id="duelist_purchase_history_box" class="history_box">
 
 
+
+                        </div>
+
+                    </div>
+
+                    <div class="purchase_history">
+
+                        <p>Deck Purchase History</p>
+
+                        <div id="deck_purchase_history_box" class="history_box">
+
+                        
 
                         </div>
 
@@ -270,8 +282,8 @@
 
             <form id="form_settings" autocomplete="off" onsubmit="return save_settings()">
 
-                <p>New Player Name</p>
-                <input id="in_new_name" type="text" name="new_name" required minlength="4" required maxlength="16">
+                <p>Player Name</p>
+                <input id="in_new_name" type="text" name="new_name">
 
                 <br><br><br>
 

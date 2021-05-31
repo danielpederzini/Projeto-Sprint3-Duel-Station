@@ -19,11 +19,9 @@ body {
 }
 
     .profile_wide_card {
-        height: 825px;
         width: 50%;
         
-        padding-left: 2.5%;
-        padding-right: 2.5%;
+        padding: 5% 2.5%;
 
         background-color: #000000CC;
 
@@ -46,6 +44,10 @@ body {
             text-align: center;
         }
 
+        .profile_wide_card > b {
+            margin-bottom: 30px;
+        }
+
         .profile_card p,
         .profile_wide_card p {
             color: #FFF;
@@ -55,7 +57,11 @@ body {
         }
 
     .profile_wide_card:nth-child(1) {
-        margin: 10% 0 5% 0;
+        margin: 10% 0 0 0;
+    }
+
+    .profile_wide_card:nth-child(2) {
+        margin: 5% 0;
     }
 
         .stats {
@@ -76,8 +82,12 @@ body {
                 justify-content: flex-start;
             }
 
+            .stats_box:nth-child(2) {
+                justify-content: center;
+            }
+
             .wide_stats_box {
-                width: 60%;
+                width: 70%;
 
                 display: flex;
                 flex-flow: column nowrap;
@@ -275,7 +285,7 @@ body {
                             }
 
                             .purchase p:last-child {
-                                width: 48%;
+                                width: 40%;
 
                                 text-align: left;
                             }

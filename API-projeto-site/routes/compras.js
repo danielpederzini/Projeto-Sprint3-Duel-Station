@@ -113,4 +113,22 @@ router.get('/buscar_compras_duelistas/:idUsuario', function(req, res, next) {
 	});
 });
 
+router.get('/buscar_compras_decks/:idUsuario', function(req, res, next) {
+
+    var idUsuario = req.params.idUsuario;
+	
+	let instrucaoSql = `select fkDeck, valorDeck, dataCompra from usuario 
+	join usuarioDeck on fkUsuario = idUsuario 
+	join deck on fkDeck = idDeck where idUsuario='${idUsuario}' order by dataCompra desc`;
+	console.log(instrucaoSql);
+
+	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+	.then(resultado => {
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
 module.exports = router;

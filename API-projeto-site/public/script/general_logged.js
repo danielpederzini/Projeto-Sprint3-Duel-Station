@@ -34,7 +34,9 @@ function check_login() {
     
                     console.log('Currency: ' + currency);
 
-                    in_tutorial_status.checked = tutorial_status == 'on' ? 'checked' : false;
+                    in_new_name.value = user_name;
+                    in_tutorial_status.checked = tutorial_status == 'on' ? true : false;
+                    in_background_url.value = background_url;
     
                 });
     
