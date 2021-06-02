@@ -304,7 +304,7 @@
 </html>
 
 <script>
-
+    // Verifica se o usuário quer ver o tutorial, e exibe caso sim
     var tutorialOn = tutorial_status == 'on';
 
     if (tutorialOn) {
@@ -312,6 +312,7 @@
         tutorial_modal.style.display = `flex`;
     }
 
+    // Verifica a posição do scroll e adiciona um fundo ao header se necessário
     window.onscroll = function () {
         fix_header();
     };
@@ -329,6 +330,7 @@
 
     }
 
+    // Fecha todos os modais
     function close_window() {
 
         modal_shadow.style.display = `none`;
@@ -340,6 +342,7 @@
 
     }
 
+    // Recarrega a página
     function refresh() {
 
         window.location.reload();

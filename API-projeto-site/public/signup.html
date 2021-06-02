@@ -136,8 +136,8 @@
         modal_shadow.style.display = `flex`;
         loading_modal.style.display = `flex`;
 
+        // Cadastra um usuário
         var formulario = new URLSearchParams(new FormData(form_signup));
-
         fetch("/usuarios/cadastrar", {
             method: "POST",
             body: formulario

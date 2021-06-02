@@ -124,7 +124,7 @@ function get_matches() {
 
                 }
 
-                var messages = ['Very Fierce', 'Equilibrated', 'A Stomp'];
+                var messages = ['Very Fierce', 'Balanced', 'A Stomp'];
 
                 var max = match_counters[0];
 
@@ -335,7 +335,7 @@ function get_purchases() {
                             <p>${json[i].valorDeck.toFixed(2)}</p>
                         </div>
 
-                        <p>${json[i].dataCompra.replace('T', ' ').replace('.000Z', '')}</p>
+                        <p>${json[i].dataCompra.replace('T', ' ').slice(0, -5)}</p>
 
                     </div>`
 
