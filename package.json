@@ -1,0 +1,9 @@
+{
+    "name": "duel-station-root",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node ./API-projeto-site/bin/www",
+        "postInstall": "cd API-projeto-site && npm install"
+    }
+}
